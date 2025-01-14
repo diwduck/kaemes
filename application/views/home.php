@@ -595,9 +595,6 @@
         </i>
        </a>
       </div>
-      <div class="online-status">
-       Online 5
-      </div>
      </div>
     </div>
    </div>
