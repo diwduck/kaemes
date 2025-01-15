@@ -15,52 +15,37 @@
             font-family: 'Poppins', sans-serif;
             background-color: #f0f0f0; /* Light gray background */
         }
-        .navbar {
-            background-color: rgba(0, 0, 0, 0.7);
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 1000;
-        }
-        .navbar-brand {
-            font-weight: bold;
-        }
-        .navbar-nav .nav-link {
-            color: white !important;
-            font-weight: bold;
-        }
         .header {
             font-family: 'Playfair Display', serif;
             background-image: url('uploads/image/batik.jpg'); /* Ganti dengan lokasi file gambar batik */
-    background-position: center;
-    color: white;
-    text-align: center;
-    height: 38vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    z-index: 1;
-    overflow: hidden; /* Pastikan elemen anak tidak keluar */
-}
+            background-position: center;
+            color: white;
+            text-align: center;
+            height: 38vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+            overflow: hidden; /* Pastikan elemen anak tidak keluar */
+        }
 
-.header::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.74); /* Hitam dengan transparansi 50% */
-    z-index: -1; /* Menempatkan layer di belakang konten */
-}
+        .header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.74); /* Hitam dengan transparansi 50% */
+            z-index: -1; /* Menempatkan layer di belakang konten */
+        }
 
-.header h1, .header p {
-    position: relative; /* Agar berada di atas layer transparan */
-    z-index: 2;
-}
+        .header h1, .header p {
+            position: relative; /* Agar berada di atas layer transparan */
+            z-index: 2;
+        }
         .header h1 {
             font-size: 5rem;
             font-weight: bold;
@@ -104,77 +89,6 @@
             margin: 30px auto 100px auto; /* Center the button and add more space below */
             width: 100px;
         }
-        .footer {
-            background-color:rgba(0, 0, 0, 0.83);
-            color: white;
-            padding: 20px 0;
-            width: 100%;
-            margin: 0;
-        }
-        .footer a {
-            color: white;
-        }
-        .footer .social-icons a {
-            font-size: 30px;
-            margin: 0 10px;
-            background-color: #3b5998;
-            color: white;
-            border-radius: 50%;
-            padding: 20px;
-            width: 70px;
-            height: 70px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-        }
-        .footer .social-icons a:hover {
-            color: #3498db;
-        }
-        .footer .contact-info, .footer .location {
-            margin-bottom: 20px;
-        }
-        .footer .location iframe {
-            width: 100%;
-            height: 300px;
-            border: 0;
-        }
-        .footer .online-status {
-            background-color: #3498db;
-            color: white;
-            padding: 5px 10px;
-            border-radius: 5px;
-            display: inline-block;
-        }
-        .footer-bottom {
-            background-color: #000;
-            color: white;
-            padding: 10px 0;
-            width: 100%;
-            margin: 0;
-        }
-        .footer-bottom p {
-            margin: 0;
-        }
-        .footer .row > div {
-            margin-bottom: 20px;
-        }
-        .footer .location {
-            margin-left: 150px;
-        }
-        .footer h5 {
-            text-decoration: underline;
-            text-underline-offset: 10px;
-            margin-bottom: 40px;
-            text-decoration-color: rgba(255, 255, 255, 0.5);
-        }
-        .footer .contact-info {
-            margin-left: 150px;
-        }
-        .footer .contact-info i {
-            font-size: 30px;
-            margin-right: 10px;
-        }
         .content-box {
             background-color: white;
             padding: 60px;
@@ -191,69 +105,9 @@
             text-decoration: underline;
             background-color: transparent;
         }
-
   </style>
  </head>
- <body>
-  <nav class="navbar navbar-expand-lg fixed-top">
-   <div class="container-fluid">
-    <a class="navbar-brand" href="#" style="display: flex; align-items: center; text-decoration: none; margin-left: 40px;">
-      <img 
-        alt="Logo" 
-        class="d-inline-block align-text-top" 
-        height="75" 
-        src="https://bpsdmd.jatengprov.go.id/web/assets/front/logo/jateng.png" 
-        width="75"
-      />
-      <div style="margin-left: 15px; color: white; text-align: left; line-height: 1.2;">
-        <strong style="font-size: 30px;">BPSDMD</strong><br />
-        <span style="font-size: 20px;">Provinsi Jawa Tengah</span>
-      </div>
-    </a>
-    <button aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-bs-target="#navbarNav" data-bs-toggle="collapse" type="button">
-     <span class="navbar-toggler-icon">
-     </span>
-    </button>
-    <button aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" 
-      class="navbar-toggler" data-bs-target="#navbarNav" data-bs-toggle="collapse" type="button">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ms-auto" style="font-size: 20px; gap: 40px;">
-        <li class="nav-item">
-          <a class="nav-link text-white" href="#">
-            <i class="fas fa-home" style="font-size: 20px;"></i> Home
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-white" href="#">
-            <i class="fas fa-book" style="font-size: 20px;"></i> Modul
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-white" href="#">
-            <i class="fas fa-newspaper" style="font-size: 20px;"></i> e-Journal
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-white" href="#">
-            <i class="fas fa-book-open" style="font-size: 20px;"></i> e-Warta
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-white" href="#">
-            <i class="fas fa-bookmark" style="font-size: 20px;"></i> COE
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="btn text-white" href="#" style="background-color: #1EAFEC; font-size: 20px; padding: 5px 25px;">
-            <i class="fas fa-sign-in-alt" style="font-size: 20px;"></i> Login
-          </a>
-        </li>
-      </ul>
-    </div>
-   </div>
-  </nav>  
+ <?php include 'navbar.php'; ?>  
   <div class="header">
    <h1>
     <br />
@@ -508,87 +362,6 @@
     </table>
    </div>
   </div>
-  <footer class="footer">
-   <div class="container-fluid">
-    <div class="row">
-     <div class="col-md-4">
-      <h5 style="margin-left: 150px;">
-       LOKASI KAMI
-      </h5>
-      <div class="location">
-       <iframe allowfullscreen="" frameborder="0" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d989.8999128878829!2d110.41225892082508!3d-7.056238088469562!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e708be28f16c1d3%3A0x927d4b8b2b3edf4!2sSasana%20Widya%20Praja%20-%20BPSDMD%20Provinsi%20Jawa%20Tengah!5e0!3m2!1sid!2sid!4v1578813965036!5m2!1sid!2sid">
-       </iframe>
-      </div>
-     </div>
-     <div class="col-md-4">
-      <h5 class="contact-info">
-       HUBUNGI KAMI
-      </h5>
-      <div class="contact-info">
-       <p>
-        <i class="fas fa-map-marker-alt fa-2x">
-        </i>
-        Jalan Setiabudi 201 A Semarang, 50235
-       </p>
-       <p>
-        <i class="fas fa-phone fa-2x">
-        </i>
-        Telepon : (024) 7473066
-       </p>
-       <p>
-        <i class="fas fa-envelope fa-2x">
-        </i>
-        E-Mail : bpsdmd@jatengprov.go.id
-       </p>
-       <p>
-        <i class="fas fa-sms fa-2x">
-        </i>
-        WA / SMS : 0811 283 5000
-       </p>
-       <p>
-        <i class="fas fa-fax fa-2x">
-        </i>
-        Fax : (024) 7473701
-       </p>
-      </div>
-     </div>
-     <div class="col-md-4">
-      <h5>
-       IKUTI KAMI
-      </h5>
-      <div class="social-icons">
-       <a href="https://www.facebook.com/npsdmdjateng/">
-        <i class="fab fa-facebook">
-        </i>
-       </a>
-       <a href="https://twitter.com/bpsdmdjtg">
-        <i class="fab fa-twitter">
-        </i>
-       </a>
-       <a href="https://bpsdmd.jatengprov.go.id/web/Home">
-        <i class="fas fa-globe">
-        </i>
-       </a>
-       <a href="https://www.instagram.com/bpsdmdjtg/">
-        <i class="fab fa-instagram">
-        </i>
-       </a>
-       <a href="https://www.youtube.com/channel/UCNVPtumnMDXhQgEOgt8D6Eg/videos">
-        <i class="fab fa-youtube">
-        </i>
-       </a>
-      </div>
-     </div>
-    </div>
-   </div>
-  </footer>
-  <div class="footer-bottom text-center">
-   <p>
-   Made With <i class="fa fa-heart"></i> By <a> diwazaa </a>, Internship Informatics'22 Diponegoro University
-   </p>
-   <p>
-    © BPSDMD Provinsi Jawa Tengah 2025 - All rights reserved.
-   </p>
-  </div>
+  <?php include 'footer.php'; ?>
   </body>
 </html>
