@@ -109,7 +109,7 @@
 <div class="header">
    <h1>
     <br />
-    E-Warta
+    E-Journal
    </h1>
    <p>
     
