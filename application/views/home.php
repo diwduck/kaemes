@@ -1,5 +1,11 @@
+<!DOCTYPE html>
 <html lang="en">
  <head>
+  <!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Bootstrap JavaScript Bundle (includes Popper.js) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
   <meta charset="utf-8"/>
   <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
   <title>
@@ -230,6 +236,34 @@
   </style>
  </head>
  <body>
+
+
+<!-- Modal Structure -->
+<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="loginModalLabel">Login</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <!-- Your login form here -->
+        <form id="loginForm">
+          <div class="mb-3">
+            <label for="username" class="form-label">Username</label>
+            <input type="username" class="form-control" id="username" required>
+          </div>
+          <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" class="form-control" id="password" required>
+          </div>
+          <button type="submit" class="btn btn-primary">Login</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
   <nav class="navbar navbar-expand-lg fixed-top">
    <div class="container-fluid">
     <a class="navbar-brand" href="#" style="display: flex; align-items: center; text-decoration: none; margin-left: 40px;">
@@ -281,10 +315,23 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="btn text-white" href="#" style="background-color: #1EAFEC; font-size: 20px; padding: 5px 25px;">
-            <i class="fas fa-sign-in-alt" style="font-size: 20px;"></i> Login
-          </a>
-        </li>
+  <!-- Login Button -->
+<button 
+  class="btn nav-link text-white" 
+  data-bs-toggle="modal" 
+  data-bs-target="#loginModal" 
+  id="loginButton"
+  style="background-color: #1EAFEC; font-size: 20px; padding: 5px 25px;">
+  <i class="fas fa-sign-in-alt" style="font-size: 20px;"></i> Login
+</button>
+<!-- Logout Button (Initially Hidden) -->
+<button 
+  class="btn nav-link text-white d-none" 
+  id="logoutButton"
+  style="background-color: #FF0000; font-size: 20px; padding: 5px 25px;">
+  <i class="fas fa-sign-out-alt" style="font-size: 20px;"></i> Logout
+</button>
+</li>
       </ul>
     </div>
    </div>
@@ -608,4 +655,31 @@
    </p>
   </div>
   </body>
+  <script>
+  // Function to handle login
+  function handleLogin(event) {
+    event.preventDefault(); // Prevent form submission
+    
+    // Simulate successful login (you can replace this with your actual login logic)
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+    
+    // For demonstration, check if both fields are filled
+    if (username && password) {
+      // Hide the modal
+      const loginModal = new bootstrap.Modal(document.getElementById('loginModal'));
+      loginModal.hide();
+      
+      // Toggle visibility of login/logout buttons
+      document.getElementById('loginButton').classList.add('d-none');
+      document.getElementById('logoutButton').classList.remove('d-none');
+    } else {
+      // Handle login validation/error display if needed
+      alert('Please enter both username and password.');
+    }
+  }
+  
+  // Add event listener for login form submission
+  document.getElementById('loginForm').addEventListener('submit', handleLogin);
+</script>
 </html>
