@@ -2,7 +2,7 @@
 <!DOCTYPE html>
  <head>
   <meta charset="utf-8"/>
-  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>
    E-Warta
   </title>
@@ -12,6 +12,8 @@
    body {
             font-family: 'Poppins', sans-serif;
             background-color: #f0f0f0; /* Light gray background */
+            transform: scale(1);
+            zoom: 100%;
         }
         .header {
             font-family: 'Playfair Display', serif;
@@ -105,7 +107,7 @@
         }
   </style>
  </head>
-<?php include 'navbar.php'; ?>
+<?php include_once 'templates/navbar.php'; ?>
 <div class="header">
    <h1>
     <br />
@@ -248,5 +250,5 @@
     </div>
    </div>
   </div>
-  <?php include 'footer.php'; ?>
+  <?php include 'templates/footer.php'; ?>
  </html>

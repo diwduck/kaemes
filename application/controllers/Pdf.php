@@ -13,7 +13,7 @@ class Pdf extends CI_Controller {
     public function index() {
         $data['pdfs'] = $this->pdf_model->get_all_pdfs();
         $data['is_admin'] = $this->session->userdata('is_admin');
-        $this->load->view('pdf/list', $data);
+        $this->load->view('admin/dashboard', $data);
     }
 
     public function upload() {
@@ -119,4 +119,10 @@ class Pdf extends CI_Controller {
             show_404();
         }
     }
+        public function pageModul()
+        {
+            // Load view untuk modul
+            $this->load->view('pageModul'); // Sesuaikan dengan nama file view Anda
+        }
+    
 }

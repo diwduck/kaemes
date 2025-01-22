@@ -1,7 +1,7 @@
 <html lang="en">
  <head>
   <meta charset="utf-8"/>
-  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>
    Knowledge Management System
   </title>
@@ -12,6 +12,8 @@
    body {
             font-family: 'Poppins', sans-serif;
             background-color: #f0f0f0; /* Light gray background */
+            transform: none !important;
+            zoom: 100% !important;
         }
         .header {
             color: white;
@@ -126,11 +128,13 @@
             text-decoration: underline;
             background-color: transparent;
         }
-
+    html {
+    scroll-behavior: smooth;
+    }
   </style>
  </head>
  <body>
- <?php include 'navbar.php'; ?>
+ <?php include_once 'templates/navbar.php'; ?>
   <header class="header">
    <video autoplay="" loop="" muted="">
     <source src="https://ppid.bpsdmd.jatengprov.go.id/assets/video/intro1580744592.mp4" type="video/mp4"/>
@@ -250,37 +254,59 @@
    </div>
    <div class="row justify-content-center">
     <div class="col-md-3">
-     <div class="card">
-      <img alt="Modul cover" height="150" src="https://placehold.co/150x200" width="100"/>
-      <div class="card-body">
-       <p class="card-text">
-        Modul 1: Pengelolaan Pengetahuan
-       </p>
-      </div>
-     </div>
+        <div class="card">
+            <br />
+            <img 
+                alt="Modul cover" 
+                src="uploads/image/ayam1.png" 
+                class="mx-auto d-block" 
+                height="200" 
+                width="150"
+            />
+            <div class="card-body">
+                <p class="card-text">
+                    Modul 1: Pengelolaan Pengetahuan
+                </p>
+            </div>
+        </div>
     </div>
     <div class="col-md-3">
-     <div class="card">
-      <img alt="Modul cover" height="150" src="https://placehold.co/150x200" width="100"/>
-      <div class="card-body">
-       <p class="card-text">
-        Modul 2: Manajemen Inovasi
-       </p>
-      </div>
-     </div>
+        <div class="card">
+        <br />
+            <img 
+                alt="Modul cover" 
+                src="uploads/image/ayam1.png"  
+                class="mx-auto d-block" 
+                height="200" 
+                width="150"
+            />
+            <div class="card-body">
+                <p class="card-text">
+                    Modul 2: Manajemen Inovasi
+                </p>
+            </div>
+        </div>
     </div>
     <div class="col-md-3">
-     <div class="card">
-      <img alt="Modul cover" height="150" src="https://placehold.co/150x200" width="100"/>
-      <div class="card-body">
-       <p class="card-text">
-        Modul 3: Strategi Pelayanan Publik
-       </p>
-      </div>
-     </div>
+        <div class="card">
+        <br />
+            <img 
+                alt="Modul cover" 
+                src="uploads/image/ayam1.png"  
+                class="mx-auto d-block" 
+                height="200" 
+                width="150"
+            />
+            <div class="card-body">
+                <p class="card-text">
+                    Modul 3: Strategi Pelayanan Publik
+                </p>
+            </div>
+        </div>
     </div>
-   </div>
-   <a class="btn btn-read-more see-all-btn" href="#">
+</div>
+
+   <a class="btn btn-read-more see-all-btn" href="<?php echo site_url('pageModul'); ?>">
     see all
    </a>
   </section>
@@ -294,37 +320,56 @@
    </div>
    <div class="row justify-content-center">
     <div class="col-md-3">
-     <div class="card">
-      <img alt="Journal cover" height="150" src="https://storage.googleapis.com/a1aa/image/WPCdP8h3YoZzEdsfMDxhPUOcqKbilIV09yZNiuJrmpjrOpBKA.jpg" width="100"/>
-      <div class="card-body">
-       <p class="card-text">
-        Model Pemberdayaan Masyarakat Peduli Lingkungan Untuk Meningkatkan Kualitas Lingkungan Hidup di Kabupaten Semarang
-       </p>
-      </div>
-     </div>
+        <div class="card">
+            <img 
+                alt="Journal cover" 
+                src="https://storage.googleapis.com/a1aa/image/WPCdP8h3YoZzEdsfMDxhPUOcqKbilIV09yZNiuJrmpjrOpBKA.jpg" 
+                class="mx-auto d-block" 
+                height="150" 
+                width="100"
+            />
+            <div class="card-body">
+                <p class="card-text">
+                    Model Pemberdayaan Masyarakat Peduli Lingkungan Untuk Meningkatkan Kualitas Lingkungan Hidup di Kabupaten Semarang
+                </p>
+            </div>
+        </div>
     </div>
     <div class="col-md-3">
-     <div class="card">
-      <img alt="Journal cover" height="150" src="https://storage.googleapis.com/a1aa/image/WPCdP8h3YoZzEdsfMDxhPUOcqKbilIV09yZNiuJrmpjrOpBKA.jpg" width="100"/>
-      <div class="card-body">
-       <p class="card-text">
-        Model Collaborative Governance untuk Perencanaan Program dan Anggaran di Lembaga Kebijakan Pengadaan Barang/Jasa Pemerintah
-       </p>
-      </div>
-     </div>
+        <div class="card">
+            <img 
+                alt="Journal cover" 
+                src="https://storage.googleapis.com/a1aa/image/WPCdP8h3YoZzEdsfMDxhPUOcqKbilIV09yZNiuJrmpjrOpBKA.jpg" 
+                class="mx-auto d-block" 
+                height="150" 
+                width="100"
+            />
+            <div class="card-body">
+                <p class="card-text">
+                    Model Collaborative Governance untuk Perencanaan Program dan Anggaran di Lembaga Kebijakan Pengadaan Barang/Jasa Pemerintah
+                </p>
+            </div>
+        </div>
     </div>
     <div class="col-md-3">
-     <div class="card">
-      <img alt="Journal cover" height="150" src="https://storage.googleapis.com/a1aa/image/WPCdP8h3YoZzEdsfMDxhPUOcqKbilIV09yZNiuJrmpjrOpBKA.jpg" width="100"/>
-      <div class="card-body">
-       <p class="card-text">
-        Program Intensifikasi dan Ekstensifikasi Pajak Parkir dan Pajak Restoran Dalam Meningkatkan Pendapatan Asli Daerah di Kota Pekalongan
-       </p>
-      </div>
-     </div>
+        <div class="card">
+            <img 
+                alt="Journal cover" 
+                src="https://storage.googleapis.com/a1aa/image/WPCdP8h3YoZzEdsfMDxhPUOcqKbilIV09yZNiuJrmpjrOpBKA.jpg" 
+                class="mx-auto d-block" 
+                height="150" 
+                width="100"
+            />
+            <div class="card-body">
+                <p class="card-text">
+                    Program Intensifikasi dan Ekstensifikasi Pajak Parkir dan Pajak Restoran Dalam Meningkatkan Pendapatan Asli Daerah di Kota Pekalongan
+                </p>
+            </div>
+        </div>
     </div>
-   </div>
-   <a class="btn btn-read-more see-all-btn" href="#">
+</div>
+
+   <a class="btn btn-read-more see-all-btn" href="<?php echo site_url('pageJournal'); ?>">
     see all
    </a>
   </section>
@@ -344,7 +389,7 @@
      <img alt="Person giving a presentation" class="img-fluid" height="300" src="https://storage.googleapis.com/a1aa/image/B6hNLeUVJiVVYKbppfDWmItKMHeJo27WyCbf2Knvrjom1JNQB.jpg" width="500"/>
     </div>
    </div>
-   <a class="btn btn-read-more see-all-btn" href="#">
+   <a class="btn btn-read-more see-all-btn" href="<?php echo site_url('pageWarta'); ?>">
     see all
    </a>
   </section>
@@ -361,9 +406,16 @@
      Center of Excellence (CoE) BPSDM Jawa Tengah adalah pusat bahan pengajaran yang dirancang untuk mendukung pembelajaran dan pengembangan kompetensi aparatur. CoE menyediakan berbagai sumber daya, termasuk modul pelatihan, materi pembelajaran, panduan praktis terbaik, media pembelajaran interaktif, serta akses ke jurnal dan penelitian. Dengan menyediakan bahan pengajaran yang terintegrasi dan berkualitas, CoE menjadi sarana utama untuk meningkatkan kapasitas dan kinerja aparatur, sekaligus memperkuat peran BPSDM sebagai pusat rujukan pengembangan kompetensi di Jawa Tengah.
     </p>
    </div>
-   <a class="btn btn-read-more see-all-btn" href="#">
+   <a class="btn btn-read-more see-all-btn" href="<?php echo site_url('pageCoe'); ?>">
     see all
    </a>
   </section>
-  <?php include 'footer.php'; ?>
+  <?php include 'templates/footer.php'; ?>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        document.body.style.transform = 'none';
+        document.body.style.zoom = '100%';
+    });
+</script>
+</body>
 </html>

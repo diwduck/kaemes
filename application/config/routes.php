@@ -52,3 +52,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['default_controller'] = 'pdf';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
+
+//THIS ROUTE FOR PAGE CONTROLLER (YIPPIEEEE)
+$route['home'] = 'page/home';
+$route['pageModul'] = 'page/pageModul';
+$route['pageCoe'] = 'page/pageCoe';
+$route['pageJournal'] = 'page/pageJournal';
+$route['pageWarta'] = 'page/pageWarta';
