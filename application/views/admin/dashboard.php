@@ -63,11 +63,11 @@
                 <!--begin::Small Box Widget 2-->
                 <div class="small-box text-bg-success">
                   <div class="inner">
-                    <h3>150</h3>
-                    <p>Modul Pembelajaran</p>
+                    <h3>3421</h3>
+                    <p>E-Warta</p>
                   </div>
                   <div class="small-box-icon">
-                    <i class="fas fa-book"></i>  <!-- Ikon buku dari Font Awesome -->
+                    <i class="fas fa-book-open"></i>  <!-- Ikon buku dari Font Awesome -->
                   </div>
                   <a
                     href="#"
@@ -83,11 +83,11 @@
                 <!--begin::Small Box Widget 3-->
                 <div class="small-box text-bg-warning">
                   <div class="inner">
-                    <h3>150</h3>
-                    <p>Modul Pembelajaran</p>
+                    <h3>2017</h3>
+                    <p>E-Journal</p>
                   </div>
                   <div class="small-box-icon">
-                    <i class="fas fa-book"></i>
+                    <i class="fas fa-newspaper"></i>
                   </div>
                   <a
                     href="#"
@@ -105,27 +105,12 @@
                 <!--begin::Small Box Widget 4-->
                 <div class="small-box text-bg-danger">
                   <div class="inner">
-                    <h3>65</h3>
+                    <h3>2017</h3>
                     <p>COE</p>
                   </div>
-                  <svg
-                    class="small-box-icon"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                    aria-hidden="true"
-                  >
-                    <path
-                      clip-rule="evenodd"
-                      fill-rule="evenodd"
-                      d="M2.25 13.5a8.25 8.25 0 018.25-8.25.75.75 0 01.75.75v6.75H18a.75.75 0 01.75.75 8.25 8.25 0 01-16.5 0z"
-                    ></path>
-                    <path
-                      clip-rule="evenodd"
-                      fill-rule="evenodd"
-                      d="M12.75 3a.75.75 0 01.75-.75 8.25 8.25 0 018.25 8.25.75.75 0 01-.75.75h-7.5a.75.75 0 01-.75-.75V3z"
-                    ></path>
-                  </svg>
+                  <div class="small-box-icon">
+                    <i class="fas fa-bookmark"></i>
+                  </div>
                   <a
                     href="#"
                     class="small-box-footer link-light link-underline-opacity-0 link-underline-opacity-50-hover"
@@ -141,29 +126,192 @@
             <!--begin::Row-->
             <div class="row">
               <!-- Start col -->
-              <div class="col-lg-7 connectedSortable">
+              <div class="col-md-12">
                 <div class="card mb-4">
-                  <div class="card-header"><h3 class="card-title">Sales Value</h3></div>
+                  <div class="card-header"><h3 class="card-title">Statistik Pelihat</h3></div>
+                  <div class="col-lg-7 connectedSortable"></div>
                   <div class="card-body"><div id="revenue-chart"></div></div>
-                </div>
-                <!-- /.card -->
-                <!-- DIRECT CHAT -->
-                <div class="card direct-chat direct-chat-primary mb-4">
+                  <div class="card-footer">
+                    <!--begin::Row-->
+                    <div class="row">
+                      <div class="col-md-3 col-6">
+                        <div class="text-center border-end">
+                          <span class="text-success">
+                            <i class="bi bi-caret-up-fill"></i> 17%
+                          </span>
+                          <h5 class="fw-bold mb-0">$35,210.43</h5>
+                          <span class="text-uppercase">VIEWS MODUL</span>
+                        </div>
+                      </div>
+                      <!-- /.col -->
+                      <div class="col-md-3 col-6">
+                        <div class="text-center border-end">
+                          <span class="text-info"> <i class="bi bi-caret-left-fill"></i> 0% </span>
+                          <h5 class="fw-bold mb-0">$10,390.90</h5>
+                          <span class="text-uppercase">VIEWS E-WARTA</span>
+                        </div>
+                      </div>
+                      <!-- /.col -->
+                      <div class="col-md-3 col-6">
+                        <div class="text-center border-end">
+                          <span class="text-success">
+                            <i class="bi bi-caret-up-fill"></i> 20%
+                          </span>
+                          <h5 class="fw-bold mb-0">$24,813.53</h5>
+                          <span class="text-uppercase">VIEWS E-JOURNAL</span>
+                        </div>
+                      </div>
+                      <!-- /.col -->
+                      <div class="col-md-3 col-6">
+                        <div class="text-center">
+                          <span class="text-danger">
+                            <i class="bi bi-caret-down-fill"></i> 18%
+                          </span>
+                          <h5 class="fw-bold mb-0">1200</h5>
+                          <span class="text-uppercase">VIEWS</span>
+                        </div>
+                      </div>
+                    </div>
+                </div>  
+            </div>
+            <div class="row">
+              <div class="col-md-8">
+                <div class="card">
                   <div class="card-header">
-                    <h3 class="card-title">Direct Chat</h3>
+                    <h3 class="card-title">Latest Orders</h3>
                     <div class="card-tools">
-                      <span title="3 New Messages" class="badge text-bg-primary"> 3 </span>
                       <button type="button" class="btn btn-tool" data-lte-toggle="card-collapse">
                         <i data-lte-icon="expand" class="bi bi-plus-lg"></i>
                         <i data-lte-icon="collapse" class="bi bi-dash-lg"></i>
                       </button>
-                      <button
-                        type="button"
-                        class="btn btn-tool"
-                        title="Contacts"
-                        data-lte-toggle="chat-pane"
-                      >
-                        <i class="bi bi-chat-text-fill"></i>
+                      <button type="button" class="btn btn-tool" data-lte-toggle="card-remove">
+                        <i class="bi bi-x-lg"></i>
+                      </button>
+                    </div>
+                  </div>
+                  <!-- /.card-header -->
+                  <div class="card-body p-0">
+                    <div class="table-responsive">
+                      <table class="table m-0">
+                        <thead>
+                          <tr>
+                            <th>Order ID</th>
+                            <th>Item</th>
+                            <th>Status</th>
+                            <th>Popularity</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>
+                              <a
+                                href="pages/examples/invoice.html"
+                                class="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
+                                >OR9842</a
+                              >
+                            </td>
+                            <td>Call of Duty IV</td>
+                            <td><span class="badge text-bg-success"> Shipped </span></td>
+                            <td><div id="table-sparkline-1"></div></td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <a
+                                href="pages/examples/invoice.html"
+                                class="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
+                                >OR1848</a
+                              >
+                            </td>
+                            <td>Samsung Smart TV</td>
+                            <td><span class="badge text-bg-warning">Pending</span></td>
+                            <td><div id="table-sparkline-2"></div></td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <a
+                                href="pages/examples/invoice.html"
+                                class="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
+                                >OR7429</a
+                              >
+                            </td>
+                            <td>iPhone 6 Plus</td>
+                            <td><span class="badge text-bg-danger"> Delivered </span></td>
+                            <td><div id="table-sparkline-3"></div></td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <a
+                                href="pages/examples/invoice.html"
+                                class="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
+                                >OR7429</a
+                              >
+                            </td>
+                            <td>Samsung Smart TV</td>
+                            <td><span class="badge text-bg-info">Processing</span></td>
+                            <td><div id="table-sparkline-4"></div></td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <a
+                                href="pages/examples/invoice.html"
+                                class="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
+                                >OR1848</a
+                              >
+                            </td>
+                            <td>Samsung Smart TV</td>
+                            <td><span class="badge text-bg-warning">Pending</span></td>
+                            <td><div id="table-sparkline-5"></div></td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <a
+                                href="pages/examples/invoice.html"
+                                class="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
+                                >OR7429</a
+                              >
+                            </td>
+                            <td>iPhone 6 Plus</td>
+                            <td><span class="badge text-bg-danger"> Delivered </span></td>
+                            <td><div id="table-sparkline-6"></div></td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <a
+                                href="pages/examples/invoice.html"
+                                class="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
+                                >OR9842</a
+                              >
+                            </td>
+                            <td>Call of Duty IV</td>
+                            <td><span class="badge text-bg-success">Shipped</span></td>
+                            <td><div id="table-sparkline-7"></div></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    <!-- /.table-responsive -->
+                  </div>
+                  <!-- /.card-body -->
+                  <div class="card-footer clearfix">
+                    <a href="javascript:void(0)" class="btn btn-sm btn-primary float-start">
+                      Place New Order
+                    </a>
+                    <a href="javascript:void(0)" class="btn btn-sm btn-secondary float-end">
+                      View All Orders
+                    </a>
+                  </div>
+                  <!-- /.card-footer -->
+                </div>
+                <!-- /.card -->
+              </div>
+              <div class="col-md-4">
+                <div class="card mb-4">
+                  <div class="card-header">
+                    <h3 class="card-title">Browser Usage</h3>
+                    <div class="card-tools">
+                      <button type="button" class="btn btn-tool" data-lte-toggle="card-collapse">
+                        <i data-lte-icon="expand" class="bi bi-plus-lg"></i>
+                        <i data-lte-icon="collapse" class="bi bi-dash-lg"></i>
                       </button>
                       <button type="button" class="btn btn-tool" data-lte-toggle="card-remove">
                         <i class="bi bi-x-lg"></i>
@@ -172,257 +320,47 @@
                   </div>
                   <!-- /.card-header -->
                   <div class="card-body">
-                    <!-- Conversations are loaded here -->
-                    <div class="direct-chat-messages">
-                      <!-- Message. Default to the start -->
-                      <div class="direct-chat-msg">
-                        <div class="direct-chat-infos clearfix">
-                          <span class="direct-chat-name float-start"> Alexander Pierce </span>
-                          <span class="direct-chat-timestamp float-end"> 23 Jan 2:00 pm </span>
-                        </div>
-                        <!-- /.direct-chat-infos -->
-                        <img
-                          class="direct-chat-img"
-                          src="<?php echo base_url('assets/dist/assets/img/user1-128x128.jpg')?>"
-                          alt="message user image"
-                        />
-                        <!-- /.direct-chat-img -->
-                        <div class="direct-chat-text">
-                          Is this template really for free? That's unbelievable!
-                        </div>
-                        <!-- /.direct-chat-text -->
-                      </div>
-                      <!-- /.direct-chat-msg -->
-                      <!-- Message to the end -->
-                      <div class="direct-chat-msg end">
-                        <div class="direct-chat-infos clearfix">
-                          <span class="direct-chat-name float-end"> Sarah Bullock </span>
-                          <span class="direct-chat-timestamp float-start"> 23 Jan 2:05 pm </span>
-                        </div>
-                        <!-- /.direct-chat-infos -->
-                        <img
-                          class="direct-chat-img"
-                          src="<?php echo base_url('assets/dist/assets/img/user3-128x128.jpg')?>"
-                          alt="message user image"
-                        />
-                        <!-- /.direct-chat-img -->
-                        <div class="direct-chat-text">You better believe it!</div>
-                        <!-- /.direct-chat-text -->
-                      </div>
-                      <!-- /.direct-chat-msg -->
-                      <!-- Message. Default to the start -->
-                      <div class="direct-chat-msg">
-                        <div class="direct-chat-infos clearfix">
-                          <span class="direct-chat-name float-start"> Alexander Pierce </span>
-                          <span class="direct-chat-timestamp float-end"> 23 Jan 5:37 pm </span>
-                        </div>
-                        <!-- /.direct-chat-infos -->
-                        <img
-                          class="direct-chat-img"
-                          src="<?php echo base_url('assets/dist/assets/img/user1-128x128.jpg')?>"
-                          alt="message user image"
-                        />
-                        <!-- /.direct-chat-img -->
-                        <div class="direct-chat-text">
-                          Working with AdminLTE on a great new app! Wanna join?
-                        </div>
-                        <!-- /.direct-chat-text -->
-                      </div>
-                      <!-- /.direct-chat-msg -->
-                      <!-- Message to the end -->
-                      <div class="direct-chat-msg end">
-                        <div class="direct-chat-infos clearfix">
-                          <span class="direct-chat-name float-end"> Sarah Bullock </span>
-                          <span class="direct-chat-timestamp float-start"> 23 Jan 6:10 pm </span>
-                        </div>
-                        <!-- /.direct-chat-infos -->
-                        <img
-                          class="direct-chat-img"
-                          src="<?php echo base_url('assets/dist/assets/img/user3-128x128.jpg')?>"
-                          alt="message user image"
-                        />
-                        <!-- /.direct-chat-img -->
-                        <div class="direct-chat-text">I would love to.</div>
-                        <!-- /.direct-chat-text -->
-                      </div>
-                      <!-- /.direct-chat-msg -->
-                    </div>
-                    <!-- /.direct-chat-messages-->
-                    <!-- Contacts are loaded here -->
-                    <div class="direct-chat-contacts">
-                      <ul class="contacts-list">
-                        <li>
-                          <a href="#">
-                            <img
-                              class="contacts-list-img"
-                              src="<?php echo base_url('assets/dist/assets/img/user1-128x128.jpg')?>"
-                              alt="User Avatar"
-                            />
-                            <div class="contacts-list-info">
-                              <span class="contacts-list-name">
-                                Count Dracula
-                                <small class="contacts-list-date float-end"> 2/28/2023 </small>
-                              </span>
-                              <span class="contacts-list-msg"> How have you been? I was... </span>
-                            </div>
-                            <!-- /.contacts-list-info -->
-                          </a>
-                        </li>
-                        <!-- End Contact Item -->
-                        <li>
-                          <a href="#">
-                            <img
-                              class="contacts-list-img"
-                              src="<?php echo base_url('assets/dist/assets/img/user7-128x128.jpg')?>"
-                              alt="User Avatar"
-                            />
-                            <div class="contacts-list-info">
-                              <span class="contacts-list-name">
-                                Sarah Doe
-                                <small class="contacts-list-date float-end"> 2/23/2023 </small>
-                              </span>
-                              <span class="contacts-list-msg"> I will be waiting for... </span>
-                            </div>
-                            <!-- /.contacts-list-info -->
-                          </a>
-                        </li>
-                        <!-- End Contact Item -->
-                        <li>
-                          <a href="#">
-                            <img
-                              class="contacts-list-img"
-                              src="<?php echo base_url('assets/dist/assets/img/user3-128x128.jpg')?>"
-                              alt="User Avatar"
-                            />
-                            <div class="contacts-list-info">
-                              <span class="contacts-list-name">
-                                Nadia Jolie
-                                <small class="contacts-list-date float-end"> 2/20/2023 </small>
-                              </span>
-                              <span class="contacts-list-msg"> I'll call you back at... </span>
-                            </div>
-                            <!-- /.contacts-list-info -->
-                          </a>
-                        </li>
-                        <!-- End Contact Item -->
-                        <li>
-                          <a href="#">
-                            <img
-                              class="contacts-list-img"
-                              src="<?php echo base_url('assets/dist/assets/img/user5-128x128.jpg')?>"
-                              alt="User Avatar"
-                            />
-                            <div class="contacts-list-info">
-                              <span class="contacts-list-name">
-                                Nora S. Vans
-                                <small class="contacts-list-date float-end"> 2/10/2023 </small>
-                              </span>
-                              <span class="contacts-list-msg"> Where is your new... </span>
-                            </div>
-                            <!-- /.contacts-list-info -->
-                          </a>
-                        </li>
-                        <!-- End Contact Item -->
-                        <li>
-                          <a href="#">
-                            <img
-                              class="contacts-list-img"
-                              src="<?php echo base_url('assets/dist/assets/img/user6-128x128.jpg')?>"
-                              alt="User Avatar"
-                            />
-                            <div class="contacts-list-info">
-                              <span class="contacts-list-name">
-                                John K.
-                                <small class="contacts-list-date float-end"> 1/27/2023 </small>
-                              </span>
-                              <span class="contacts-list-msg"> Can I take a look at... </span>
-                            </div>
-                            <!-- /.contacts-list-info -->
-                          </a>
-                        </li>
-                        <!-- End Contact Item -->
-                        <li>
-                          <a href="#">
-                            <img
-                              class="contacts-list-img"
-                              src="<?php echo base_url('assets/dist/assets/img/user8-128x128.jpg')?>"
-                              alt="User Avatar"
-                            />
-                            <div class="contacts-list-info">
-                              <span class="contacts-list-name">
-                                Kenneth M.
-                                <small class="contacts-list-date float-end"> 1/4/2023 </small>
-                              </span>
-                              <span class="contacts-list-msg"> Never mind I found... </span>
-                            </div>
-                            <!-- /.contacts-list-info -->
-                          </a>
-                        </li>
-                        <!-- End Contact Item -->
-                      </ul>
-                      <!-- /.contacts-list -->
-                    </div>
-                    <!-- /.direct-chat-pane -->
-                  </div>
-                  <!-- /.card-body -->
-                  <div class="card-footer">
-                    <form action="#" method="post">
-                      <div class="input-group">
-                        <input
-                          type="text"
-                          name="message"
-                          placeholder="Type Message ..."
-                          class="form-control"
-                        />
-                        <span class="input-group-append">
-                          <button type="button" class="btn btn-primary">Send</button>
-                        </span>
-                      </div>
-                    </form>
-                  </div>
-                  <!-- /.card-footer-->
-                </div>
-                <!-- /.direct-chat -->
-              </div>
-              <!-- /.Start col -->
-              <!-- Start col -->
-              <div class="col-lg-5 connectedSortable">
-                <div class="card text-white bg-primary bg-gradient border-primary mb-4">
-                  <div class="card-header border-0">
-                    <h3 class="card-title">Sales Value</h3>
-                    <div class="card-tools">
-                      <button
-                        type="button"
-                        class="btn btn-primary btn-sm"
-                        data-lte-toggle="card-collapse"
-                      >
-                        <i data-lte-icon="expand" class="bi bi-plus-lg"></i>
-                        <i data-lte-icon="collapse" class="bi bi-dash-lg"></i>
-                      </button>
-                    </div>
-                  </div>
-                  <div class="card-body"><div id="world-map" style="height: 220px"></div></div>
-                  <div class="card-footer border-0">
                     <!--begin::Row-->
                     <div class="row">
-                      <div class="col-4 text-center">
-                        <div id="sparkline-1" class="text-dark"></div>
-                        <div class="text-white">Visitors</div>
-                      </div>
-                      <div class="col-4 text-center">
-                        <div id="sparkline-2" class="text-dark"></div>
-                        <div class="text-white">Online</div>
-                      </div>
-                      <div class="col-4 text-center">
-                        <div id="sparkline-3" class="text-dark"></div>
-                        <div class="text-white">Sales</div>
-                      </div>
+                      <div class="col-12"><div id="pie-chart"></div></div>
+                      <!-- /.col -->
                     </div>
                     <!--end::Row-->
                   </div>
+                  <!-- /.card-body -->
+                  <div class="card-footer p-0">
+                    <ul class="nav nav-pills flex-column">
+                      <li class="nav-item">
+                        <a href="#" class="nav-link">
+                          United States of America
+                          <span class="float-end text-danger">
+                            <i class="bi bi-arrow-down fs-7"></i>
+                            12%
+                          </span>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a href="#" class="nav-link">
+                          India
+                          <span class="float-end text-success">
+                            <i class="bi bi-arrow-up fs-7"></i> 4%
+                          </span>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a href="#" class="nav-link">
+                          China
+                          <span class="float-end text-info">
+                            <i class="bi bi-arrow-left fs-7"></i> 0%
+                          </span>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                  
                 </div>
               </div>
-              <!-- /.Start col -->
+              
             </div>
             <!-- /.row (main row) -->
           </div>
@@ -673,6 +611,30 @@
       };
       const sparkline3 = new ApexCharts(document.querySelector('#sparkline-3'), option_sparkline3);
       sparkline3.render();
+
+      //-------------
+      // - PIE CHART -
+      //-------------
+
+      const pie_chart_options = {
+        series: [700, 500, 400, 600, 300, 100],
+        chart: {
+          type: 'donut',
+        },
+        labels: ['Chrome', 'Edge', 'FireFox', 'Safari', 'Opera', 'IE'],
+        dataLabels: {
+          enabled: false,
+        },
+        colors: ['#0d6efd', '#20c997', '#ffc107', '#d63384', '#6f42c1', '#adb5bd'],
+      };
+
+      const pie_chart = new ApexCharts(document.querySelector('#pie-chart'), pie_chart_options);
+      pie_chart.render();
+
+      //-----------------
+      // - END PIE CHART -
+      //-----------------
+
     </script>
     <!--end::Script-->
   </body>

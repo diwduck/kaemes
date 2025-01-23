@@ -53,9 +53,17 @@ $route['default_controller'] = 'pdf';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
-//THIS ROUTE FOR PAGE CONTROLLER (YIPPIEEEE)
+//THIS ROUTE FOR PAGE USERCONTROLLER (YIPPIEEEE)
 $route['home'] = 'page/home';
 $route['pageModul'] = 'page/pageModul';
 $route['pageCoe'] = 'page/pageCoe';
 $route['pageJournal'] = 'page/pageJournal';
 $route['pageWarta'] = 'page/pageWarta';
+
+
+//THIS ROUTE FOR PAGE ADMIN CONTROLLER (YIPPIEEEE)
+$route['dashboard'] = 'pageAdmin/dashboard';
+$route['addModul'] = 'pageAdmin/addModul';
+$route['addWarta'] = 'pageAdmin/addWarta';
+$route['addJournal'] = 'pageAdmin/addJournal';
+$route['addCoe'] = 'pageAdmin/addCoe';
