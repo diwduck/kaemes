@@ -24,7 +24,7 @@
                 <ol class="breadcrumb float-sm-end">
                   <li class="breadcrumb-item"><a href="#">Home</a></li>
                   <li class="breadcrumb-item"><a href="#">Repositori</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">E-Journal</li>
+                  <li class="breadcrumb-item active" aria-current="page">E-jurnal</li>
                 </ol>
               </div>
             </div>
@@ -36,7 +36,7 @@
     <div class="container-fluid">
         <div class="card mb-4">
             <div class="card-header">
-                <h3 class="card-title">E-Journal</h3>
+                <h3 class="card-title">E-jurnal</h3>
             </div>
             <!-- /.card-header -->
             <div class="card-body">
@@ -48,13 +48,34 @@
                     <thead>
                         <tr>
                             <th style="width: 10px; text-align: center;" align-middle>No</th>
-                            <th style="width: 150px; text-align: center;" align-middle>Tumbnail Video</th>
-                            <th style="width: 250px; text-align: center;" align-middle>Nama Modul</th>
-                            <th style="width: 150px; text-align: center;" align-middle>Penyusun</th>
-                            <th style="width: 100px; text-align: center;" align-middle>Label</th>
+                            <th style="width: 150px; text-align: center;" align-middle>Judul jurnal</th>
+                            <th style="width: 250px; text-align: center;" align-middle>Penyusun</th>
+                            <th style="width: 150px; text-align: center;" align-middle>Tanggal Rilis</th>
+                            <th style="width: 100px; text-align: center;" align-middle>Action</th>
                         </tr>
                     </thead>
                     <tbody>
+                        <?php if (!is_null($jurnal) && count($jurnal) > 0): ?>
+                            <?php foreach ($jurnal as $key => $item): ?>
+                                <tr>
+                                    <td><?= $key + 1 ?></td>
+                                    <td><?= $item->judul ?></td>
+                                    <td><?= $item->penyusun ?></td>
+                                    <td><?= $item->tanggal_rilis ?></td>
+                                    <td>
+                                        <a href="<?= site_url('jurnal/download/' . $item->id) ?>" class="btn btn-primary btn-sm">Download</a>
+                                        <button class="btn btn-warning btn-sm edit-btn" data-id="1" data-title="Sample Title" data-author="Author Name" data-date="2023-01-01" data-file="sample.pdf">
+                                            <i class="fas fa-edit"></i> Edit
+                                        </button>
+                                        <a href="<?= site_url('jurnal/delete/' . $item->id) ?>" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">Delete</a>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+                        <?php else: ?>
+                            <tr>
+                                <td colspan="5" class="text-center">No data available</td>
+                            </tr>
+                        <?php endif; ?>
                     </tbody>
                 </table>
             </div>
@@ -84,35 +105,28 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form>
-            <div class="form-group">
-                <label for="moduleName">Nama Modul</label>
-                <input type="text" class="form-control mb-4" id="moduleName" placeholder="Masukkan Nama Modul">
-            </div>
-            <div class="form-group">
-                <label for="moduleDescription">Deskripsi Modul</label>
-                <textarea class="form-control  mb-4" id="moduleDescription" placeholder="Masukkan Deskripsi Modul"></textarea>
-            </div>
-            <div class="form-group">
-                <label for="thumbnailVideo">Tumbnail Video Uploud</label>
-                <input type="file" class="form-control  mb-4" id="thumbnailVideo">
-            </div>
-
-            <div class="form-group">
-                <label for="uploadFile">File Uploud</label>
-                <input type="file" class="form-control  mb-4" id="uploadFile">
-            </div>
-
-            
-
-            <button type="submit" class="btn btn-success">Simpan</button>
-        </form>
+      <form method="post"  id="jurnalForm" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="judul">Judul Jurnal</label>
+            <input type="text" class="form-control mb-4" name="judul" id="judul" required>
+        </div>
+        <div class="form-group">
+            <label for="penyusun">Penyusun</label>
+            <textarea class="form-control mb-4" name="penyusun" id="penyusun" required></textarea>
+        </div>
+        <div class="form-group">
+            <label for="tanggal_rilis">Tanggal Rilis</label>
+            <input type="date" class="form-control mb-4" name="tanggal_rilis" id="tanggal_rilis" required>
+        </div>
+        <div class="form-group">
+            <label for="file">Upload File</label>
+            <input type="file" class="form-control mb-4" name="file" id="file" accept="image/*,video/*,application/pdf" required>
+        </div>
+        <button type="submit" class="btn btn-success">Simpan</button>
+      </form>
       </div>
     </div>
   </div>
-</div>
-</div>
-</main>
 </div>
 <script
       src="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.10.1/browser/overlayscrollbars.browser.es6.min.js"
@@ -130,6 +144,9 @@
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
       integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
       crossorigin="anonymous"
+    ></script>
+    <script 
+      src="https://code.jquery.com/jquery-3.6.4.min.js"
     ></script>
     <!--end::Required Plugin(Bootstrap 5)--><!--begin::Required Plugin(AdminLTE)-->
     <script src="<?php echo base_url('assets/dist/js/adminlte.js')?>"></script>
@@ -162,6 +179,68 @@
       integrity="sha256-ipiJrswvAR4VAx/th+6zWsdeYmVae0iJuiR+6OqHJHQ="
       crossorigin="anonymous"
     ></script>
+    <!-- js for Form submission -->
+    <script>
+    $('#jurnalForm').on('submit', function(e) {
+    e.preventDefault();
+    console.log('Form submission handler triggered!');
+    let formData = new FormData(this);
+    $.ajax({
+        url: '<?= site_url('jurnal/add') ?>',
+        type: 'POST',
+        data: formData,
+        processData: false,
+        contentType: false,
+        success: function(response) {
+            console.log('Server response:', response);
+            let res = JSON.parse(response);
+            if (res.success) {
+                alert('Data successfully saved!');
+                location.reload();
+            } else {
+                alert('Error: ' + res.error);
+            }
+        },
+        error: function(xhr, status, error) {
+            console.error('AJAX error:', xhr.responseText);
+        }
+    });
+});
+
+    </script>
+    <!-- Script for handle edit -->
+    <script>
+    // Get the modal instance
+    const editModal = new bootstrap.Modal(document.getElementById('formModal'));
+
+    // Add event listener for Edit buttons
+    document.addEventListener('click', function (e) {
+        if (e.target.classList.contains('edit-btn') || e.target.closest('.edit-btn')) {
+            const button = e.target.closest('.edit-btn');
+
+            // Get data attributes from the button
+            const id = button.getAttribute('data-id');
+            const title = button.getAttribute('data-title');
+            const author = button.getAttribute('data-author');
+            const date = button.getAttribute('data-date');
+            const file = button.getAttribute('data-file');
+
+            // Populate the form in the modal with the data
+            document.getElementById('moduleName').value = title;
+            document.getElementById('moduleDescription').value = author;
+            document.getElementById('upload_date').value = date;
+
+            // Show the modal
+            editModal.show();
+
+            // Update the form's action or add a hidden input for the record ID
+            const form = document.querySelector('#formModal form');
+            form.action = `<?php echo base_url('admin/edit_jurnal'); ?>/${id}`; // Change to your actual endpoint
+            form.innerHTML += `<input type="hidden" name="id" value="${id}">`;
+        }
+    });
+</script>
+
     <!-- sortablejs -->
     <script>
       const connectedSortables = document.querySelectorAll('.connectedSortable');

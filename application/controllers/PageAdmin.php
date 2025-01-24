@@ -9,22 +9,32 @@ class PageAdmin extends CI_Controller {
 
     public function addModul()
     {
-        $this->load->view('admin/addModul'); // Memuat view modul.php
+        $this->load->model('modul_model');
+        $data['modul'] = $this->modul_model->get_all_modul() ?: [];
+        $this->load->view('admin/addModul', $data); // Memuat view modul.php
     }
 
     public function addWarta()
-    {
-        $this->load->view('admin/addWarta'); // Memuat view modul.php
+    {   
+        $this->load->model('warta_model');
+        $data['warta'] = $this->warta_model->get_all_warta() ?: [];
+        $this->load->view('admin/addWarta', $data);
     }
-
     public function addJournal()
     {
-        $this->load->view('admin/addJournal'); // Memuat view modul.php
+        $this->load->model('jurnal_model');
+        $data['jurnal'] = $this->jurnal_model->get_all_jurnal() ?: [];
+        $this->load->view('admin/addJournal', $data); // Memuat view jurnal.php
     }
 
     public function addCoe()
     {
-        $this->load->view('admin/addCoe'); // Memuat view modul.php
+        redirect('http://coe.bpsdmd.jatengprov.go.id/'); // redirect ke halaman COE (sementara)
+        //$this->load->view('admin/addCoe'); // Memuat view Coe.php
     }
 
 }
+
+
+
+

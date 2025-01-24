@@ -9,6 +9,15 @@ class Auth extends CI_Controller {
         $this->load->library(['form_validation', 'session']);
         $this->load->helper(['url', 'form']);
     }
+
+    public function index() {
+        // If already logged in, redirect to PDF Controller
+        if($this->session->userdata('logged_in')) {
+            redirect('pdf');
+        }
+        // Otherwise show login page
+        $this->load->view('auth/login');
+    }
     
     public function login() {
         if($this->session->userdata('logged_in')) {

@@ -8,6 +8,14 @@ class Pdf extends CI_Controller {
         $this->load->model('pdf_model');
         $this->load->helper(array('form', 'url'));
         $this->load->library(['form_validation', 'session']); // Added session library here
+        // Check admin login for all PDF functions
+        if(!$this->session->userdata('logged_in')) {
+            redirect('auth');
+        }
+        if(!$this->session->userdata('is_admin')) {
+            $this->session->set_flashdata('error', 'Administrator access required');
+            redirect('auth');
+        }
     }
 
     public function index() {
@@ -76,7 +84,7 @@ class Pdf extends CI_Controller {
         } else {
             $config['upload_path'] = './uploads/pdf/';
             $config['allowed_types'] = 'pdf';
-            $config['max_size'] = 5000; // 5MB max
+            $config['max_size'] = 20000; // 20MB max
             $config['encrypt_name'] = TRUE;
 
             $this->load->library('upload', $config);
@@ -119,10 +127,4 @@ class Pdf extends CI_Controller {
             show_404();
         }
     }
-        public function pageModul()
-        {
-            // Load view untuk modul
-            $this->load->view('pageModul'); // Sesuaikan dengan nama file view Anda
-        }
-    
 }
