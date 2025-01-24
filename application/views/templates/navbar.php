@@ -46,31 +46,7 @@
   </style>
  </head>
  <body>
-  <!-- Modal Structure
-  <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="loginModalLabel">Login</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-           Your login form here -->
-          <!-- <form id="loginForm">
-            <div class="mb-3">
-              <label for="username" class="form-label">Username</label>
-              <input type="username" class="form-control" id="username" required>
-            </div>
-            <div class="mb-3">
-              <label for="password" class="form-label">Password</label>
-              <input type="password" class="form-control" id="password" required>
-            </div>
-            <button type="submit" class="btn btn-primary">Login</button>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div> -->
+
   <nav class="navbar navbar-expand-lg fixed-top">
   <div class="container-fluid">
     <a class="navbar-brand" href="#" style="display: flex; align-items: center; text-decoration: none; margin-left: 40px;">
@@ -82,8 +58,8 @@
         width="75"
       />
       <div style="margin-left: 15px; color: white; text-align: left; line-height: 1.2;">
-        <strong style="font-size: 30px;">BPSDMD</strong><br />
-        <span style="font-size: 20px;">Provinsi Jawa Tengah</span>
+        <strong style="font-size: 25px;">BPSDMD</strong><br />
+        <span style="font-size: 15px;">Provinsi Jawa Tengah</span>
       </div>
     </a>
     <button 

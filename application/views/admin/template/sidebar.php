@@ -28,17 +28,11 @@
               data-accordion="false"
             >
               <li class="nav-item">
-                <a href="#" class="nav-link active">
+                <a href="<?php echo site_url('pageAdmin/dashboard');?>" class="nav-link active">
                   <i class="nav-icon bi bi-speedometer"></i>
                   <p>
                     Dashboard
                   </p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="<?php echo base_url('assets/dist/pages/generate/theme.html')?>" class="nav-link">
-                  <i class="nav-icon bi bi-palette"></i>
-                  <p>Theme Generate</p>
                 </a>
               </li>
               <li class="nav-item">
@@ -110,50 +104,33 @@
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
-                    <a href="<?php echo base_url('assets/dist/pages/forms/general.html')?>" class="nav-link">
+                    <a href="<?php echo site_url('page/home'); ?>" class="nav-link">
                       <i class="nav-icon bi bi-circle"></i>
                       <p>Home</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="<?php echo base_url('assets/dist/pages/forms/general.html')?>" class="nav-link">
+                    <a href="<?php echo site_url('page/pageModul'); ?>" class="nav-link">
                       <i class="nav-icon bi bi-circle"></i>
                       <p>Menu Modul</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="<?php echo base_url('assets/dist/pages/forms/general.html')?>" class="nav-link">
+                    <a href="<?php echo site_url('page/pageWarta'); ?>" class="nav-link">
                       <i class="nav-icon bi bi-circle"></i>
                       <p>Menu E-Warta</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="<?php echo base_url('assets/dist/pages/forms/general.html')?>" class="nav-link">
+                    <a href="<?php echo site_url('page/pageJournal'); ?>" class="nav-link">
                       <i class="nav-icon bi bi-circle"></i>
                       <p>Menu E-Journal</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="<?php echo base_url('assets/dist/pages/forms/general.html')?>" class="nav-link">
+                    <a href="<?php echo site_url('page/pageCoe'); ?>" class="nav-link">
                       <i class="nav-icon bi bi-circle"></i>
                       <p>Menu COE</p>
-                    </a>
-                  </li>
-                </ul>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="nav-icon bi bi-table"></i>
-                  <p>
-                    Tables
-                    <i class="nav-arrow bi bi-chevron-right"></i>
-                  </p>
-                </a>
-                <ul class="nav nav-treeview">
-                  <li class="nav-item">
-                    <a href="<?php echo base_url('assets/dist/pages/tables/simple.html')?>" class="nav-link">
-                      <i class="nav-icon bi bi-circle"></i>
-                      <p>Simple Tables</p>
                     </a>
                   </li>
                 </ul>
@@ -163,3 +140,27 @@
         </div>
         <!--end::Sidebar Wrapper-->
       </aside>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    let currentPath = window.location.pathname;
+    let navLinks = document.querySelectorAll('.nav-link');
+
+    navLinks.forEach((link) => {
+      let linkPath = new URL(link.href).pathname;
+
+      if (currentPath === linkPath) {
+        link.classList.add('active');
+        
+        // If it's a submenu item, keep its parent menu open
+        let parentTreeview = link.closest('.nav-treeview');
+        if (parentTreeview) {
+          parentTreeview.previousElementSibling.classList.add('active');
+          parentTreeview.closest('.nav-item').classList.add('menu-open');
+        }
+      } else {
+        link.classList.remove('active');
+      }
+    });
+  });
+</script>
