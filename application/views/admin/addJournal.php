@@ -22,7 +22,6 @@
               <div class="col-sm-6"><h3 class="mb-0">Repositori</h3></div>
               <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-end">
-                  <li class="breadcrumb-item"><a href="#">Home</a></li>
                   <li class="breadcrumb-item"><a href="#">Repositori</a></li>
                   <li class="breadcrumb-item active" aria-current="page">E-jurnal</li>
                 </ol>
@@ -72,6 +71,7 @@
                                             data-file="<?= $item->file_name ?>">
                                             <i class="fas fa-edit"></i> Edit
                                         </button>
+                                        <br />
                                         <a href="<?= site_url('jurnal/delete/' . $item->id) ?>" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">Delete</a>
                                     </td>
                                 </tr>

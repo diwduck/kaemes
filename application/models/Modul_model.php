@@ -38,8 +38,15 @@ class Modul_model extends CI_Model {
         return $this->db->delete('modul');
     }
 
-    public function get_modul_by_id($id) {
+    public function get_mAodul_by_id($id) {
 
         return $this->db->get_where('modul', array('id' => $id))->row();
+    }
+
+    public function get_actions() {
+        // Mengambil semua aksi dari tabel modul
+        $this->db->select('timestamp, "Modul " as repositori');
+        $this->db->order_by('timestamp', 'DESC');
+        return $this->db->get('modul')->result_array();
     }
 }

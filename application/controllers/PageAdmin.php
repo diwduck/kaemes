@@ -2,6 +2,8 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class PageAdmin extends CI_Controller {
+
+    
     public function dashboard()
     {
         $this->load->view('admin/dashboard'); // Memuat view modul.php

@@ -8,7 +8,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Merriweather:wght@300;700&display=swap" rel="stylesheet">
   <style>
         .footer {
-            background-color:rgba(0, 0, 0, 0.83);
+            background-color:rgba(9, 10, 11, 0.85);
             color: white;
             padding: 20px 0;
             width: 100%;
@@ -23,9 +23,9 @@
             background-color: #3b5998;
             color: white;
             border-radius: 50%;
-            padding: 20px;
-            width: 70px;
-            height: 70px;
+            padding: 10px;
+            width: 50px;
+            height: 50px;
             display: inline-flex;
             align-items: center;
             justify-content: center;
@@ -39,8 +39,9 @@
         }
         .footer .location iframe {
             width: 100%;
-            height: 300px;
+            height: 150px;
             border: 0;
+            margin-top: -15px
         }
         .footer .online-status {
             background-color: #3498db;
@@ -58,25 +59,32 @@
         }
         .footer-bottom p {
             margin: 0;
+            font-size: xx-small;
         }
         .footer .row > div {
             margin-bottom: 20px;
         }
         .footer .location {
-            margin-left: 150px;
+            margin-left: 100px;
         }
-        .footer h5 {
-            text-decoration: underline;
+        .footer h6 {
+            font-size: smaller;
+            text-decoration:underline;
             text-underline-offset: 10px;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
             text-decoration-color: rgba(255, 255, 255, 0.5);
         }
         .footer .contact-info {
             margin-left: 150px;
+            
         }
         .footer .contact-info i {
-            font-size: 30px;
+            font-size: 15px;
             margin-right: 10px;
+        }
+        .footer .contact-info p {
+            font-size: 10px;
+            padding-bottom: -5px;
         }
         .btn-read-more, .see-all-btn {
             background-color: black;
@@ -98,18 +106,18 @@
    <div class="container-fluid">
     <div class="row">
      <div class="col-md-4">
-      <h5 style="margin-left: 150px;">
+      <h6 style="margin-left: 100px;">
        LOKASI KAMI
-      </h5>
+      </h6>
       <div class="location">
        <iframe allowfullscreen="" frameborder="0" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d989.8999128878829!2d110.41225892082508!3d-7.056238088469562!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e708be28f16c1d3%3A0x927d4b8b2b3edf4!2sSasana%20Widya%20Praja%20-%20BPSDMD%20Provinsi%20Jawa%20Tengah!5e0!3m2!1sid!2sid!4v1578813965036!5m2!1sid!2sid">
        </iframe>
       </div>
      </div>
      <div class="col-md-4">
-      <h5 class="contact-info">
+      <h6 class="contact-info">
        HUBUNGI KAMI
-      </h5>
+      </h6>
       <div class="contact-info">
        <p>
         <i class="fas fa-map-marker-alt fa-2x">
@@ -139,9 +147,9 @@
       </div>
      </div>
      <div class="col-md-4">
-      <h5>
+      <h6>
        IKUTI KAMI
-      </h5>
+      </h6>
       <div class="social-icons">
        <a href="https://www.facebook.com/npsdmdjateng/">
         <i class="fab fa-facebook">

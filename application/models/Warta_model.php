@@ -42,4 +42,11 @@ class Warta_model extends CI_Model {
 
         return $this->db->get_where('warta', array('id' => $id))->row();
     }
+
+    public function get_actions() {
+        // Mengambil semua aksi dari tabel modul
+        $this->db->select('timestamp, "E-Warta" as repositori');
+        $this->db->order_by('timestamp', 'DESC');
+        return $this->db->get('warta')->result_array();
+    }
 }

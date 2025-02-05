@@ -48,16 +48,10 @@
                   />
                   <p>
                     Admin
-                    <small>Etmin BPSDMD</small>
+                    <small>Knowledge Management System</small>
                   </p>
                 </li>
                 <!--end::User Image-->
-                <!--begin::Menu Body-->
-                <!-- li class="user-body">
-                  <!--begin::Row-->
-                  <!--end::Row-->
-                <!-- /li>
-                <!--end::Menu Body-->
                 <!--begin::Menu Footer-->
                 <li class="user-footer d-flex justify-content-center">
                   <a href="<?php echo site_url('auth/logout'); ?>" class="btn btn-default btn-flat">Sign out</a>

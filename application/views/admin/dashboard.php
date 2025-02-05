@@ -22,7 +22,6 @@
               <div class="col-sm-6"><h3 class="mb-0">Dashboard</h3></div>
               <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-end">
-                  <li class="breadcrumb-item"><a href="#">Home</a></li>
                   <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
                 </ol>
               </div>
@@ -43,14 +42,14 @@
                 <!--begin::Small Box Widget 1-->
                 <div class="small-box text-bg-primary">
                   <div class="inner">
-                    <h3>150</h3>
+                    <h3><?= isset($count_modul) ? $count_modul : '0'; ?></h3>
                     <p>Modul Pembelajaran</p>
                   </div>
                   <div class="small-box-icon">
                     <i class="fas fa-book"></i>  <!-- Ikon buku dari Font Awesome -->
                   </div>
                   <a
-                    href="#"
+                    href="<?php echo site_url('pageAdmin/addModul'); ?>"
                     class="small-box-footer link-light link-underline-opacity-0 link-underline-opacity-50-hover"
                   >
                     More info <i class="bi bi-link-45deg"></i>
@@ -63,14 +62,14 @@
                 <!--begin::Small Box Widget 2-->
                 <div class="small-box text-bg-success">
                   <div class="inner">
-                    <h3>3421</h3>
+                  <h3><?= isset($count_warta) ? $count_warta : '0'; ?></h3>
                     <p>E-Warta</p>
                   </div>
                   <div class="small-box-icon">
                     <i class="fas fa-book-open"></i>  <!-- Ikon buku dari Font Awesome -->
                   </div>
                   <a
-                    href="#"
+                    href="<?php echo site_url('pageAdmin/addWarta'); ?>"
                     class="small-box-footer link-light link-underline-opacity-0 link-underline-opacity-50-hover"
                   >
                     More info <i class="bi bi-link-45deg"></i>
@@ -83,21 +82,19 @@
                 <!--begin::Small Box Widget 3-->
                 <div class="small-box text-bg-warning">
                   <div class="inner">
-                    <h3>2017</h3>
+                  <h3><?= isset($count_jurnal) ? $count_jurnal : '0'; ?></h3>
                     <p>E-Journal</p>
                   </div>
                   <div class="small-box-icon">
                     <i class="fas fa-newspaper"></i>
                   </div>
                   <a
-                    href="#"
+                    href="<?php echo site_url('pageAdmin/addJournal'); ?>"
                     class="small-box-footer link-light link-underline-opacity-0 link-underline-opacity-50-hover"
                   >
                     More info <i class="bi bi-link-45deg"></i>
                   </a>
                 </div>
-
-
                 <!--end::Small Box Widget 3-->
               </div>
               <!--end::Col-->
@@ -112,7 +109,7 @@
                     <i class="fas fa-bookmark"></i>
                   </div>
                   <a
-                    href="#"
+                    href="<?php echo site_url('pageAdmin/addCOE'); ?>"
                     class="small-box-footer link-light link-underline-opacity-0 link-underline-opacity-50-hover"
                   >
                     More info <i class="bi bi-link-45deg"></i>
@@ -175,135 +172,77 @@
                 </div>  
             </div>
             <div class="row">
-              <div class="col-md-8">
-                <div class="card">
-                  <div class="card-header">
-                    <h3 class="card-title">Latest Orders</h3>
-                    <div class="card-tools">
-                      <button type="button" class="btn btn-tool" data-lte-toggle="card-collapse">
-                        <i data-lte-icon="expand" class="bi bi-plus-lg"></i>
-                        <i data-lte-icon="collapse" class="bi bi-dash-lg"></i>
-                      </button>
-                      <button type="button" class="btn btn-tool" data-lte-toggle="card-remove">
-                        <i class="bi bi-x-lg"></i>
-                      </button>
-                    </div>
-                  </div>
-                  <!-- /.card-header -->
-                  <div class="card-body p-0">
-                    <div class="table-responsive">
-                      <table class="table m-0">
-                        <thead>
-                          <tr>
-                            <th>Order ID</th>
-                            <th>Item</th>
-                            <th>Status</th>
-                            <th>Popularity</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td>
-                              <a
-                                href="pages/examples/invoice.html"
-                                class="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
-                                >OR9842</a
-                              >
-                            </td>
-                            <td>Call of Duty IV</td>
-                            <td><span class="badge text-bg-success"> Shipped </span></td>
-                            <td><div id="table-sparkline-1"></div></td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <a
-                                href="pages/examples/invoice.html"
-                                class="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
-                                >OR1848</a
-                              >
-                            </td>
-                            <td>Samsung Smart TV</td>
-                            <td><span class="badge text-bg-warning">Pending</span></td>
-                            <td><div id="table-sparkline-2"></div></td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <a
-                                href="pages/examples/invoice.html"
-                                class="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
-                                >OR7429</a
-                              >
-                            </td>
-                            <td>iPhone 6 Plus</td>
-                            <td><span class="badge text-bg-danger"> Delivered </span></td>
-                            <td><div id="table-sparkline-3"></div></td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <a
-                                href="pages/examples/invoice.html"
-                                class="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
-                                >OR7429</a
-                              >
-                            </td>
-                            <td>Samsung Smart TV</td>
-                            <td><span class="badge text-bg-info">Processing</span></td>
-                            <td><div id="table-sparkline-4"></div></td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <a
-                                href="pages/examples/invoice.html"
-                                class="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
-                                >OR1848</a
-                              >
-                            </td>
-                            <td>Samsung Smart TV</td>
-                            <td><span class="badge text-bg-warning">Pending</span></td>
-                            <td><div id="table-sparkline-5"></div></td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <a
-                                href="pages/examples/invoice.html"
-                                class="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
-                                >OR7429</a
-                              >
-                            </td>
-                            <td>iPhone 6 Plus</td>
-                            <td><span class="badge text-bg-danger"> Delivered </span></td>
-                            <td><div id="table-sparkline-6"></div></td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <a
-                                href="pages/examples/invoice.html"
-                                class="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
-                                >OR9842</a
-                              >
-                            </td>
-                            <td>Call of Duty IV</td>
-                            <td><span class="badge text-bg-success">Shipped</span></td>
-                            <td><div id="table-sparkline-7"></div></td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div>
-                    <!-- /.table-responsive -->
-                  </div>
-                  <!-- /.card-body -->
-                  <div class="card-footer clearfix">
-                    <a href="javascript:void(0)" class="btn btn-sm btn-primary float-start">
-                      Place New Order
-                    </a>
-                    <a href="javascript:void(0)" class="btn btn-sm btn-secondary float-end">
-                      View All Orders
-                    </a>
-                  </div>
-                  <!-- /.card-footer -->
-                </div>
-                <!-- /.card -->
-              </div>
+  <div class="col-md-8">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">Tindakan administratif terbaru</h3>
+        <div class="card-tools">
+          <button type="button" class="btn btn-tool" data-lte-toggle="card-collapse">
+            <i data-lte-icon="expand" class="bi bi-plus-lg"></i>
+            <i data-lte-icon="collapse" class="bi bi-dash-lg"></i>
+          </button>
+          <button type="button" class="btn btn-tool" data-lte-toggle="card-remove">
+            <i class="bi bi-x-lg"></i>
+          </button>
+        </div>
+      </div>
+      <!-- /.card-header -->
+      <div class="card-body p-0">
+        <div class="table-responsive">
+          <table class="table m-0">
+            <thead>
+              <tr>
+                <th>Timestamp</th>
+                <th>Repositori</th>
+                <th>Action Type</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>2025-02-04 10:45:23</td>
+                <td>Jurnal Warta</td>
+                <td><span class="badge text-bg-success">Added</span></td>
+              </tr>
+              <tr>
+                <td>2025-02-04 10:30:12</td>
+                <td>Jurnal Warta</td>
+                <td><span class="badge text-bg-warning">Updated</span></td>
+              </tr>
+              <tr>
+                <td>2025-02-04 10:15:45</td>
+                <td>Jurnal Warta</td>
+                <td><span class="badge text-bg-danger">Deleted</span></td>
+              </tr>
+              <tr>
+                <td>2025-02-04 09:55:33</td>
+                <td>Jurnal Warta</td>
+                <td><span class="badge text-bg-info">Downloaded</span></td>
+              </tr>
+              <tr>
+                <td>2025-02-04 09:40:11</td>
+                <td>Jurnal Warta</td>
+                <td><span class="badge text-bg-warning">Updated</span></td>
+              </tr>
+              <tr>
+                <td>2025-02-04 09:25:50</td>
+                <td>Jurnal Warta</td>
+                <td><span class="badge text-bg-danger">Deleted</span></td>
+              </tr>
+              <tr>
+                <td>2025-02-04 09:10:05</td>
+                <td>Jurnal Warta</td>
+                <td><span class="badge text-bg-success">Added</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <!-- /.table-responsive -->
+      </div>
+    </div>
+    <!-- /.card -->
+  </div>
+
+
               <div class="col-md-4">
                 <div class="card mb-4">
                   <div class="card-header">

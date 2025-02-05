@@ -1,12 +1,10 @@
 <footer class="app-footer">
         <!--begin::To the end-->
-        <div class="float-end d-none d-sm-inline">Anything you want</div>
+        <div class="float-end d-none d-sm-inline">© BPSDMD Provinsi Jawa Tengah 2025 - All rights reserved.</div>
         <!--end::To the end-->
         <!--begin::Copyright-->
-        <strong>
-          Copyright &copy; 2014-2024&nbsp;
-          <a href="https://adminlte.io" class="text-decoration-none">AdminLTE.io</a>.
-        </strong>
-        All rights reserved.
+        <small>
+          Made With <i class="fa fa-heart"></i> By <a> diwazaa </a>, Internship Informatics'22 Diponegoro University
+        </small>
         <!--end::Copyright-->
       </footer>
