@@ -6,32 +6,46 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
     <style>
         body {
-            background-color: #f8f9fa;
+            background-image: url('<?php echo base_url('uploads/image/ayam.jpg')?>');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+            font-family: 'Arial', sans-serif;
         }
         .login-container {
-            max-width: 400px;
-            margin: 100px auto;
-        }
-        .card {
-            border: none;
-            box-shadow: 0 0 15px rgba(0,0,0,0.1);
-        }
-        .card-header {
-            background-color: #fff;
-            border-bottom: 2px solid #f8f9fa;
-            padding: 20px;
-        }
-        .card-body {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
             padding: 30px;
+            width: 400px;
+            max-width: 90%;
+        }
+        .login-container h3 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+        .btn-login {
+            background-color: #3498db;
+            border: none;
+            transition: all 0.3s ease;
+        }
+        .btn-login:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px);
         }
     </style>
 </head>
 <body>
     <div class="login-container">
-        <div class="card">
-            <div class="card-header">
-                <h3 class="text-center mb-0">Admin Page KMS</h3>
-                <p class="text-center text-muted mb-0">Administrator Login</p>
+            <div class="text-center">
+            <img src="<?php echo base_url('uploads/image/logo.png')?>" alt="Logo"  style="width: 70px; height: auto;"/>
+                <h3 style="margin-bottom: 0;">Admin KMS BPSDMD</h3>
+                <p class="text-muted">Administrator Login</p>
             </div>
             <div class="card-body">
                 <?php if($this->session->flashdata('error')): ?>

@@ -17,7 +17,7 @@
         }
         .header {
             font-family: 'Playfair Display', serif;
-            background-image: url('uploads/image/batik.jpg'); /* Ganti dengan lokasi file gambar batik */
+            background-image: url('<?php echo base_url('uploads/image/batik.jpg')?>');
             background-position: center;
             color: white;
             text-align: center;

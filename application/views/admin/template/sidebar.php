@@ -1,16 +1,7 @@
 <aside class="app-sidebar bg-body-secondary shadow" data-bs-theme="dark">
-        <!--begin::Sidebar Brand-->
-        <div class="sidebar-brand">
-          <!--begin::Brand Link-->
-          <a href="<?php echo site_url('pageAdmin/dashboard');?>" class="brand-link">
-            <!--begin::Brand Image-->
-            <img
-              src="<?php echo base_url('uploads/image/logo.png')?>"
-              alt="AdminLTE Logo"
-              class="brand-image opacity-75 shadow"
-            />
-            <!--end::Brand Image-->
-            <!--begin::Brand Text-->
+    <div class="sidebar-brand">
+        <a href="<?php echo site_url('pageAdmin/dashboard'); ?>" class="brand-link">
+            <img src="<?php echo base_url('uploads/image/logo.png') ?>" alt="AdminLTE Logo" class="brand-image opacity-75 shadow" />
             <span class="brand-text fw-light"> Portal Admin</span>
             <!--end::Brand Text-->
           </a>
@@ -104,51 +95,31 @@
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
-<<<<<<< Updated upstream
                     <a href="<?php echo site_url('page/home'); ?>" class="nav-link">
-=======
-                    <a href="<?php echo site_url('pageAdmin/home')?>" class="nav-link">
->>>>>>> Stashed changes
                       <i class="nav-icon bi bi-circle"></i>
                       <p>Home</p>
                     </a>
                   </li>
                   <li class="nav-item">
-<<<<<<< Updated upstream
                     <a href="<?php echo site_url('page/pageModul'); ?>" class="nav-link">
-=======
-                    <a href="<?php echo site_url('pageAdmin/pageModul')?>" class="nav-link">
->>>>>>> Stashed changes
                       <i class="nav-icon bi bi-circle"></i>
                       <p>Menu Modul</p>
                     </a>
                   </li>
                   <li class="nav-item">
-<<<<<<< Updated upstream
                     <a href="<?php echo site_url('page/pageWarta'); ?>" class="nav-link">
-=======
-                    <a href="<?php echo site_url('pageAdmin/pageWarta')?>" class="nav-link">
->>>>>>> Stashed changes
                       <i class="nav-icon bi bi-circle"></i>
                       <p>Menu E-Warta</p>
                     </a>
                   </li>
                   <li class="nav-item">
-<<<<<<< Updated upstream
                     <a href="<?php echo site_url('page/pageJournal'); ?>" class="nav-link">
-=======
-                    <a href="<?php echo site_url('pageAdmin/pageJournal')?>" class="nav-link">
->>>>>>> Stashed changes
                       <i class="nav-icon bi bi-circle"></i>
                       <p>Menu E-Journal</p>
                     </a>
                   </li>
                   <li class="nav-item">
-<<<<<<< Updated upstream
                     <a href="<?php echo site_url('page/pageCoe'); ?>" class="nav-link">
-=======
-                    <a href="<?php echo site_url('pageAdmin/pageCoe')?>" class="nav-link">
->>>>>>> Stashed changes
                       <i class="nav-icon bi bi-circle"></i>
                       <p>Menu COE</p>
                     </a>
@@ -162,25 +133,24 @@
       </aside>
 
 <script>
-  document.addEventListener('DOMContentLoaded', function () {
-    let currentPath = window.location.pathname;
-    let navLinks = document.querySelectorAll('.nav-link');
-
-    navLinks.forEach((link) => {
-      let linkPath = new URL(link.href).pathname;
-
-      if (currentPath === linkPath) {
-        link.classList.add('active');
+    document.addEventListener("DOMContentLoaded", function () {
+        let menuItems = document.querySelectorAll(".toggle-menu");
         
-        // If it's a submenu item, keep its parent menu open
-        let parentTreeview = link.closest('.nav-treeview');
-        if (parentTreeview) {
-          parentTreeview.previousElementSibling.classList.add('active');
-          parentTreeview.closest('.nav-item').classList.add('menu-open');
-        }
-      } else {
-        link.classList.remove('active');
-      }
+        menuItems.forEach(item => {
+            item.addEventListener("click", function (e) {
+                e.preventDefault();
+                let parent = this.closest(".nav-item");
+                let submenu = parent.querySelector(".nav-treeview");
+                let arrow = this.querySelector(".nav-arrow");
+                
+                if (submenu.style.display === "none" || submenu.style.display === "") {
+                    submenu.style.display = "block";
+                    arrow.classList.replace("bi-chevron-right", "bi-chevron-down");
+                } else {
+                    submenu.style.display = "none";
+                    arrow.classList.replace("bi-chevron-down", "bi-chevron-right");
+                }
+            });
+        });
     });
-  });
 </script>

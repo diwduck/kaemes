@@ -17,11 +17,11 @@
         }
         .header {
             font-family: 'Playfair Display', serif;
-            background-image: url('uploads/image/batik.jpg'); /* Ganti dengan lokasi file gambar batik */
+            background-image: url('<?php echo base_url('uploads/image/batik.jpg')?>');
             background-position: center;
             color: white;
             text-align: center;
-            height: 38vh;
+            height: 30vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -38,7 +38,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.74); /* Hitam dengan transparansi 50% */
+            background-color: rgba(0, 0, 0, 0.66); /* Hitam dengan transparansi 50% */
             z-index: -1; /* Menempatkan layer di belakang konten */
         }
 
@@ -47,65 +47,88 @@
             z-index: 2;
         }
         .header h1 {
-            font-size: 5rem;
+            font-size: 4rem;
             font-weight: bold;
         }
         .header p {
             font-size: 3rem;
         }
-        .card-container {
-            position: relative;
-            top: -20%;
+        /* Container Card */
+        .custom-card {
+            max-width: 120%;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.2s;
         }
-        .card {
-            border: none;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            height: 375px; /* Adjust the height as needed */
+
+        /* Efek Hover */
+        .custom-card:hover {
+            transform: scale(1.05);
         }
-        .card i {
-            font-size: 50px;
-            margin: 20px auto;
-            color: black;
+
+        /* Ukuran Gambar */
+        .custom-card img {
+            width: 100%;
+            height: 190px;
+            object-fit: cover;
         }
-        .card-title {
+
+        /* Judul Berita */
+        .custom-card .card-title {
+            font-size: 14px;
             font-weight: bold;
+            margin-bottom: 5px;
         }
-        .card-text {
-            color: #666;
+
+        /* Teks kecil di bawah judul */
+        .small-text {
+            font-size: 12px;
+            color: gray;
+            margin-bottom: 3px;
         }
-        .btn-read-more, .see-all-btn {
-            font-size: 30px;
-            background-color: black;
-            color: white;
-            border-radius: 20px;
-            padding: 5px 20px;
-            text-decoration: none;
-            display: inline-block;
-        }
-        .see-all-btn {
-            border-radius: 10px;
-            display: block;
-            margin: 30px auto 100px auto; /* Center the button and add more space below */
-            width: 100px;
-        }
-        .content-box {
-            background-color: white;
-            padding: 60px;
+
+        .extra-small {
+            font-size: 9px;
+            color: gray;
+            margin-bottom: 4px;
+}
+
+        /* Tombol Download */
+        .custom-card .btn {
+            font-size: 6px;
+            padding: 5px 5px;
             border-radius: 15px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            text-align: center;
         }
-        .section-spacing {
-            margin-top: 50px; /* Adjust the spacing as needed */
-        }
-        .more a {
-            font-weight: bold;
-            color: blue;
-            text-decoration: underline;
-            background-color: transparent;
-        }
-  </style>
+        /* Search Bar */
+            .custom-search {
+                max-width: 190%;
+                height: 35px;
+                border-radius: 15px;
+                font-size: 14px;
+            }
+
+            /* Tombol Filter */
+            .btn-filter {
+                height: 35px;
+                font-size: 14px;
+                border-radius: 8px;
+            }
+
+            /* Modal Filter */
+            .modal-content {
+                border-radius: 10px;
+            }
+
+            /* Checkbox Filter */
+            .form-check {
+                margin-bottom: 10px;
+            }
+
+            /* Tombol Terapkan */
+            .modal-footer .btn-primary {
+                width: 100px;
+            }
+        </style>
  </head>
 <?php include_once 'templates/navbar.php'; ?>
 <div class="header">
@@ -119,136 +142,151 @@
   </div>
   <div class="container my-4">
    <div class="row">
-    <div class="col-md-12 mb-3">
-     <input class="form-control" placeholder="Search" type="text"/>
-    </div>
-    <div class="col-md-4 mb-4">
-     <div class="card">
-      <img alt="Event Image" class="card-img-top" height="200" src="https://storage.googleapis.com/a1aa/image/2bft0YABPF23AamHYHqRtfh5KLTNfmMJw5Fp2ELEUJafvNNQB.jpg" width="300"/>
-      <div class="card-body">
-       <h5 class="card-title">
-        Pembukaan Uji Publik Monev Keterbukaan Informasi Publik Tahun 2024
-       </h5>
-       <p class="card-text">
-        20 Nov 2023 | 1 Komentar
-       </p>
-       <p class="card-text">
-        Semarang - (20/11/2024) Plt Asisten Administrasi Umum Setda Prov Jateng Slamet, Ak berkenan hadir sekaligus membuka
-       </p>
-       <a class="btn btn-primary" href="#">
-        <i class="fas fa-download">
-        </i>
-        Download
-       </a>
+    <div class="row justify-content-center">
+      <div class="col-md-8 mb-3">
+         <div class="search-container">
+            <!-- Search Bar -->
+            <input class="form-control custom-search" placeholder="Search berita..." type="text" class="fas fa-filter" />
+            <!-- Tombol Filter di dalam Search Bar -->
+            
+         </div>
       </div>
-     </div>
-    </div>
-    <div class="col-md-4 mb-4">
-     <div class="card">
-      <img alt="Event Image" class="card-img-top" height="200" src="https://storage.googleapis.com/a1aa/image/2bft0YABPF23AamHYHqRtfh5KLTNfmMJw5Fp2ELEUJafvNNQB.jpg" width="300"/>
-      <div class="card-body">
-       <h5 class="card-title">
-        Pembukaan Uji Publik Monev Keterbukaan Informasi Publik Tahun 2024
-       </h5>
-       <p class="card-text">
-        20 Nov 2023 | 1 Komentar
-       </p>
-       <p class="card-text">
-        Semarang - (20/11/2024) Plt Asisten Administrasi Umum Setda Prov Jateng Slamet, Ak berkenan hadir sekaligus membuka
-       </p>
-       <a class="btn btn-primary" href="#">
-        <i class="fas fa-download">
-        </i>
-        Download
-       </a>
-      </div>
-     </div>
-    </div>
-    <div class="col-md-4 mb-4">
-     <div class="card">
-      <img alt="Event Image" class="card-img-top" height="200" src="https://storage.googleapis.com/a1aa/image/2bft0YABPF23AamHYHqRtfh5KLTNfmMJw5Fp2ELEUJafvNNQB.jpg" width="300"/>
-      <div class="card-body">
-       <h5 class="card-title">
-        Pembukaan Uji Publik Monev Keterbukaan Informasi Publik Tahun 2024
-       </h5>
-       <p class="card-text">
-        20 Nov 2023 | 1 Komentar
-       </p>
-       <p class="card-text">
-        Semarang - (20/11/2024) Plt Asisten Administrasi Umum Setda Prov Jateng Slamet, Ak berkenan hadir sekaligus membuka
-       </p>
-       <a class="btn btn-primary" href="#">
-        <i class="fas fa-download">
-        </i>
-        Download
-       </a>
-      </div>
-     </div>
-    </div>
-    <div class="col-md-4 mb-4">
-     <div class="card">
-      <img alt="Event Image" class="card-img-top" height="200" src="https://storage.googleapis.com/a1aa/image/2bft0YABPF23AamHYHqRtfh5KLTNfmMJw5Fp2ELEUJafvNNQB.jpg" width="300"/>
-      <div class="card-body">
-       <h5 class="card-title">
-        Pembukaan Uji Publik Monev Keterbukaan Informasi Publik Tahun 2024
-       </h5>
-       <p class="card-text">
-        20 Nov 2023 | 1 Komentar
-       </p>
-       <p class="card-text">
-        Semarang - (20/11/2024) Plt Asisten Administrasi Umum Setda Prov Jateng Slamet, Ak berkenan hadir sekaligus membuka
-       </p>
-       <a class="btn btn-primary" href="#">
-        <i class="fas fa-download">
-        </i>
-        Download
-       </a>
-      </div>
-     </div>
-    </div>
-    <div class="col-md-4 mb-4">
-     <div class="card">
-      <img alt="Event Image" class="card-img-top" height="200" src="https://storage.googleapis.com/a1aa/image/2bft0YABPF23AamHYHqRtfh5KLTNfmMJw5Fp2ELEUJafvNNQB.jpg" width="300"/>
-      <div class="card-body">
-       <h5 class="card-title">
-        Pembukaan Uji Publik Monev Keterbukaan Informasi Publik Tahun 2024
-       </h5>
-       <p class="card-text">
-        20 Nov 2023 | 1 Komentar
-       </p>
-       <p class="card-text">
-        Semarang - (20/11/2024) Plt Asisten Administrasi Umum Setda Prov Jateng Slamet, Ak berkenan hadir sekaligus membuka
-       </p>
-       <a class="btn btn-primary" href="#">
-        <i class="fas fa-download">
-        </i>
-        Download
-       </a>
-      </div>
-     </div>
-    </div>
-    <div class="col-md-4 mb-4">
-     <div class="card">
-      <img alt="Event Image" class="card-img-top" height="200" src="https://storage.googleapis.com/a1aa/image/2bft0YABPF23AamHYHqRtfh5KLTNfmMJw5Fp2ELEUJafvNNQB.jpg" width="300"/>
-      <div class="card-body">
-       <h5 class="card-title">
-        Pembukaan Uji Publik Monev Keterbukaan Informasi Publik Tahun 2024
-       </h5>
-       <p class="card-text">
-        20 Nov 2023 | 1 Komentar
-       </p>
-       <p class="card-text">
-        Semarang - (20/11/2024) Plt Asisten Administrasi Umum Setda Prov Jateng Slamet, Ak berkenan hadir sekaligus membuka
-       </p>
-       <a class="btn btn-primary" href="#">
-        <i class="fas fa-download">
-        </i>
-        Download
-       </a>
-      </div>
-     </div>
-    </div>
    </div>
-  </div>
+
+      <!-- Kartu Berita -->
+      <div class="col-lg-3 col-md-4 col-sm-5 col-12 mb-4">
+         <div class="card custom-card">
+            <img alt="Event Image" class="card-img-top" src="https://storage.googleapis.com/a1aa/image/2bft0YABPF23AamHYHqRtfh5KLTNfmMJw5Fp2ELEUJafvNNQB.jpg"/>
+            <div class="card-body">
+               <h6 class="card-title">Pembukaan Uji Publik Monev</h6>
+               <p class="card-text small-text">20 Nov 2023 | 1 Komentar</p>
+               <p class="card-text extra-small">
+                    Semarang - (20/11/2024) Plt Asisten Administrasi Umum Setda Prov Jateng Slamet, Ak berkenan hadir sekaligus membuka
+               </p>
+               <a class="btn btn-sm btn-primary" href="#">
+               <i class="fas fa-download"></i> Download
+               </a>
+            </div>
+         </div>
+      </div>
+
+      <!-- Duplikasi Kartu untuk 5 berita -->
+      <div class="col-lg-3 col-md-4 col-sm-6 col-12 mb-4">
+         <div class="card custom-card">
+            <img alt="Event Image" class="card-img-top" src="https://storage.googleapis.com/a1aa/image/2bft0YABPF23AamHYHqRtfh5KLTNfmMJw5Fp2ELEUJafvNNQB.jpg"/>
+            <div class="card-body">
+               <h6 class="card-title">Pembukaan Uji Publik Monev</h6>
+               <p class="card-text small-text">20 Nov 2023 | 1 Komentar</p>
+               <p class="card-text extra-small">
+                    Semarang - (20/11/2024) Plt Asisten Administrasi Umum Setda Prov Jateng Slamet, Ak berkenan hadir sekaligus membuka
+               </p>
+               <a class="btn btn-sm btn-primary" href="#">
+               <i class="fas fa-download"></i> Download
+               </a>
+            </div>
+         </div>
+      </div>
+
+      <div class="col-lg-3 col-md-4 col-sm-6 col-12 mb-4">
+         <div class="card custom-card">
+            <img alt="Event Image" class="card-img-top" src="https://storage.googleapis.com/a1aa/image/2bft0YABPF23AamHYHqRtfh5KLTNfmMJw5Fp2ELEUJafvNNQB.jpg"/>
+            <div class="card-body">
+               <h6 class="card-title">Pembukaan Uji Publik Monev</h6>
+               <p class="card-text small-text">20 Nov 2023 | 1 Komentar</p>
+               <p class="card-text extra-small">
+                    Semarang - (20/11/2024) Plt Asisten Administrasi Umum Setda Prov Jateng Slamet, Ak berkenan hadir sekaligus membuka
+               </p>
+               <a class="btn btn-sm btn-primary" href="#">
+               <i class="fas fa-download"></i> Download
+               </a>
+            </div>
+         </div>
+      </div>
+
+      <div class="col-lg-3 col-md-4 col-sm-6 col-12 mb-4">
+         <div class="card custom-card">
+            <img alt="Event Image" class="card-img-top" src="https://storage.googleapis.com/a1aa/image/2bft0YABPF23AamHYHqRtfh5KLTNfmMJw5Fp2ELEUJafvNNQB.jpg"/>
+            <div class="card-body">
+               <h6 class="card-title">Pembukaan Uji Publik Monev</h6>
+               <p class="card-text small-text">20 Nov 2023 | 1 Komentar</p>
+               <p class="card-text extra-small">
+                    Semarang - (20/11/2024) Plt Asisten Administrasi Umum Setda Prov Jateng Slamet, Ak berkenan hadir sekaligus membuka
+               </p>
+               <a class="btn btn-sm btn-primary" href="#">
+               <i class="fas fa-download"></i> Download
+               </a>
+            </div>
+         </div>
+      </div>
+
+      <div class="col-lg-3 col-md-4 col-sm-6 col-12 mb-4">
+         <div class="card custom-card">
+            <img alt="Event Image" class="card-img-top" src="https://storage.googleapis.com/a1aa/image/2bft0YABPF23AamHYHqRtfh5KLTNfmMJw5Fp2ELEUJafvNNQB.jpg"/>
+            <div class="card-body">
+               <h6 class="card-title">Pembukaan Uji Publik Monev</h6>
+               <p class="card-text small-text">20 Nov 2023 | 1 Komentar</p>
+               <p class="card-text extra-small">
+                    Semarang - (20/11/2024) Plt Asisten Administrasi Umum Setda Prov Jateng Slamet, Ak berkenan hadir sekaligus membuka
+               </p>
+               <a class="btn btn-sm btn-primary" href="#">
+               <i class="fas fa-download"></i> Download
+               </a>
+            </div>
+         </div>
+      </div>
+      <div class="col-lg-3 col-md-4 col-sm-6 col-12 mb-4">
+         <div class="card custom-card">
+            <img alt="Event Image" class="card-img-top" src="https://storage.googleapis.com/a1aa/image/2bft0YABPF23AamHYHqRtfh5KLTNfmMJw5Fp2ELEUJafvNNQB.jpg"/>
+            <div class="card-body">
+               <h6 class="card-title">Pembukaan Uji Publik Monev</h6>
+               <p class="card-text small-text">20 Nov 2023 | 1 Komentar</p>
+               <p class="card-text extra-small">
+                    Semarang - (20/11/2024) Plt Asisten Administrasi Umum Setda Prov Jateng Slamet, Ak berkenan hadir sekaligus membuka
+               </p>
+               <a class="btn btn-sm btn-primary" href="#">
+               <i class="fas fa-download"></i> Download
+               </a>
+            </div>
+         </div>
+      </div>
+
+   </div>
+</div>
   <?php include 'templates/footer.php'; ?>
  </html>
+ <script>
+    function applyFilter() {
+        let selectedFilters = [];
+        let checkboxes = document.querySelectorAll(".filter-option");
+
+        // Ambil semua filter yang dipilih
+        checkboxes.forEach(checkbox => {
+            if (checkbox.checked) {
+                selectedFilters.push(checkbox.value);
+            }
+        });
+
+        let beritaItems = document.querySelectorAll('.berita');
+
+        // Jika tidak ada filter yang dipilih, tampilkan semua berita
+        if (selectedFilters.length === 0) {
+            beritaItems.forEach(item => item.style.display = "block");
+            return;
+        }
+
+        // Filter berita berdasarkan pilihan user
+        beritaItems.forEach(item => {
+            let itemFilter = item.getAttribute("data-filter");
+            if (selectedFilters.includes(itemFilter)) {
+                item.style.display = "block";
+            } else {
+                item.style.display = "none";
+            }
+        });
+
+        // Tutup modal setelah filter diterapkan
+        let modal = document.getElementById('filterModal');
+        let modalInstance = bootstrap.Modal.getInstance(modal);
+        modalInstance.hide();
+    }
+ </script>
