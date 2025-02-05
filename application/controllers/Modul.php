@@ -10,7 +10,7 @@ class Modul extends CI_Controller {
 
     public function index() {
         $data['modul'] = $this->modul_model->get_all_modal();
-        $this->load->view('admin/modul_view', $data);
+        $this->load->view('admin/addModul', $data);
     }
 
     public function addModul() {
@@ -117,7 +117,7 @@ class Modul extends CI_Controller {
     public function delete($id) {
         $modul = $this->modul_model->get_modul_by_id($id);
         if ($modul) {
-            unlink('./uploads/' . $modul->file); // Delete file
+            unlink('./uploads/' . $modul->file_name); // Delete file
             $this->modul_model->delete_modul($id);
         }
         redirect('modul');
@@ -127,7 +127,7 @@ class Modul extends CI_Controller {
         $modul = $this->modul_model->get_modul_by_id($id);
         if ($modul) {
             $this->load->helper('download');
-            force_download('./uploads/' . $modul->file, NULL);
+            force_download('./uploads/' . $modul->file_name, NULL);
         }
     }
 }

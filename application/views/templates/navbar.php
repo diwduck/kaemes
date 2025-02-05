@@ -101,15 +101,9 @@
           </a>
         </li>
         <li class="nav-item">
-          <button 
-            type="button"
-            class="btn nav-link text-white" 
-            data-bs-toggle="modal" 
-            data-bs-target="#loginModal"
-            style="background-color: #1EAFEC; font-size: 20px; padding: 5px 25px;"
-          >
+          <a class="nav-link text-white" href="<?php echo site_url('auth/login'); ?>">
             <i class="fas fa-sign-in-alt" style="font-size: 20px;"></i> Login
-          </button>
+          </a>
         </li>
       </ul>
     </div>

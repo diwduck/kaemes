@@ -6,11 +6,12 @@ class Jurnal extends CI_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->model('jurnal_model');
+        $this->load->library('session'); // Buat session
     }
 
     public function index() {
         $data['jurnal'] = $this->jurnal_model->get_all_jurnal();
-        $this->load->view('admin/jurnal_view', $data);
+        $this->load->view('admin/addJournal', $data);
     }
 
     
@@ -61,58 +62,41 @@ class Jurnal extends CI_Controller {
     $this->load->model('jurnal_model');
 
     // Get the current record data
-    $data['record'] = $this->jurnal_model->get_by_id($id);
+    $data['record'] = $this->jurnal_model->get_jurnal_by_id($id);
 
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        // Get the form input
-        $title = $this->input->post('title');
-        $author = $this->input->post('author');
-        $release_date = $this->input->post('release_date');
-        $file = $_FILES['file']['name'];
+    if ($this->input->server('REQUEST_METHOD') == 'POST') {
+        $update_data = [
+            'judul' => $this->input->post('title'),
+            'penyusun' => $this->input->post('author'),
+            'tanggal_rilis' => $this->input->post('release_date')
+        ];
 
-        // Handle file upload
-        if (!empty($file)) {
+        if (!empty($_FILES['file']['name'])) {
             $config['upload_path'] = './uploads/';
-            $config['allowed_types'] = 'pdf';
+            $config['allowed_types'] = 'pdf|mp4|jpg|png';
             $this->load->library('upload', $config);
 
             if ($this->upload->do_upload('file')) {
-                $file_data = $this->upload->data();
-                $file_name = $file_data['file_name'];
-            } else {
-                // Handle upload error
-                $data['error'] = $this->upload->display_errors();
-                $this->load->view('admin/edit_jurnal', $data);
-                return;
+                $uploadData = $this->upload->data();
+                $update_data['file_name'] = $uploadData['file_name'];
             }
-        } else {
-            // Use the existing file if no new upload
-            $file_name = $data['record']->file;
         }
 
-        // Update the record
-        $update_data = [
-            'title' => $title,
-            'author' => $author,
-            'release_date' => $release_date,
-            'file' => $file_name,
-        ];
-        $this->jurnal_model->update($id, $update_data);
-
-        // Redirect back to the listing page with success message
-        $this->session->set_flashdata('success', 'jurnal updated successfully.');
-        redirect('admin/jurnal');
-    } else {
-        // Load the edit view
-        $this->load->view('admin/edit_jurnal', $data);
+        $this->jurnal_model->update_jurnal($id, $update_data);
+        $this->session->set_flashdata('success', 'Jurnal updated successfully.');
+        redirect('jurnal');
     }
+
+    $this->load->view('admin/edit_jurnal', $data);
 }
+
+
 
 
     public function delete($id) {
         $jurnal = $this->jurnal_model->get_jurnal_by_id($id);
         if ($jurnal) {
-            unlink('./uploads/' . $jurnal->file); // Delete file
+            unlink('./uploads/' . $jurnal->file_name); // Delete file
             $this->jurnal_model->delete_jurnal($id);
         }
         redirect('jurnal');
@@ -122,7 +106,7 @@ class Jurnal extends CI_Controller {
         $jurnal = $this->jurnal_model->get_jurnal_by_id($id);
         if ($jurnal) {
             $this->load->helper('download');
-            force_download('./uploads/' . $jurnal->file, NULL);
+            force_download('./uploads/' . $jurnal->file_name, NULL);
         }
     }
 }
