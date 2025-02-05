@@ -104,51 +104,31 @@
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
-<<<<<<< Updated upstream
                     <a href="<?php echo site_url('page/home'); ?>" class="nav-link">
-=======
-                    <a href="<?php echo site_url('pageAdmin/home')?>" class="nav-link">
->>>>>>> Stashed changes
                       <i class="nav-icon bi bi-circle"></i>
                       <p>Home</p>
                     </a>
                   </li>
                   <li class="nav-item">
-<<<<<<< Updated upstream
                     <a href="<?php echo site_url('page/pageModul'); ?>" class="nav-link">
-=======
-                    <a href="<?php echo site_url('pageAdmin/pageModul')?>" class="nav-link">
->>>>>>> Stashed changes
                       <i class="nav-icon bi bi-circle"></i>
                       <p>Menu Modul</p>
                     </a>
                   </li>
                   <li class="nav-item">
-<<<<<<< Updated upstream
                     <a href="<?php echo site_url('page/pageWarta'); ?>" class="nav-link">
-=======
-                    <a href="<?php echo site_url('pageAdmin/pageWarta')?>" class="nav-link">
->>>>>>> Stashed changes
                       <i class="nav-icon bi bi-circle"></i>
                       <p>Menu E-Warta</p>
                     </a>
                   </li>
                   <li class="nav-item">
-<<<<<<< Updated upstream
                     <a href="<?php echo site_url('page/pageJournal'); ?>" class="nav-link">
-=======
-                    <a href="<?php echo site_url('pageAdmin/pageJournal')?>" class="nav-link">
->>>>>>> Stashed changes
                       <i class="nav-icon bi bi-circle"></i>
                       <p>Menu E-Journal</p>
                     </a>
                   </li>
                   <li class="nav-item">
-<<<<<<< Updated upstream
                     <a href="<?php echo site_url('page/pageCoe'); ?>" class="nav-link">
-=======
-                    <a href="<?php echo site_url('pageAdmin/pageCoe')?>" class="nav-link">
->>>>>>> Stashed changes
                       <i class="nav-icon bi bi-circle"></i>
                       <p>Menu COE</p>
                     </a>
