@@ -45,6 +45,7 @@ class Warta extends CI_Controller {
     public function add()
 {
     $this->load->library('upload');
+    $this->load->model('warta_model'); // Memuat model Jurnal_model
 
     // Set upload configuration
     $config['upload_path'] = './uploads/';
@@ -66,10 +67,14 @@ class Warta extends CI_Controller {
             'file_name' => $uploadData['file_name']
         ];
 
-        // Save data to the database
-        $this->db->insert('warta', $data);
-
-        $response = ['success' => true];
+        // Memanggil add_jurnal dari model untuk menyimpan data dan log
+        $result = $this->warta_model->add_warta($data);
+    
+        if ($result) {
+            $response = ['success' => true];
+        } else {
+            $response = ['success' => false, 'error' => 'Failed to add warta'];
+        }
     }
 
     echo json_encode($response);

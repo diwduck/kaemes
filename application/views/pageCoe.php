@@ -13,7 +13,7 @@
   <style>
    body {
             font-family: 'Poppins', sans-serif;
-            background-color: #f0f0f0; /* Light gray background */
+            background-color:rgb(226, 223, 223); /* Light gray background */
             transform: scale(1);
             zoom: 100%;
         }

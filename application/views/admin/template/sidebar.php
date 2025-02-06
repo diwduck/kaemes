@@ -63,30 +63,6 @@
               </li>
               <li class="nav-item">
                 <a href="#" class="nav-link">
-                  <i class="nav-icon bi bi-clipboard-fill"></i>
-                  <p>
-                    Statistik
-                    <span class="nav-badge badge text-bg-secondary me-3">6</span>
-                    <i class="nav-arrow bi bi-chevron-right"></i>
-                  </p>
-                </a>
-                <ul class="nav nav-treeview">
-                  <li class="nav-item">
-                    <a href="<?php echo base_url('assets/dist/pages/layout/unfixed-sidebar.html')?>" class="nav-link">
-                      <i class="nav-icon bi bi-circle"></i>
-                      <p>Statistik pengunjung</p>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="<?php echo base_url('assets/dist/pages/layout/fixed-sidebar.html')?>" class="nav-link">
-                      <i class="nav-icon bi bi-circle"></i>
-                      <p>Statistik download</p>
-                    </a>
-                  </li>
-                </ul>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">
                   <i class="nav-icon bi bi-pencil-square"></i>
                   <p>
                     Website

@@ -10,9 +10,11 @@
         .footer {
             background-color:rgba(9, 10, 11, 0.85);
             color: white;
-            padding: 20px 0;
+            padding: 25px 0;
             width: 100%;
             margin: 0;
+            text-align: center;
+            margin-bottom: -40px;
         }
         .footer a {
             color: white;
@@ -39,19 +41,12 @@
         }
         .footer .location iframe {
             width: 100%;
-            height: 150px;
+            height: 200px;
             border: 0;
             margin-top: -15px
         }
-        .footer .online-status {
-            background-color: #3498db;
-            color: white;
-            padding: 5px 10px;
-            border-radius: 5px;
-            display: inline-block;
-        }
         .footer-bottom {
-            background-color: #000;
+            background-color:rgb(119, 3, 3);
             color: white;
             padding: 10px 0;
             width: 100%;
@@ -68,10 +63,9 @@
             margin-left: 100px;
         }
         .footer h6 {
-            font-size: smaller;
             text-decoration:underline;
             text-underline-offset: 10px;
-            margin-bottom: 30px;
+            margin-bottom: 40px;
             text-decoration-color: rgba(255, 255, 255, 0.5);
         }
         .footer .contact-info {
@@ -81,24 +75,11 @@
         .footer .contact-info i {
             font-size: 15px;
             margin-right: 10px;
+            margin-top: 5px;
         }
         .footer .contact-info p {
             font-size: 10px;
             padding-bottom: -5px;
-        }
-        .btn-read-more, .see-all-btn {
-            background-color: black;
-            color: white;
-            border-radius: 20px;
-            padding: 5px 20px;
-            text-decoration: none;
-            display: inline-block;
-        }
-        .see-all-btn {
-            border-radius: 10px;
-            display: block;
-            margin: 30px auto 100px auto; /* Center the button and add more space below */
-            width: 100px;
         }
     </style>
 </head>
