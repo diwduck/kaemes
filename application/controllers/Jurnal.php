@@ -24,36 +24,56 @@ class Jurnal extends CI_Controller {
     public function add()
     {
         $this->load->library('upload');
-        $this->load->model('Jurnal_model');  // Memuat model Jurnal_model
+        $this->load->model('Jurnal_model');  
     
-        // Set upload configuration
+        $response = ['success' => false, 'error' => ''];
+    
+        // Konfigurasi untuk file thumbnail
         $config['upload_path'] = './uploads/';
-        $config['allowed_types'] = 'pdf|mp4|jpg|png';
-        $config['max_size'] = 10240; // 10MB
+        $config['allowed_types'] = 'jpg|png';
+        $config['max_size'] = 10240; 
         $this->upload->initialize($config);
     
-        if (!$this->upload->do_upload('file')) {
-            $response = [
-                'success' => false,
-                'error' => $this->upload->display_errors()
-            ];
-        } else {
-            $uploadData = $this->upload->data();
-            $data = [
-                'judul' => $this->input->post('judul'),
-                'penyusun' => $this->input->post('penyusun'),
-                'tanggal_rilis' => $this->input->post('tanggal_rilis'),
-                'file_name' => $uploadData['file_name']
-            ];
-    
-            // Memanggil add_jurnal dari model untuk menyimpan data dan log
-            $result = $this->Jurnal_model->add_jurnal($data);
-    
-            if ($result) {
-                $response = ['success' => true];
+        $file_thumbnail = '';
+        if (!empty($_FILES['file_thumbnail']['name'])) {
+            if ($this->upload->do_upload('file_thumbnail')) {
+                $file_thumbnail = $this->upload->data('file_name');
             } else {
-                $response = ['success' => false, 'error' => 'Failed to add jurnal'];
+                $response['error'] = 'Error uploading thumbnail: ' . $this->upload->display_errors();
+                echo json_encode($response);
+                return;
             }
+        }
+    
+        // Konfigurasi untuk file utama
+        $config['allowed_types'] = 'pdf|mp4';
+        $this->upload->initialize($config);
+    
+        $file_name = '';
+        if (!empty($_FILES['file']['name'])) {
+            if ($this->upload->do_upload('file')) {
+                $file_name = $this->upload->data('file_name');
+            } else {
+                $response['error'] = 'Error uploading file: ' . $this->upload->display_errors();
+                echo json_encode($response);
+                return;
+            }
+        }
+    
+        $data = [
+            'judul'         => $this->input->post('judul'),
+            'penyusun'      => $this->input->post('penyusun'),
+            'deskripsi'     => $this->input->post('deskripsi'),
+            'file_thumbnail'=> $file_thumbnail,
+            'file_name'     => $file_name
+        ];
+    
+        // Simpan ke database
+        $result = $this->Jurnal_model->add_jurnal($data);
+        if ($result) {
+            $response = ['success' => true];
+        } else {
+            $response['error'] = 'Failed to add jurnal';
         }
     
         echo json_encode($response);

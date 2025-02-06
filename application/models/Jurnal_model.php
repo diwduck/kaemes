@@ -91,7 +91,7 @@ class Jurnal_model extends CI_Model {
     }
 
     public function get_all_jurnal() {
-        $this->db->order_by('tanggal_rilis', 'DESC');
+        $this->db->order_by('timestamp', 'DESC');
         return $this->db->get('jurnal')->result();
     }
 

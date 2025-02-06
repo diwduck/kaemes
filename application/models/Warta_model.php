@@ -25,7 +25,7 @@ class Warta_model extends CI_Model {
         return $result;
     }
     public function get_all_warta() {
-        $this->db->order_by('tanggal_rilis', 'DESC');
+        $this->db->order_by('timestamp', 'DESC');
         return $this->db->get('warta')->result();
     }
 

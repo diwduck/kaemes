@@ -10,7 +10,7 @@ class Modul_model extends CI_Model {
 
     // --- Ambil Semua Modul ---
     public function get_all_modul() {
-        $this->db->order_by('tanggal_rilis', 'DESC');
+        $this->db->order_by('timestamp', 'DESC');
         return $this->db->get('modul')->result();
     }
 

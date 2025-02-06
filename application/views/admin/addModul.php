@@ -49,7 +49,6 @@
                             <th style="width: 10px; text-align: center;" align-middle>No</th>
                             <th style="width: 150px; text-align: center;" align-middle>Thumbnail Video</th>
                             <th style="width: 250px; text-align: center;" align-middle>Nama Video</th>
-                            <th style="width: 150px; text-align: center;" align-middle>Tanggal Rilis</th>
                             <th style="width: 100px; text-align: center;" align-middle>Action</th>
                         </tr>
                     </thead>
@@ -60,14 +59,12 @@
                                     <td><?= $key + 1 ?></td>
                                     <td><?= $item->thumbnail ?></td>
                                     <td><?= $item->nama_modul ?></td>
-                                    <td><?= $item->tanggal_rilis ?></td>
                                     <td>
                                         <a href="<?= site_url('modul/download/' . $item->id) ?>" class="btn btn-primary btn-sm">Download</a>
                                         <button class="btn btn-warning btn-sm edit-btn" 
                                             data-id="<?= $item->id ?>"
                                             data-thumbnail="<?= $item->thumbnail ?>" 
                                             data-title="<?= $item->nama_modul ?>"  
-                                            data-date="<?= $item->tanggal_rilis ?>" 
                                             data-file="<?= $item->file_name ?>">
                                             <i class="fas fa-edit"></i> Edit
                                         </button>
@@ -101,7 +98,6 @@
 
 <!-- Modal -->
 <div class="modal fade" id="formModal" tabindex="-1" aria-labelledby="formModalLabel" aria-hidden="true">
-
   <div class="modal-dialog">
     <div class="card card-primary card-outline mb-4"> 
     <div class="modal-content">
@@ -112,16 +108,36 @@
       <div class="modal-body">
       <form method="post"  id="modulForm" enctype="multipart/form-data">
         <div class="form-group">
-            <label for="thumbnail">Thumbnail Video</label>
-            <input type="file" class="form-control mb-4" name="thumbnail" id="thumbnail" accept="image/*,video/*,application/pdf" required>
-        </div>
-        <div class="form-group">
             <label for="nama_modul">Nama Modul</label>
             <textarea class="form-control mb-4" name="nama_modul" id="nama_modul" required></textarea>
         </div>
         <div class="form-group">
-            <label for="tanggal_rilis">Tanggal Rilis</label>
-            <input type="date" class="form-control mb-4" name="tanggal_rilis" id="tanggal_rilis" required>
+              <label for="jenis_kompetensi">Jenis Kompetensi</label>
+              <input type="text" class="form-control mb-4" name="jenis_kompetensi" id="jenis_kompetensi" required>
+            </div>
+            <div class="form-group">
+              <label for="penyusun_1">Penyusun 1</label>
+              <input type="text" class="form-control mb-4" name="penyusun_1" id="penyusun_1" required>
+            </div>
+            <div class="form-group">
+              <label for="penyusun_2">Penyusun 2</label>
+              <input type="text" class="form-control mb-4" name="penyusun_2" id="penyusun_2">
+            </div>
+            <div class="form-group">
+              <label for="penyusun_3">Penyusun 3</label>
+              <input type="text" class="form-control mb-4" name="penyusun_3" id="penyusun_3">
+            </div>
+            <div class="form-group">
+              <label for="deskripsi">Deskripsi</label>
+              <textarea class="form-control mb-4" name="deskripsi" id="deskripsi"></textarea>
+            </div>
+            <div class="form-group">
+              <label for="lembaga_penerbit">Lembaga Penerbit</label>
+              <input type="text" class="form-control mb-4" name="lembaga_penerbit" id="lembaga_penerbit" required>
+            </div>
+            <div class="form-group">
+            <label for="thumbnail">Thumbnail Video</label>
+            <input type="file" class="form-control mb-4" name="thumbnail" id="thumbnail" accept="image/*,video/*,application/pdf" required>
         </div>
         <div class="form-group">
             <label for="file">Upload File</label>

@@ -46,7 +46,12 @@ class Modul extends CI_Controller {
         $data = [
             'thumbnail' => $thumbnail,
             'nama_modul' => $this->input->post('nama_modul'),
-            'tanggal_rilis' => $this->input->post('tanggal_rilis'),
+            'jenis_kompetensi' => $this->input->post('jenis_kompetensi'),
+            'penyusun_1' => $this->input->post('penyusun_1'),
+            'penyusun_2' => $this->input->post('penyusun_2'),
+            'penyusun_3' => $this->input->post('penyusun_3'),
+            'deskripsi' => $this->input->post('deskripsi'),
+            'lembaga_penerbit' => $this->input->post('lembaga_penerbit'),
             'file_name' => $uploadData['file_name']
         ];
 
