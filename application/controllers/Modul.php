@@ -23,28 +23,41 @@ class Modul extends CI_Controller {
 {
     $this->load->library('upload');
 
-    // Set upload configuration
+    $response = ['success' => false, 'error' => ''];
+
+    // Konfigurasi untuk file thumbnail
     $config['upload_path'] = './uploads/';
-    $config['allowed_types'] = 'pdf|mp4|jpg|png';
+    $config['allowed_types'] = 'jpg|png|jpeg';
     $config['max_size'] = 10240; // 10MB
     $this->upload->initialize($config);
 
-    if (!$this->upload->do_upload('file')) {
-        $response = [
-            'success' => false,
-            'error' => $this->upload->display_errors()
-        ];
-    } else {
-        $uploadData = $this->upload->data();
-
-        // Check if the uploaded file is an image
-        if (in_array($uploadData['file_ext'], ['.jpg', '.jpeg', '.png'])) {
-            $thumbnail = $uploadData['file_name']; // Use the uploaded image as thumbnail
+    $file_thumbnail = '';
+    if (!empty($_FILES['file_thumbnail']['name'])) {
+        if ($this->upload->do_upload('file_thumbnail')) {
+            $file_thumbnail = $this->upload->data('file_name');
         } else {
-            $thumbnail = 'default_thumbnail.jpg'; // Use a default thumbnail if not an image
-}
+            $response['error'] = 'Error uploading thumbnail: ' . $this->upload->display_errors();
+            echo json_encode($response);
+            return;
+        }
+    }
+
+    // Konfigurasi untuk file utama (pdf/mp4)
+    $config['allowed_types'] = 'pdf|mp4';
+    $this->upload->initialize($config);
+
+    $file_name = '';
+    if (!empty($_FILES['file']['name'])) {
+        if ($this->upload->do_upload('file')) {
+            $file_name = $this->upload->data('file_name');
+        } else {
+            $response['error'] = 'Error uploading file: ' . $this->upload->display_errors();
+            echo json_encode($response);
+            return;
+        }
+    }
         $data = [
-            'thumbnail' => $thumbnail,
+            'thumbnail' => $file_thumbnail,
             'nama_modul' => $this->input->post('nama_modul'),
             'jenis_kompetensi' => $this->input->post('jenis_kompetensi'),
             'penyusun_1' => $this->input->post('penyusun_1'),
@@ -52,7 +65,7 @@ class Modul extends CI_Controller {
             'penyusun_3' => $this->input->post('penyusun_3'),
             'deskripsi' => $this->input->post('deskripsi'),
             'lembaga_penerbit' => $this->input->post('lembaga_penerbit'),
-            'file_name' => $uploadData['file_name']
+            'file_name' => $file_name
         ];
 
         // Memanggil add_jurnal dari model untuk menyimpan data dan log
@@ -63,10 +76,12 @@ class Modul extends CI_Controller {
         } else {
             $response = ['success' => false, 'error' => 'Failed to add jurnal'];
         }
+
+        echo json_encode($response);
+
     }
 
-    echo json_encode($response);
-}
+    
 
 
 public function edit_modul($id)

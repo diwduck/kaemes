@@ -136,8 +136,8 @@
               <input type="text" class="form-control mb-4" name="lembaga_penerbit" id="lembaga_penerbit" required>
             </div>
             <div class="form-group">
-            <label for="thumbnail">Thumbnail Video</label>
-            <input type="file" class="form-control mb-4" name="thumbnail" id="thumbnail" accept="image/*,video/*,application/pdf" required>
+            <label for="thumbnail">Upload Thumbnail Video</label>
+            <input type="file" class="form-control mb-4" name="file_thumbnail" id="file_thumbnail" accept="image/*,video/*,application/pdf" required>
         </div>
         <div class="form-group">
             <label for="file">Upload File</label>
