@@ -7,46 +7,81 @@ class Modul_model extends CI_Model {
         parent::__construct();
         $this->load->database();
     }
+
+    // --- Ambil Semua Modul ---
     public function get_all_modul() {
         $this->db->order_by('tanggal_rilis', 'DESC');
         return $this->db->get('modul')->result();
     }
 
+    // --- Tambah Modul + Log ---
     public function add_modul($data) {
-        // Add error logging
         $result = $this->db->insert('modul', $data);
+
         if (!$result) {
-            log_message('error', 'Insert modul failed: ' . $this->db->error());
+            log_message('error', 'Insert modul failed: ' . json_encode($this->db->error()));
+            return false;
         }
-        return $result;
+
+        // Simpan log tindakan administratif
+        $log = [
+            'repositori' => 'Modul',
+            'action_type' => 'Added'
+        ];
+        $this->db->insert('log_admin', $log);
+
+        return true;
     }
 
+    // --- Update Modul + Log ---
     public function update_modul($id, $data) {
         $this->db->where('id', $id);
-        return $this->db->update('modul', $data);
+        $result = $this->db->update('modul', $data);
+
+        if (!$result) {
+            log_message('error', 'Update modul failed: ' . json_encode($this->db->error()));
+            return false;
+        }
+
+        // Simpan log tindakan administratif
+        $log = [
+            'repositori' => 'Modul',
+            'action_type' => 'Updated'
+        ];
+        $this->db->insert('log_admin', $log);
+
+        return true;
     }
 
-    public function update($id, $data)
-{
-    $this->db->where('id', $id);
-    $this->db->update('modul', $data);
-}
+    
 
+    
 
+    // --- Delete Modul + Log ---
     public function delete_modul($id) {
         $this->db->where('id', $id);
-        return $this->db->delete('modul');
+        $result = $this->db->delete('modul');
+
+        if (!$result) {
+            log_message('error', 'Delete modul failed: ' . json_encode($this->db->error()));
+            return false;
+        }
+
+        // Simpan log tindakan administratif
+        $log = [
+            'repositori' => 'Modul',
+            'action_type' => 'Deleted'
+        ];
+        $this->db->insert('log_admin', $log);
+
+        return true;
     }
 
-    public function get_mAodul_by_id($id) {
-
+    // --- Ambil Modul Berdasarkan ID ---
+    public function get_modul_by_id($id) {
         return $this->db->get_where('modul', array('id' => $id))->row();
     }
 
-    public function get_actions() {
-        // Mengambil semua aksi dari tabel modul
-        $this->db->select('timestamp, "Modul " as repositori');
-        $this->db->order_by('timestamp', 'DESC');
-        return $this->db->get('modul')->result_array();
-    }
+    
+
 }

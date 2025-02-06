@@ -125,7 +125,7 @@
               <!-- Start col -->
               <div class="col-md-12">
                 <div class="card mb-4">
-                  <div class="card-header"><h3 class="card-title">Statistik Pelihat</h3></div>
+                  <div class="card-header"><h3 class="card-title">Statistik Pengunjung</h3></div>
                   <div class="col-lg-7 connectedSortable"></div>
                   <div class="card-body"><div id="revenue-chart"></div></div>
                   <div class="card-footer">
@@ -172,81 +172,10 @@
                 </div>  
             </div>
             <div class="row">
-  <div class="col-md-8">
-    <div class="card">
-      <div class="card-header">
-        <h3 class="card-title">Tindakan administratif terbaru</h3>
-        <div class="card-tools">
-          <button type="button" class="btn btn-tool" data-lte-toggle="card-collapse">
-            <i data-lte-icon="expand" class="bi bi-plus-lg"></i>
-            <i data-lte-icon="collapse" class="bi bi-dash-lg"></i>
-          </button>
-          <button type="button" class="btn btn-tool" data-lte-toggle="card-remove">
-            <i class="bi bi-x-lg"></i>
-          </button>
-        </div>
-      </div>
-      <!-- /.card-header -->
-      <div class="card-body p-0">
-        <div class="table-responsive">
-          <table class="table m-0">
-            <thead>
-              <tr>
-                <th>Timestamp</th>
-                <th>Repositori</th>
-                <th>Action Type</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>2025-02-04 10:45:23</td>
-                <td>Jurnal Warta</td>
-                <td><span class="badge text-bg-success">Added</span></td>
-              </tr>
-              <tr>
-                <td>2025-02-04 10:30:12</td>
-                <td>Jurnal Warta</td>
-                <td><span class="badge text-bg-warning">Updated</span></td>
-              </tr>
-              <tr>
-                <td>2025-02-04 10:15:45</td>
-                <td>Jurnal Warta</td>
-                <td><span class="badge text-bg-danger">Deleted</span></td>
-              </tr>
-              <tr>
-                <td>2025-02-04 09:55:33</td>
-                <td>Jurnal Warta</td>
-                <td><span class="badge text-bg-info">Downloaded</span></td>
-              </tr>
-              <tr>
-                <td>2025-02-04 09:40:11</td>
-                <td>Jurnal Warta</td>
-                <td><span class="badge text-bg-warning">Updated</span></td>
-              </tr>
-              <tr>
-                <td>2025-02-04 09:25:50</td>
-                <td>Jurnal Warta</td>
-                <td><span class="badge text-bg-danger">Deleted</span></td>
-              </tr>
-              <tr>
-                <td>2025-02-04 09:10:05</td>
-                <td>Jurnal Warta</td>
-                <td><span class="badge text-bg-success">Added</span></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <!-- /.table-responsive -->
-      </div>
-    </div>
-    <!-- /.card -->
-  </div>
-
-
-              <div class="col-md-4">
-                <div class="card mb-4">
+              <div class="col-md-8">
+                <div class="card">
                   <div class="card-header">
-                    <h3 class="card-title">Browser Usage</h3>
+                    <h3 class="card-title">Tindakan administratif terbaru</h3>
                     <div class="card-tools">
                       <button type="button" class="btn btn-tool" data-lte-toggle="card-collapse">
                         <i data-lte-icon="expand" class="bi bi-plus-lg"></i>
@@ -258,47 +187,104 @@
                     </div>
                   </div>
                   <!-- /.card-header -->
-                  <div class="card-body">
-                    <!--begin::Row-->
-                    <div class="row">
-                      <div class="col-12"><div id="pie-chart"></div></div>
-                      <!-- /.col -->
-                    </div>
-                    <!--end::Row-->
-                  </div>
-                  <!-- /.card-body -->
-                  <div class="card-footer p-0">
-                    <ul class="nav nav-pills flex-column">
-                      <li class="nav-item">
-                        <a href="#" class="nav-link">
-                          United States of America
-                          <span class="float-end text-danger">
-                            <i class="bi bi-arrow-down fs-7"></i>
-                            12%
-                          </span>
-                        </a>
-                      </li>
-                      <li class="nav-item">
-                        <a href="#" class="nav-link">
-                          India
-                          <span class="float-end text-success">
-                            <i class="bi bi-arrow-up fs-7"></i> 4%
-                          </span>
-                        </a>
-                      </li>
-                      <li class="nav-item">
-                        <a href="#" class="nav-link">
-                          China
-                          <span class="float-end text-info">
-                            <i class="bi bi-arrow-left fs-7"></i> 0%
-                          </span>
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                  
+                  <table class="table m-0">
+                      <thead>
+                          <tr>
+                              <th>Timestamp</th>
+                              <th>Repositori</th>
+                              <th>Action Type</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <?php foreach ($logs as $log): ?>
+                          <tr>
+                              <td><?= $log['timestamp'] ?></td>
+                              <td><?= $log['repositori'] ?></td>
+                              <td>
+                                <?php
+                                $badge_class = 'secondary'; // Default warna abu-abu
+                                if ($log['action_type'] == 'Added') {
+                                    $badge_class = 'success'; // Hijau
+                                } elseif ($log['action_type'] == 'Updated') {
+                                    $badge_class = 'primary'; // Biru
+                                } elseif ($log['action_type'] == 'Deleted') {
+                                    $badge_class = 'danger'; // Merah
+                                }
+                                ?>
+                                <span class="badge bg-<?= $badge_class ?>">
+                                    <?= $log['action_type'] ?>
+                                </span>
+                            </td>
+                          <?php endforeach; ?>
+                      </tbody>
+                  </table>
                 </div>
+                <!-- /.card -->
               </div>
+              <div class="col-md-4">
+  <div class="card mb-4">
+    <div class="card-header">
+      <h3 class="card-title">Statistik Download</h3>
+      <div class="card-tools">
+        <button type="button" class="btn btn-tool" data-lte-toggle="card-collapse">
+          <i data-lte-icon="expand" class="bi bi-plus-lg"></i>
+          <i data-lte-icon="collapse" class="bi bi-dash-lg"></i>
+        </button>
+        <button type="button" class="btn btn-tool" data-lte-toggle="card-remove">
+          <i class="bi bi-x-lg"></i>
+        </button>
+      </div>
+    </div>
+    <!-- /.card-header -->
+    <div class="card-body">
+      <!--begin::Row-->
+      <div class="row">
+        <div class="col-12">
+          <div id="download-pie-chart"></div>
+        </div>
+      </div>
+      <!--end::Row-->
+    </div>
+    <!-- /.card-body -->
+    <div class="card-footer p-0">
+      <ul class="nav nav-pills flex-column">
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+            E-Warta
+            <span class="float-end text-success">
+              <i class="bi bi-arrow-up fs-7"></i> 35%
+            </span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+            E-Journal
+            <span class="float-end text-info">
+              <i class="bi bi-arrow-up fs-7"></i> 25%
+            </span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+            COE
+            <span class="float-end text-warning">
+              <i class="bi bi-arrow-down fs-7"></i> 20%
+            </span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+            Modul
+            <span class="float-end text-danger">
+              <i class="bi bi-arrow-down fs-7"></i> 20%
+            </span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
               
             </div>
             <!-- /.row (main row) -->
@@ -555,20 +541,20 @@
       // - PIE CHART -
       //-------------
 
-      const pie_chart_options = {
-        series: [700, 500, 400, 600, 300, 100],
-        chart: {
-          type: 'donut',
-        },
-        labels: ['Chrome', 'Edge', 'FireFox', 'Safari', 'Opera', 'IE'],
-        dataLabels: {
-          enabled: false,
-        },
-        colors: ['#0d6efd', '#20c997', '#ffc107', '#d63384', '#6f42c1', '#adb5bd'],
-      };
+      const download_pie_chart_options = {
+      series: [350, 250, 200, 200], // Jumlah unduhan (ubah sesuai data real)
+      chart: {
+        type: 'donut',
+      },
+      labels: ['E-Warta', 'E-Journal', 'COE', 'Modul'],
+      dataLabels: {
+        enabled: false,
+      },
+      colors: ['#0d6efd', '#20c997', '#ffc107', '#d63384'], // Warna tiap kategori
+    };
 
-      const pie_chart = new ApexCharts(document.querySelector('#pie-chart'), pie_chart_options);
-      pie_chart.render();
+    const download_pie_chart = new ApexCharts(document.querySelector('#download-pie-chart'), download_pie_chart_options);
+    download_pie_chart.render();
 
       //-----------------
       // - END PIE CHART -

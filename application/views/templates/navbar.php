@@ -8,7 +8,7 @@
   <style>
    body {
             font-family: 'Lato', sans-serif;
-            background-color:rgb(166, 216, 250); /* Light gray background */
+            background-color:rgb(226, 223, 223); /* Light gray background */
             -webkit-transform: none;
             transform: none;
             -webkit-zoom: 1;
@@ -28,20 +28,6 @@
         }
         .navbar-nav .nav-link {
             color: white !important;
-        }
-        .btn-read-more, .see-all-btn {
-            background-color: black;
-            color: white;
-            border-radius: 20px;
-            padding: 5px 20px;
-            text-decoration: none;
-            display: inline-block;
-        }
-        .see-all-btn {
-            border-radius: 10px;
-            display: block;
-            margin: 30px auto 100px auto; /* Center the button and add more space below */
-            width: 100px;
         }
   </style>
  </head>
@@ -98,11 +84,6 @@
         <li class="nav-item">
           <a class="nav-link text-white" style="margin-right: 20px;" href="<?php echo site_url('pageCoe'); ?>">
             <i class="fas fa-bookmark" style="font-size: 15px;"></i> COE
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-white" href="<?php echo site_url('auth/login'); ?>">
-            <i class="fas fa-sign-in-alt" style="font-size: 20px;"></i> Login
           </a>
         </li>
       </ul>

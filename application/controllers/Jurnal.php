@@ -22,37 +22,42 @@ class Jurnal extends CI_Controller {
     }
 
     public function add()
-{
-    $this->load->library('upload');
-
-    // Set upload configuration
-    $config['upload_path'] = './uploads/';
-    $config['allowed_types'] = 'pdf|mp4|jpg|png';
-    $config['max_size'] = 10240; // 10MB
-    $this->upload->initialize($config);
-
-    if (!$this->upload->do_upload('file')) {
-        $response = [
-            'success' => false,
-            'error' => $this->upload->display_errors()
-        ];
-    } else {
-        $uploadData = $this->upload->data();
-        $data = [
-            'judul' => $this->input->post('judul'),
-            'penyusun' => $this->input->post('penyusun'),
-            'tanggal_rilis' => $this->input->post('tanggal_rilis'),
-            'file_name' => $uploadData['file_name']
-        ];
-
-        // Save data to the database
-        $this->db->insert('jurnal', $data);
-
-        $response = ['success' => true];
+    {
+        $this->load->library('upload');
+        $this->load->model('Jurnal_model');  // Memuat model Jurnal_model
+    
+        // Set upload configuration
+        $config['upload_path'] = './uploads/';
+        $config['allowed_types'] = 'pdf|mp4|jpg|png';
+        $config['max_size'] = 10240; // 10MB
+        $this->upload->initialize($config);
+    
+        if (!$this->upload->do_upload('file')) {
+            $response = [
+                'success' => false,
+                'error' => $this->upload->display_errors()
+            ];
+        } else {
+            $uploadData = $this->upload->data();
+            $data = [
+                'judul' => $this->input->post('judul'),
+                'penyusun' => $this->input->post('penyusun'),
+                'tanggal_rilis' => $this->input->post('tanggal_rilis'),
+                'file_name' => $uploadData['file_name']
+            ];
+    
+            // Memanggil add_jurnal dari model untuk menyimpan data dan log
+            $result = $this->Jurnal_model->add_jurnal($data);
+    
+            if ($result) {
+                $response = ['success' => true];
+            } else {
+                $response = ['success' => false, 'error' => 'Failed to add jurnal'];
+            }
+        }
+    
+        echo json_encode($response);
     }
-
-    echo json_encode($response);
-}
 
 
 
@@ -108,5 +113,10 @@ class Jurnal extends CI_Controller {
             $this->load->helper('download');
             force_download('./uploads/' . $jurnal->file_name, NULL);
         }
+    }
+
+    public function detailJurnal(){
+        $data['jurnal'] = $this->jurnal_model->get_all_jurnal();
+        $this->load->view('views/detailPageJournal', $data);
     }
 }

@@ -63,9 +63,15 @@
                                     <td><?= $item->tanggal_rilis ?></td>
                                     <td>
                                         <a href="<?= site_url('modul/download/' . $item->id) ?>" class="btn btn-primary btn-sm">Download</a>
-                                        <button class="btn btn-warning btn-sm edit-btn" data-id="1" data-title="Sample Title" data-author="Author Name" data-date="2023-01-01" data-file="sample.pdf">
+                                        <button class="btn btn-warning btn-sm edit-btn" 
+                                            data-id="<?= $item->id ?>"
+                                            data-thumbnail="<?= $item->thumbnail ?>" 
+                                            data-title="<?= $item->nama_modul ?>"  
+                                            data-date="<?= $item->tanggal_rilis ?>" 
+                                            data-file="<?= $item->file_name ?>">
                                             <i class="fas fa-edit"></i> Edit
                                         </button>
+                                        <br />
                                         <a href="<?= site_url('modul/delete/' . $item->id) ?>" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">Delete</a>
                                     </td>
                                 </tr>
@@ -208,35 +214,20 @@
 
     </script>
     <!-- Script for handle edit -->
+    <!-- Script for handle edit -->
     <script>
-    // Get the modal instance
-    const editModal = new bootstrap.Modal(document.getElementById('formModal'));
-
-    // Add event listener for Edit buttons
-    document.addEventListener('click', function (e) {
-        if (e.target.classList.contains('edit-btn') || e.target.closest('.edit-btn')) {
-            const button = e.target.closest('.edit-btn');
-
+    $(document).ready(function () {
+        $(".edit-btn").click(function () {
             // Get data attributes from the button
-            const id = button.getAttribute('data-id');
-            const title = button.getAttribute('data-title');
-            const author = button.getAttribute('data-author');
-            const date = button.getAttribute('data-date');
-            const file = button.getAttribute('data-file');
+            var id = $(this).data("id");
+            var thumbnail = $(this).data("thumbnail");
+            var nama_modul = $(this).data("nama_modul");
+            var date = $(this).data("date");
+            var file = $(this).data("file");
 
-            // Populate the form in the modal with the data
-            document.getElementById('moduleName').value = title;
-            document.getElementById('moduleDescription').value = author;
-            document.getElementById('upload_date').value = date;
-
-            // Show the modal
-            editModal.show();
-
-            // Update the form's action or add a hidden input for the record ID
-            const form = document.querySelector('#formModal form');
-            form.action = `<?php echo base_url('admin/edit_modul'); ?>/${id}`; // Change to your actual endpoint
-            form.innerHTML += `<input type="hidden" name="id" value="${id}">`;
-        }
+            // Redirect to the edit page with the ID
+            window.location.href = "<?= site_url('modul/edit_modul/') ?>" + id;
+        });
     });
 </script>
 
