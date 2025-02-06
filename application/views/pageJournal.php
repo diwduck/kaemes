@@ -129,7 +129,7 @@
                 <div class="card-body">
                     <h5 class="card-title"><?php echo $item->judul; ?></h5>
                     <p class="card-text"><?php echo $item->penyusun; ?></p>
-                    <p class="card-text"><?php echo $item->tanggal_rilis; ?></p>
+                    <p class="card-text"><?php echo date('Y-m-d', strtotime($item->timestamp)); ?></p>
                     <a class="btn btn-primary" href="<?php echo site_url('jurnal/download/' . $item->id); ?>">
                         <i class="fas fa-download"></i> Download
                     </a>
