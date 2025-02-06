@@ -11,7 +11,7 @@ class Jurnal extends CI_Controller {
 
     public function index() {
         $data['jurnal'] = $this->jurnal_model->get_all_jurnal();
-        $this->load->view('admin/addJournal', $data);
+        $this->load->view('pageJournal', $data);
     }
 
     

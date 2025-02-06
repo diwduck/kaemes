@@ -20,11 +20,15 @@ class Page extends CI_Controller {
 
     public function pageJournal()
     {
-        $this->load->view('pageJournal'); // Memuat view about.php
+        $this->load->model('jurnal_model');
+        $data['jurnal'] = $this->jurnal_model->get_all_jurnal() ?: [];
+        $this->load->view('pageJournal', $data); // Memuat view jurnal.php
     }
 
     public function pageWarta()
-    {
-        $this->load->view('pageWarta'); // Memuat view about.php
+    {   
+        $this->load->model('warta_model');
+        $data['warta'] = $this->warta_model->get_all_warta() ?: [];
+        $this->load->view('pageWarta', $data);
     }
 }
