@@ -126,4 +126,12 @@ class Warta extends CI_Controller {
             force_download('./uploads/' . $warta->file_name, NULL);
         }
     }
+
+    public function detail($id){
+        $warta = $this->warta_model->get_warta_by_id($id);
+        if ($warta) {
+            $data['warta'] = $warta;
+            $this->load->view('detailPageWarta', $data);
+        }
+    }
 }

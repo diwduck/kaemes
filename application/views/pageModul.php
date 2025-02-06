@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
  <head>
   <meta charset="utf-8"/>
@@ -122,132 +121,40 @@
     <div class="col-md-12 mb-3">
      <input class="form-control" placeholder="Search" type="text"/>
     </div>
-    <div class="col-md-4 mb-4">
-     <div class="card">
-      <img alt="Event Image" class="card-img-top" height="200" src="https://storage.googleapis.com/a1aa/image/2bft0YABPF23AamHYHqRtfh5KLTNfmMJw5Fp2ELEUJafvNNQB.jpg" width="300"/>
-      <div class="card-body">
-       <h5 class="card-title">
-        Pembukaan Uji Publik Monev Keterbukaan Informasi Publik Tahun 2024
-       </h5>
-       <p class="card-text">
-        20 Nov 2023 | 1 Komentar
-       </p>
-       <p class="card-text">
-        Semarang - (20/11/2024) Plt Asisten Administrasi Umum Setda Prov Jateng Slamet, Ak berkenan hadir sekaligus membuka
-       </p>
-       <a class="btn btn-primary" href="#">
-        <i class="fas fa-download">
-        </i>
-        Download
-       </a>
+   </div>
+   <div class="table-section">
+      <div class="container">
+         <table class="table table-bordered">
+            <thead>
+               <tr>
+                  <th>No</th>
+                  <th>Nama Modul</th>
+                  <th>Jenis Kompetensi</th>
+                  <th>Penyusun 1</th>
+                  <th>Penyusun 2</th>
+                  <th>Penyusun 3</th>
+                  <th>File</th>
+               </tr>
+            </thead>
+            <tbody>
+               <?php foreach ($modul as $index => $item): ?>
+               <tr>
+                  <td><?php echo $index + 1; ?></td>
+                  <td><?php echo $item->nama_modul; ?></td>
+                  <td><?php echo $item->jenis_kompetensi; ?></td>
+                  <td><?php echo $item->penyusun_1; ?></td>
+                  <td><?php echo $item->penyusun_2; ?></td>
+                  <td><?php echo $item->penyusun_3; ?></td>
+                  <td>
+                     <a class="btn btn-link" href="<?php echo base_url('modul/download/' . $item->id); ?>">
+                        Download
+                     </a>
+                  </td>
+               </tr>
+               <?php endforeach; ?>
+            </tbody>
+         </table>
       </div>
-     </div>
-    </div>
-    <div class="col-md-4 mb-4">
-     <div class="card">
-      <img alt="Event Image" class="card-img-top" height="200" src="https://storage.googleapis.com/a1aa/image/2bft0YABPF23AamHYHqRtfh5KLTNfmMJw5Fp2ELEUJafvNNQB.jpg" width="300"/>
-      <div class="card-body">
-       <h5 class="card-title">
-        Pembukaan Uji Publik Monev Keterbukaan Informasi Publik Tahun 2024
-       </h5>
-       <p class="card-text">
-        20 Nov 2023 | 1 Komentar
-       </p>
-       <p class="card-text">
-        Semarang - (20/11/2024) Plt Asisten Administrasi Umum Setda Prov Jateng Slamet, Ak berkenan hadir sekaligus membuka
-       </p>
-       <a class="btn btn-primary" href="#">
-        <i class="fas fa-download">
-        </i>
-        Download
-       </a>
-      </div>
-     </div>
-    </div>
-    <div class="col-md-4 mb-4">
-     <div class="card">
-      <img alt="Event Image" class="card-img-top" height="200" src="https://storage.googleapis.com/a1aa/image/2bft0YABPF23AamHYHqRtfh5KLTNfmMJw5Fp2ELEUJafvNNQB.jpg" width="300"/>
-      <div class="card-body">
-       <h5 class="card-title">
-        Pembukaan Uji Publik Monev Keterbukaan Informasi Publik Tahun 2024
-       </h5>
-       <p class="card-text">
-        20 Nov 2023 | 1 Komentar
-       </p>
-       <p class="card-text">
-        Semarang - (20/11/2024) Plt Asisten Administrasi Umum Setda Prov Jateng Slamet, Ak berkenan hadir sekaligus membuka
-       </p>
-       <a class="btn btn-primary" href="#">
-        <i class="fas fa-download">
-        </i>
-        Download
-       </a>
-      </div>
-     </div>
-    </div>
-    <div class="col-md-4 mb-4">
-     <div class="card">
-      <img alt="Event Image" class="card-img-top" height="200" src="https://storage.googleapis.com/a1aa/image/2bft0YABPF23AamHYHqRtfh5KLTNfmMJw5Fp2ELEUJafvNNQB.jpg" width="300"/>
-      <div class="card-body">
-       <h5 class="card-title">
-        Pembukaan Uji Publik Monev Keterbukaan Informasi Publik Tahun 2024
-       </h5>
-       <p class="card-text">
-        20 Nov 2023 | 1 Komentar
-       </p>
-       <p class="card-text">
-        Semarang - (20/11/2024) Plt Asisten Administrasi Umum Setda Prov Jateng Slamet, Ak berkenan hadir sekaligus membuka
-       </p>
-       <a class="btn btn-primary" href="#">
-        <i class="fas fa-download">
-        </i>
-        Download
-       </a>
-      </div>
-     </div>
-    </div>
-    <div class="col-md-4 mb-4">
-     <div class="card">
-      <img alt="Event Image" class="card-img-top" height="200" src="https://storage.googleapis.com/a1aa/image/2bft0YABPF23AamHYHqRtfh5KLTNfmMJw5Fp2ELEUJafvNNQB.jpg" width="300"/>
-      <div class="card-body">
-       <h5 class="card-title">
-        Pembukaan Uji Publik Monev Keterbukaan Informasi Publik Tahun 2024
-       </h5>
-       <p class="card-text">
-        20 Nov 2023 | 1 Komentar
-       </p>
-       <p class="card-text">
-        Semarang - (20/11/2024) Plt Asisten Administrasi Umum Setda Prov Jateng Slamet, Ak berkenan hadir sekaligus membuka
-       </p>
-       <a class="btn btn-primary" href="#">
-        <i class="fas fa-download">
-        </i>
-        Download
-       </a>
-      </div>
-     </div>
-    </div>
-    <div class="col-md-4 mb-4">
-     <div class="card">
-      <img alt="Event Image" class="card-img-top" height="200" src="https://storage.googleapis.com/a1aa/image/2bft0YABPF23AamHYHqRtfh5KLTNfmMJw5Fp2ELEUJafvNNQB.jpg" width="300"/>
-      <div class="card-body">
-       <h5 class="card-title">
-        Pembukaan Uji Publik Monev Keterbukaan Informasi Publik Tahun 2024
-       </h5>
-       <p class="card-text">
-        20 Nov 2023 | 1 Komentar
-       </p>
-       <p class="card-text">
-        Semarang - (20/11/2024) Plt Asisten Administrasi Umum Setda Prov Jateng Slamet, Ak berkenan hadir sekaligus membuka
-       </p>
-       <a class="btn btn-primary" href="#">
-        <i class="fas fa-download">
-        </i>
-        Download
-       </a>
-      </div>
-     </div>
-    </div>
    </div>
   </div>
   <?php include 'templates/footer.php'; ?>

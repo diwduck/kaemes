@@ -10,7 +10,9 @@ class Page extends CI_Controller {
 
     public function pageModul()
     {
-        $this->load->view('pageModul'); // Memuat view modul.php
+        $this->load->model('modul_model');
+        $data['modul'] = $this->modul_model->get_all_modul() ?: [];
+        $this->load->view('pageModul', $data);
     }
 
     public function pageCoe()

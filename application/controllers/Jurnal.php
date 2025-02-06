@@ -135,8 +135,12 @@ class Jurnal extends CI_Controller {
         }
     }
 
-    public function detailJurnal(){
-        $data['jurnal'] = $this->jurnal_model->get_all_jurnal();
-        $this->load->view('views/detailPageJournal', $data);
+
+    public function detailJurnal($id){
+        $jurnal = $this->jurnal_model->get_jurnal_by_id($id);
+        if ($jurnal) {
+            $data['jurnal'] = $jurnal;
+            $this->load->view('detailPageJurnal', $data);
+        }
     }
 }

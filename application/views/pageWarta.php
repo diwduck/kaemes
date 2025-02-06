@@ -157,15 +157,15 @@
    <?php foreach ($warta as $item): ?>
       <div class="col-lg-3 col-md-4 col-sm-6 col-12 mb-4">
          <div class="card custom-card">
-            <img alt="Event Image" class="card-img-top" src="<?= base_url('uploads/' . $item->file_name) ?>"/>
+            <img alt="Event Image" class="card-img-top" src="<?= base_url('uploads/' . $item->file_thumbnail) ?>"/>
             <div class="card-body">
                <h6 class="card-title"><?= $item->judul ?></h6>
-               <p class="card-text small-text"><?= date('d M Y', strtotime($item->tanggal_rilis)) ?> | 1 Komentar nanti diganti views </p>
+               <p class="card-text small-text"><?= date('d M Y', strtotime($item->timestamp)) ?> | 1 Komentar nanti diganti views </p>
                <p class="card-text extra-small">
                     <?= $item->penyusun ?>
                </p>
-               <a class="btn btn-sm btn-primary" href="<?= site_url('warta/download/' . $item->id) ?>">
-               <i class="fas fa-download"></i> Download
+               <a class="btn btn-sm btn-primary" href="<?= site_url('warta/detail/' . $item->id) ?>">
+               <i class="fas fa-download"></i> Detail
                </a>
             </div>
          </div>
