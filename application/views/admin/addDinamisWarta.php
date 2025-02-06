@@ -1,3 +1,4 @@
+
 <head> 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
@@ -6,7 +7,7 @@
     <!--begin::App Wrapper-->
     <div class="app-wrapper">
       <!--begin::Header-->
-      <?php $this->load->view('admin/template/navbar') ?>
+      <?php $this->load->view('admin/template/navbar') ?> 
       <!--end::Header-->
       <!--begin::Sidebar-->
       <?php $this->load->view('admin/template/sidebar') ?>
@@ -23,7 +24,7 @@
               <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-end">
                   <li class="breadcrumb-item"><a href="#">Repositori</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">Modul</li>
+                  <li class="breadcrumb-item active" aria-current="page">E-Warta</li>
                 </ol>
               </div>
             </div>
@@ -35,7 +36,7 @@
     <div class="container-fluid">
         <div class="card mb-4">
             <div class="card-header">
-                <h3 class="card-title">Modul</h3>
+                <h3 class="card-title">E-Warta</h3>
             </div>
             <!-- /.card-header -->
             <div class="card-body">
@@ -47,36 +48,29 @@
                     <thead>
                         <tr>
                             <th style="width: 10px; text-align: center;" align-middle>No</th>
-                            <th style="width: 150px; text-align: center;" align-middle>Thumbnail Video</th>
-                            <th style="width: 250px; text-align: center;" align-middle>Nama Modul</th>
-                            <th style="width: 100px; text-align: center;" align-middle>Jenis Kompetensi</th>
-                            <th style="width: 100px; text-align: center;" align-middle>Penyusun</th>
+                            <th style="width: 150px; text-align: center;" align-middle>Judul Warta</th>
+                            <th style="width: 250px; text-align: center;" align-middle>Penyusun</th>
                             <th style="width: 100px; text-align: center;" align-middle>Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <?php if (!is_null($modul) && count($modul) > 0): ?>
-                            <?php foreach ($modul as $key => $item): ?>
+                        <?php if (!is_null($warta) && count($warta) > 0): ?>
+                            <?php foreach ($warta as $key => $item): ?>
                                 <tr>
                                     <td><?= $key + 1 ?></td>
-                                    <td><?= $item->thumbnail ?></td>
-                                    <td><?= $item->nama_modul ?></td>
-                                    <td><?= $item->jenis_kompetensi?></td>
-                                    <td><?= $item->penyusun_1?>
-                                    <br><?= $item->penyusun_2?>
-                                    <br><?= $item->penyusun_3?>
-                                    </td>
+                                    <td><?= $item->judul ?></td>
+                                    <td><?= $item->penyusun ?></td>
                                     <td>
-                                        <a href="<?= site_url('modul/download/' . $item->id) ?>" class="btn btn-primary btn-sm">Download</a>
+                                        <a href="<?= site_url('warta/download/' . $item->id) ?>" class="btn btn-primary btn-sm">Download</a>
                                         <button class="btn btn-warning btn-sm edit-btn" 
-                                            data-id="<?= $item->id ?>"
-                                            data-thumbnail="<?= $item->thumbnail ?>" 
-                                            data-title="<?= $item->nama_modul ?>"  
-                                            data-file="<?= $item->file_name ?>">
+                                                data-id="<?= $item->id ?>" 
+                                                data-title="<?= $item->judul ?>" 
+                                                data-author="<?= $item->penyusun ?>" 
+                                                data-description="<?= $item->deskripsi ?>">
                                             <i class="fas fa-edit"></i> Edit
                                         </button>
-                                        <br />
-                                        <a href="<?= site_url('modul/delete/' . $item->id) ?>" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">Delete</a>
+
+                                        <a href="<?= site_url('warta/delete/' . $item->id) ?>" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">Delete</a>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>
@@ -105,6 +99,7 @@
 
 <!-- Modal -->
 <div class="modal fade" id="formModal" tabindex="-1" aria-labelledby="formModalLabel" aria-hidden="true">
+
   <div class="modal-dialog">
     <div class="card card-primary card-outline mb-4"> 
     <div class="modal-content">
@@ -113,38 +108,22 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-      <form method="post"  id="modulForm" enctype="multipart/form-data">
+      <form method="post"  id="wartaForm" enctype="multipart/form-data">
         <div class="form-group">
-            <label for="nama_modul">Nama Modul</label>
-            <textarea class="form-control mb-4" name="nama_modul" id="nama_modul" required></textarea>
+            <label for="judul">Judul Warta</label>
+            <input type="text" class="form-control mb-4" name="judul" id="judul" required>
         </div>
         <div class="form-group">
-              <label for="jenis_kompetensi">Jenis Kompetensi</label>
-              <input type="text" class="form-control mb-4" name="jenis_kompetensi" id="jenis_kompetensi" required>
-            </div>
-            <div class="form-group">
-              <label for="penyusun_1">Penyusun 1</label>
-              <input type="text" class="form-control mb-4" name="penyusun_1" id="penyusun_1" required>
-            </div>
-            <div class="form-group">
-              <label for="penyusun_2">Penyusun 2</label>
-              <input type="text" class="form-control mb-4" name="penyusun_2" id="penyusun_2">
-            </div>
-            <div class="form-group">
-              <label for="penyusun_3">Penyusun 3</label>
-              <input type="text" class="form-control mb-4" name="penyusun_3" id="penyusun_3">
-            </div>
-            <div class="form-group">
-              <label for="deskripsi">Deskripsi</label>
-              <textarea class="form-control mb-4" name="deskripsi" id="deskripsi"></textarea>
-            </div>
-            <div class="form-group">
-              <label for="lembaga_penerbit">Lembaga Penerbit</label>
-              <input type="text" class="form-control mb-4" name="lembaga_penerbit" id="lembaga_penerbit" required>
-            </div>
-            <div class="form-group">
-            <label for="thumbnail">Upload Thumbnail Video</label>
-            <input type="file" class="form-control mb-4" name="file_thumbnail" id="file_thumbnail" accept="image/*,video/*,application/pdf" required>
+            <label for="penyusun">Penyusun</label>
+            <textarea class="form-control mb-4" name="penyusun" id="penyusun" required></textarea>
+        </div>
+        <div class="form-group">
+            <label for="deskripsi">Deskripsi</label>
+            <textarea class="form-control mb-4" name="deskripsi" id="deskripsi" required></textarea>
+        </div>
+        <div class="form-group">
+            <label for="file_thumbnail">Upload Thumbnail</label>
+            <input type="file" class="form-control mb-4" name="file_thumbnail" id="file_thumbnail" accept="image/*" required>
         </div>
         <div class="form-group">
             <label for="file">Upload File</label>
@@ -152,6 +131,42 @@
         </div>
         <button type="submit" class="btn btn-success">Simpan</button>
       </form>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- Modal Edit -->
+<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editModalLabel">Edit Warta</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form method="post" id="editWartaForm" enctype="multipart/form-data">
+          <input type="hidden" name="id" id="editId">
+          <div class="form-group">
+            <label for="editJudul">Judul Warta</label>
+            <input type="text" class="form-control mb-4" name="judul" id="editJudul" required>
+          </div>
+          <div class="form-group">
+            <label for="editPenyusun">Penyusun</label>
+            <textarea class="form-control mb-4" name="penyusun" id="editPenyusun" required></textarea>
+          </div>
+          <div class="form-group">
+            <label for="editDeskripsi">Deskripsi</label>
+            <textarea class="form-control mb-4" name="deskripsi" id="editDeskripsi" required></textarea>
+          </div>
+          <div class="form-group">
+            <label for="editFileThumbnail">Upload Thumbnail</label>
+            <input type="file" class="form-control mb-4" name="file_thumbnail" id="editFileThumbnail" accept="image/*">
+          </div>
+          <button type="submit" class="btn btn-success">Simpan</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+        </form>
       </div>
     </div>
   </div>
@@ -168,13 +183,13 @@
       crossorigin="anonymous"
     ></script>
     <!--end::Required Plugin(popperjs for Bootstrap 5)--><!--begin::Required Plugin(Bootstrap 5)-->
+    <script 
+      src="https://code.jquery.com/jquery-3.6.4.min.js"
+    ></script>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
       integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
       crossorigin="anonymous"
-    ></script>
-    <script 
-      src="https://code.jquery.com/jquery-3.6.4.min.js"
     ></script>
     <!--end::Required Plugin(Bootstrap 5)--><!--begin::Required Plugin(AdminLTE)-->
     <script src="<?php echo base_url('assets/dist/js/adminlte.js')?>"></script>
@@ -209,12 +224,12 @@
     ></script>
     <!-- js for Form submission -->
     <script>
-    $('#modulForm').on('submit', function(e) {
+    $('#wartaForm').on('submit', function(e) {
     e.preventDefault();
     console.log('Form submission handler triggered!');
     let formData = new FormData(this);
     $.ajax({
-        url: '<?= site_url('modul/add') ?>',
+        url: '<?= site_url('warta/add') ?>',
         type: 'POST',
         data: formData,
         processData: false,
@@ -237,22 +252,52 @@
 
     </script>
     <!-- Script for handle edit -->
-    <!-- Script for handle edit -->
     <script>
     $(document).ready(function () {
         $(".edit-btn").click(function () {
-            // Get data attributes from the button
             var id = $(this).data("id");
-            var thumbnail = $(this).data("thumbnail");
-            var nama_modul = $(this).data("nama_modul");
-            var date = $(this).data("date");
-            var file = $(this).data("file");
 
-            // Redirect to the edit page with the ID
-            window.location.href = "<?= site_url('modul/edit_modul/') ?>" + id;
+            // Ambil data untuk diisi ke modal
+            $.ajax({
+                url: '<?= site_url('warta/edit_warta/') ?>' + id,
+                type: 'GET',
+                success: function(response) {
+                    var data = JSON.parse(response);
+                    $("#editId").val(data.id);
+                    $("#editJudul").val(data.judul);
+                    $("#editPenyusun").val(data.penyusun);
+                    $("#editDeskripsi").val(data.deskripsi);
+                    $("#editModal").modal("show");
+                }
+            });
+        });
+
+        $("#editWartaForm").on('submit', function(e) {
+            e.preventDefault();
+            let formData = new FormData(this);
+            $.ajax({
+                url: '<?= site_url('warta/edit_warta/') ?>' + $("#editId").val(),
+                type: 'POST',
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function(response) {
+                    let res = JSON.parse(response);
+                    if (res.success) {
+                        alert('Data berhasil diperbarui!');
+                        location.reload(); // Reload halaman untuk melihat perubahan
+                    } else {
+                        alert('Error: ' + res.error);
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error('AJAX error:', xhr.responseText);
+                }
+            });
         });
     });
 </script>
+
 
     <!-- sortablejs -->
     <script>
@@ -267,181 +312,6 @@
       cardHeaders.forEach((cardHeader) => {
         cardHeader.style.cursor = 'move';
       });
-    </script>
-    <!-- apexcharts -->
-    <script
-      src="https://cdn.jsdelivr.net/npm/apexcharts@3.37.1/dist/apexcharts.min.js"
-      integrity="sha256-+vh8GkaU7C9/wbSLIcwq82tQ2wTf44aOHA8HlBMwRI8="
-      crossorigin="anonymous"
-    ></script>
-    <!-- ChartJS -->
-    <script>
-      // NOTICE!! DO NOT USE ANY OF THIS JAVASCRIPT
-      // IT'S ALL JUST JUNK FOR DEMO
-      // ++++++++++++++++++++++++++++++++++++++++++
-      const sales_chart_options = {
-        series: [
-          {
-            name: 'Digital Goods',
-            data: [28, 48, 40, 19, 86, 27, 90],
-          },
-          {
-            name: 'Electronics',
-            data: [65, 59, 80, 81, 56, 55, 40],
-          },
-        ],
-        chart: {
-          height: 300,
-          type: 'area',
-          toolbar: {
-            show: false,
-          },
-        },
-        legend: {
-          show: false,
-        },
-        colors: ['#0d6efd', '#20c997'],
-        dataLabels: {
-          enabled: false,
-        },
-        stroke: {
-          curve: 'smooth',
-        },
-        xaxis: {
-          type: 'datetime',
-          categories: [
-            '2023-01-01',
-            '2023-02-01',
-            '2023-03-01',
-            '2023-04-01',
-            '2023-05-01',
-            '2023-06-01',
-            '2023-07-01',
-          ],
-        },
-        tooltip: {
-          x: {
-            format: 'MMMM yyyy',
-          },
-        },
-      };
-      const sales_chart = new ApexCharts(
-        document.querySelector('#revenue-chart'),
-        sales_chart_options,
-      );
-      sales_chart.render();
-    </script>
-    <!-- jsvectormap -->
-    <script
-      src="https://cdn.jsdelivr.net/npm/jsvectormap@1.5.3/dist/js/jsvectormap.min.js"
-      integrity="sha256-/t1nN2956BT869E6H4V1dnt0X5pAQHPytli+1nTZm2Y="
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/jsvectormap@1.5.3/dist/maps/world.js"
-      integrity="sha256-XPpPaZlU8S/HWf7FZLAncLg2SAkP8ScUTII89x9D3lY="
-      crossorigin="anonymous"
-    ></script>
-    <!-- jsvectormap -->
-    <script>
-      const visitorsData = {
-        US: 398, // USA
-        SA: 400, // Saudi Arabia
-        CA: 1000, // Canada
-        DE: 500, // Germany
-        FR: 760, // France
-        CN: 300, // China
-        AU: 700, // Australia
-        BR: 600, // Brazil
-        IN: 800, // India
-        GB: 320, // Great Britain
-        RU: 3000, // Russia
-      };
-      // World map by jsVectorMap
-      const map = new jsVectorMap({
-        selector: '#world-map',
-        map: 'world',
-      });
-      // Sparkline charts
-      const option_sparkline1 = {
-        series: [
-          {
-            data: [1000, 1200, 920, 927, 931, 1027, 819, 930, 1021],
-          },
-        ],
-        chart: {
-          type: 'area',
-          height: 50,
-          sparkline: {
-            enabled: true,
-          },
-        },
-        stroke: {
-          curve: 'straight',
-        },
-        fill: {
-          opacity: 0.3,
-        },
-        yaxis: {
-          min: 0,
-        },
-        colors: ['#DCE6EC'],
-      };
-      const sparkline1 = new ApexCharts(document.querySelector('#sparkline-1'), option_sparkline1);
-      sparkline1.render();
-      const option_sparkline2 = {
-        series: [
-          {
-            data: [515, 519, 520, 522, 652, 810, 370, 627, 319, 630, 921],
-          },
-        ],
-        chart: {
-          type: 'area',
-          height: 50,
-          sparkline: {
-            enabled: true,
-          },
-        },
-        stroke: {
-          curve: 'straight',
-        },
-        fill: {
-          opacity: 0.3,
-        },
-        yaxis: {
-          min: 0,
-        },
-        colors: ['#DCE6EC'],
-      };
-      const sparkline2 = new ApexCharts(document.querySelector('#sparkline-2'), option_sparkline2);
-      sparkline2.render();
-      const option_sparkline3 = {
-        series: [
-          {
-            data: [15, 19, 20, 22, 33, 27, 31, 27, 19, 30, 21],
-          },
-        ],
-        chart: {
-          type: 'area',
-          height: 50,
-          sparkline: {
-            enabled: true,
-          },
-        },
-        stroke: {
-          curve: 'straight',
-        },
-        fill: {
-          opacity: 0.3,
-        },
-        yaxis: {
-          min: 0,
-        },
-        colors: ['#DCE6EC'],
-      };
-      const sparkline3 = new ApexCharts(document.querySelector('#sparkline-3'), option_sparkline3);
-      sparkline3.render();
-
     </script>
     <!--end::Script-->
   </body>

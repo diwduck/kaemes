@@ -77,38 +77,55 @@ class Warta extends CI_Controller {
     }
 
     public function edit_warta($id)
-{
-    // Load the model
-    $this->load->model('warta_model');
+    {
+        // Load the model
+        $this->load->model('warta_model');
 
-    // Get the current record data
-    $data['record'] = $this->warta_model->get_warta_by_id($id);
+        // Get the current record data
+        $data['record'] = $this->warta_model->get_warta_by_id($id);
 
-    if ($this->input->server('REQUEST_METHOD') == 'POST') {
-        $update_data = [
-            'judul' => $this->input->post('title'),
-            'penyusun' => $this->input->post('author'),
-            'tanggal_rilis' => $this->input->post('release_date')
-        ];
+        if ($this->input->server('REQUEST_METHOD') == 'POST') {
+            $update_data = [
+                'judul' => $this->input->post('judul'),
+                'penyusun' => $this->input->post('penyusun'),
+                'deskripsi' => $this->input->post('deskripsi'),
+            ];
 
-        if (!empty($_FILES['file']['name'])) {
-            $config['upload_path'] = './uploads/';
-            $config['allowed_types'] = 'pdf|mp4|jpg|png';
-            $this->load->library('upload', $config);
+            if (!empty($_FILES['file_thumbnail']['name'])) {
+                $config['upload_path'] = './uploads/';
+                $config['allowed_types'] = 'jpg|png';
+                $this->load->library('upload', $config);
 
-            if ($this->upload->do_upload('file')) {
-                $uploadData = $this->upload->data();
-                $update_data['file_name'] = $uploadData['file_name'];
+                if ($this->upload->do_upload('file_thumbnail')) {
+                    $uploadData = $this->upload->data();
+                    $update_data['file_thumbnail'] = $uploadData['file_name'];
+                }
             }
+
+            if (!empty($_FILES['file']['name'])) {
+                $config['upload_path'] = './uploads/';
+                $config['allowed_types'] = 'pdf|mp4|jpg|png';
+                $this->load->library('upload', $config);
+
+                if ($this->upload->do_upload('file')) {
+                    $uploadData = $this->upload->data();
+                    $update_data['file_name'] = $uploadData['file_name'];
+                }
+            }
+
+            // Update data di database
+            $this->warta_model->update_warta($id, $update_data);
+            $this->session->set_flashdata('success', 'Warta updated successfully.');
+
+            // Kembalikan respons JSON
+            echo json_encode(['success' => true]);
+            return;
         }
 
-        $this->warta_model->update_warta($id, $update_data);
-        $this->session->set_flashdata('success', 'Warta updated successfully.');
-        redirect('warta');
+        // Jika tidak ada POST, tidak perlu memuat view
+        // Cukup ambil data untuk diisi ke modal
+        echo json_encode($data['record']);
     }
-
-    $this->load->view('admin/edit_warta', $data);
-}
 
     public function delete($id) {
         $warta = $this->warta_model->get_warta_by_id($id);

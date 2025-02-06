@@ -23,7 +23,7 @@
               <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-end">
                   <li class="breadcrumb-item"><a href="#">Repositori</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">E-jurnal</li>
+                  <li class="breadcrumb-item active" aria-current="page">E-Jurnal</li>
                 </ol>
               </div>
             </div>
@@ -35,7 +35,7 @@
     <div class="container-fluid">
         <div class="card mb-4">
             <div class="card-header">
-                <h3 class="card-title">E-jurnal</h3>
+                <h3 class="card-title">E-Jurnal</h3>
             </div>
             <!-- /.card-header -->
             <div class="card-body">
@@ -62,13 +62,13 @@
                                     <td>
                                         <a href="<?= site_url('jurnal/download/' . $item->id) ?>" class="btn btn-primary btn-sm">Download</a>
                                         <button class="btn btn-warning btn-sm edit-btn" 
-                                            data-id="<?= $item->id ?>" 
-                                            data-title="<?= $item->judul ?>" 
-                                            data-author="<?= $item->penyusun ?>" 
-                                            data-file="<?= $item->file_name ?>">
+                                                data-id="<?= $item->id ?>" 
+                                                data-title="<?= $item->judul ?>" 
+                                                data-author="<?= $item->penyusun ?>" 
+                                                data-description="<?= $item->deskripsi ?>">
                                             <i class="fas fa-edit"></i> Edit
                                         </button>
-                                        <br />
+                                        
                                         <a href="<?= site_url('jurnal/delete/' . $item->id) ?>" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">Delete</a>
                                     </td>
                                 </tr>
@@ -103,7 +103,7 @@
     <div class="card card-primary card-outline mb-4"> 
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="formModalLabel">Tambah Modul</h5>
+        <h5 class="modal-title" id="formModalLabel">Tambah E-Jurnal</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
@@ -134,6 +134,43 @@
     </div>
   </div>
 </div>
+</div>
+
+<!-- Modal Edit -->
+<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editModalLabel">Edit Jurnal</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form method="post" id="editWartaForm" enctype="multipart/form-data">
+          <input type="hidden" name="id" id="editId">
+          <div class="form-group">
+            <label for="editJudul">Judul Warta</label>
+            <input type="text" class="form-control mb-4" name="judul" id="editJudul" required>
+          </div>
+          <div class="form-group">
+            <label for="editPenyusun">Penyusun</label>
+            <textarea class="form-control mb-4" name="penyusun" id="editPenyusun" required></textarea>
+          </div>
+          <div class="form-group">
+            <label for="editDeskripsi">Deskripsi</label>
+            <textarea class="form-control mb-4" name="deskripsi" id="editDeskripsi" required></textarea>
+          </div>
+          <div class="form-group">
+            <label for="editFileThumbnail">Upload Thumbnail</label>
+            <input type="file" class="form-control mb-4" name="file_thumbnail" id="editFileThumbnail" accept="image/*">
+          </div>
+          <button type="submit" class="btn btn-success">Simpan</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script
       src="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.10.1/browser/overlayscrollbars.browser.es6.min.js"
       integrity="sha256-dghWARbRe2eLlIJ56wNB+b760ywulqK3DzZYEpsg2fQ="
@@ -218,15 +255,45 @@
     <script>
     $(document).ready(function () {
         $(".edit-btn").click(function () {
-            // Get data attributes from the button
             var id = $(this).data("id");
-            var title = $(this).data("title");
-            var author = $(this).data("author");
-            var date = $(this).data("date");
-            var file = $(this).data("file");
 
-            // Redirect to the edit page with the ID
-            window.location.href = "<?= site_url('jurnal/edit_jurnal/') ?>" + id;
+            // Ambil data untuk diisi ke modal
+            $.ajax({
+                url: '<?= site_url('jurnal/edit_jurnal/') ?>' + id,
+                type: 'GET',
+                success: function(response) {
+                    var data = JSON.parse(response);
+                    $("#editId").val(data.id);
+                    $("#editJudul").val(data.judul);
+                    $("#editPenyusun").val(data.penyusun);
+                    $("#editDeskripsi").val(data.deskripsi);
+                    $("#editModal").modal("show");
+                }
+            });
+        });
+
+        $("#editWartaForm").on('submit', function(e) {
+            e.preventDefault();
+            let formData = new FormData(this);
+            $.ajax({
+                url: '<?= site_url('jurnal/edit_jurnal/') ?>' + $("#editId").val(),
+                type: 'POST',
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function(response) {
+                    let res = JSON.parse(response);
+                    if (res.success) {
+                        alert('Data berhasil diperbarui!');
+                        location.reload(); // Reload halaman untuk melihat perubahan
+                    } else {
+                        alert('Error: ' + res.error);
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error('AJAX error:', xhr.responseText);
+                }
+            });
         });
     });
 </script>

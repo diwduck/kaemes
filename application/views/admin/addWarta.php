@@ -1,3 +1,4 @@
+
 <head> 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
@@ -6,7 +7,7 @@
     <!--begin::App Wrapper-->
     <div class="app-wrapper">
       <!--begin::Header-->
-      <?php $this->load->view('admin/template/navbar') ?>
+      <?php $this->load->view('admin/template/navbar') ?> 
       <!--end::Header-->
       <!--begin::Sidebar-->
       <?php $this->load->view('admin/template/sidebar') ?>
@@ -62,10 +63,10 @@
                                     <td>
                                         <a href="<?= site_url('warta/download/' . $item->id) ?>" class="btn btn-primary btn-sm">Download</a>
                                         <button class="btn btn-warning btn-sm edit-btn" 
-                                            data-id="<?= $item->id ?>" 
-                                            data-title="<?= $item->judul ?>" 
-                                            data-author="<?= $item->penyusun ?>" 
-                                            data-file="<?= $item->file_name ?>">
+                                                data-id="<?= $item->id ?>" 
+                                                data-title="<?= $item->judul ?>" 
+                                                data-author="<?= $item->penyusun ?>" 
+                                                data-description="<?= $item->deskripsi ?>">
                                             <i class="fas fa-edit"></i> Edit
                                         </button>
 
@@ -103,7 +104,7 @@
     <div class="card card-primary card-outline mb-4"> 
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="formModalLabel">Tambah Modul</h5>
+        <h5 class="modal-title" id="formModalLabel">Tambah E-Warta</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
@@ -117,11 +118,11 @@
             <textarea class="form-control mb-4" name="penyusun" id="penyusun" required></textarea>
         </div>
         <div class="form-group">
-            <label for="abstrak">Deskripsi</label>
+            <label for="deskripsi">Deskripsi</label>
             <textarea class="form-control mb-4" name="deskripsi" id="deskripsi" required></textarea>
         </div>
         <div class="form-group">
-            <label for="file_foto">Upload Thumbnail</label>
+            <label for="file_thumbnail">Upload Thumbnail</label>
             <input type="file" class="form-control mb-4" name="file_thumbnail" id="file_thumbnail" accept="image/*" required>
         </div>
         <div class="form-group">
@@ -130,6 +131,42 @@
         </div>
         <button type="submit" class="btn btn-success">Simpan</button>
       </form>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- Modal Edit -->
+<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editModalLabel">Edit Warta</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form method="post" id="editWartaForm" enctype="multipart/form-data">
+          <input type="hidden" name="id" id="editId">
+          <div class="form-group">
+            <label for="editJudul">Judul Warta</label>
+            <input type="text" class="form-control mb-4" name="judul" id="editJudul" required>
+          </div>
+          <div class="form-group">
+            <label for="editPenyusun">Penyusun</label>
+            <textarea class="form-control mb-4" name="penyusun" id="editPenyusun" required></textarea>
+          </div>
+          <div class="form-group">
+            <label for="editDeskripsi">Deskripsi</label>
+            <textarea class="form-control mb-4" name="deskripsi" id="editDeskripsi" required></textarea>
+          </div>
+          <div class="form-group">
+            <label for="editFileThumbnail">Upload Thumbnail</label>
+            <input type="file" class="form-control mb-4" name="file_thumbnail" id="editFileThumbnail" accept="image/*">
+          </div>
+          <button type="submit" class="btn btn-success">Simpan</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+        </form>
       </div>
     </div>
   </div>
@@ -146,13 +183,13 @@
       crossorigin="anonymous"
     ></script>
     <!--end::Required Plugin(popperjs for Bootstrap 5)--><!--begin::Required Plugin(Bootstrap 5)-->
+    <script 
+      src="https://code.jquery.com/jquery-3.6.4.min.js"
+    ></script>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
       integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
       crossorigin="anonymous"
-    ></script>
-    <script 
-      src="https://code.jquery.com/jquery-3.6.4.min.js"
     ></script>
     <!--end::Required Plugin(Bootstrap 5)--><!--begin::Required Plugin(AdminLTE)-->
     <script src="<?php echo base_url('assets/dist/js/adminlte.js')?>"></script>
@@ -218,15 +255,45 @@
     <script>
     $(document).ready(function () {
         $(".edit-btn").click(function () {
-            // Get data attributes from the button
             var id = $(this).data("id");
-            var title = $(this).data("title");
-            var author = $(this).data("author");
-            var date = $(this).data("date");
-            var file = $(this).data("file");
 
-            // Redirect to the edit page with the ID
-            window.location.href = "<?= site_url('warta/edit_warta/') ?>" + id;
+            // Ambil data untuk diisi ke modal
+            $.ajax({
+                url: '<?= site_url('warta/edit_warta/') ?>' + id,
+                type: 'GET',
+                success: function(response) {
+                    var data = JSON.parse(response);
+                    $("#editId").val(data.id);
+                    $("#editJudul").val(data.judul);
+                    $("#editPenyusun").val(data.penyusun);
+                    $("#editDeskripsi").val(data.deskripsi);
+                    $("#editModal").modal("show");
+                }
+            });
+        });
+
+        $("#editWartaForm").on('submit', function(e) {
+            e.preventDefault();
+            let formData = new FormData(this);
+            $.ajax({
+                url: '<?= site_url('warta/edit_warta/') ?>' + $("#editId").val(),
+                type: 'POST',
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function(response) {
+                    let res = JSON.parse(response);
+                    if (res.success) {
+                        alert('Data berhasil diperbarui!');
+                        location.reload(); // Reload halaman untuk melihat perubahan
+                    } else {
+                        alert('Error: ' + res.error);
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error('AJAX error:', xhr.responseText);
+                }
+            });
         });
     });
 </script>

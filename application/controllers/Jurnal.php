@@ -91,10 +91,21 @@ class Jurnal extends CI_Controller {
 
     if ($this->input->server('REQUEST_METHOD') == 'POST') {
         $update_data = [
-            'judul' => $this->input->post('title'),
-            'penyusun' => $this->input->post('author'),
-            'tanggal_rilis' => $this->input->post('release_date')
+            'judul' => $this->input->post('judul'),
+            'penyusun' => $this->input->post('penyusun'),
+            'deskripsi' => $this->input->post('deskripsi'),
         ];
+
+        if (!empty($_FILES['file_thumbnail']['name'])) {
+            $config['upload_path'] = './uploads/';
+            $config['allowed_types'] = 'jpg|png';
+            $this->load->library('upload', $config);
+
+            if ($this->upload->do_upload('file_thumbnail')) {
+                $uploadData = $this->upload->data();
+                $update_data['file_thumbnail'] = $uploadData['file_name'];
+            }
+        }
 
         if (!empty($_FILES['file']['name'])) {
             $config['upload_path'] = './uploads/';
@@ -107,12 +118,18 @@ class Jurnal extends CI_Controller {
             }
         }
 
-        $this->jurnal_model->update_jurnal($id, $update_data);
+        // Update data di database
+        $this->jurnal_model->update_warta($id, $update_data);
         $this->session->set_flashdata('success', 'Jurnal updated successfully.');
-        redirect('jurnal');
+
+        // Kembalikan respons JSON
+        echo json_encode(['success' => true]);
+        return;
     }
 
-    $this->load->view('admin/edit_jurnal', $data);
+    // Jika tidak ada POST, tidak perlu memuat view
+    // Cukup ambil data untuk diisi ke modal
+    echo json_encode($data['record']);
 }
 
 
