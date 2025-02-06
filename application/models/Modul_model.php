@@ -82,6 +82,12 @@ class Modul_model extends CI_Model {
         return $this->db->get_where('modul', array('id' => $id))->row();
     }
 
-    
+    public function get_latest_modul($limit = 3)
+{
+    $this->db->order_by('timestamp', 'DESC'); // Pastikan ada kolom created_at
+    $this->db->limit($limit);
+    $query = $this->db->get('modul');
+    return $query->result();
+}
 
 }

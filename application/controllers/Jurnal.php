@@ -157,7 +157,7 @@ class Jurnal extends CI_Controller {
         $jurnal = $this->jurnal_model->get_jurnal_by_id($id);
         if ($jurnal) {
             $data['jurnal'] = $jurnal;
-            $this->load->view('detailPageJurnal', $data);
+            $this->load->view('detailPageJournal', $data);
         }
     }
 }

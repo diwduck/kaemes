@@ -145,4 +145,12 @@ public function edit_modul($id)
             force_download('./uploads/' . $modul->file_name, NULL);
         }
     }
+
+    public function detailModul($id){
+        $modul = $this->modul_model->get_modul_by_id($id);
+        if ($modul) {
+            $data['modul'] = $modul;
+            $this->load->view('detailPageModul', $data);
+        }
+    }
 }

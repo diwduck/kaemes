@@ -116,7 +116,7 @@
    <div class="row">
       <div class="col-md-8">
          <h1 class="header-title">
-            <?= $jurnal->judul ?>
+            <?= $modul->nama_modul ?>
          </h1>
          <div class="d-flex align-items-center mt-3">
             <button class="btn btn-custom-back me-2">
@@ -132,7 +132,7 @@
       </div>
       <div class="col-md-4 text-center">
          <div class="author-section">
-            <img alt="Author's photo" src="<?= base_url('uploads/' . $jurnal->file_thumbnail) ?>" />
+            <img alt="Author's photo" src="<?= base_url('uploads/' . $modul->thumbnail) ?>" />
          </div>
       </div>
    </div>
@@ -141,7 +141,7 @@
       <div class="col-md-8">
          <h2 class="header-subtitle">Abstrak</h2>
          <div class="abstract-box">
-            <p><?= $jurnal->deskripsi ?></p>
+            <p><?= $modul->deskripsi ?></p>
          </div>
       </div>
       <div class="col-md-4">
@@ -150,11 +150,24 @@
             <table class="table">
                <tr>
                   <th>Nama Penyusun</th>
-                  <td><?= $jurnal->penyusun ?></td>
+                  <td><?= $modul->penyusun_1 ?>
+                      <br />
+                      <?= $modul->penyusun_2 ?>
+                      <br />
+                      <?= $modul->penyusun_3 ?>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Jenis Kompetensi</th>
+                  <td><?= $modul->jenis_kompetensi ?></td>
+               </tr>
+               <tr>
+                  <th>Lembaga Penerbit</th>
+                  <td><?= $modul->lembaga_penerbit ?></td>
                </tr>
                <tr>
                   <th>Tanggal</th>
-                  <td><?= date('d M Y', strtotime($jurnal->timestamp)) ?></td>
+                  <td><?= date('d M Y', strtotime($modul->timestamp)) ?></td>
                </tr>
             </table>
          </div>

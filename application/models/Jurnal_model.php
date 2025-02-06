@@ -94,5 +94,12 @@ class Jurnal_model extends CI_Model {
         $this->db->order_by('timestamp', 'DESC');
         return $this->db->get('jurnal')->result();
     }
+    public function get_latest_jurnal($limit = 3)
+    {
+        $this->db->order_by('timestamp', 'DESC'); // Pastikan ada kolom created_at
+        $this->db->limit($limit);
+        $query = $this->db->get('jurnal');
+        return $query->result();
+    }
 
 }

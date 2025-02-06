@@ -151,4 +151,6 @@ class Warta extends CI_Controller {
             $this->load->view('detailPageWarta', $data);
         }
     }
+
+    
 }

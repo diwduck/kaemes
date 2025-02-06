@@ -95,8 +95,8 @@
 
         /* Tombol Download */
         .custom-card .btn {
-            font-size: 6px;
-            padding: 5px 5px;
+            font-size: 8px;
+            padding: 3px 10px;
             border-radius: 15px;
         }
         /* Search Bar */

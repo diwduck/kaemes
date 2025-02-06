@@ -130,26 +130,27 @@
                   <th>No</th>
                   <th>Nama Modul</th>
                   <th>Jenis Kompetensi</th>
-                  <th>Penyusun 1</th>
-                  <th>Penyusun 2</th>
-                  <th>Penyusun 3</th>
-                  <th>File</th>
+                  <th>Penyusun</th>
+                  <th>Lembaga Penerbit</th>
+                  
                </tr>
             </thead>
             <tbody>
                <?php foreach ($modul as $index => $item): ?>
                <tr>
                   <td><?php echo $index + 1; ?></td>
-                  <td><?php echo $item->nama_modul; ?></td>
-                  <td><?php echo $item->jenis_kompetensi; ?></td>
-                  <td><?php echo $item->penyusun_1; ?></td>
-                  <td><?php echo $item->penyusun_2; ?></td>
-                  <td><?php echo $item->penyusun_3; ?></td>
                   <td>
-                     <a class="btn btn-link" href="<?php echo base_url('modul/download/' . $item->id); ?>">
-                        Download
-                     </a>
+                        <a href="<?= site_url('modul/detailModul/' . $item->id) ?>" class="text-primary">
+                            <?= $item->nama_modul; ?>
+                        </a>
                   </td>
+                  <td><?php echo $item->jenis_kompetensi; ?></td>
+                  <td><?php echo $item->penyusun_1; ?>
+                      <br />
+                      <?php echo $item->penyusun_2; ?>
+                      <br />
+                      <?php echo $item->penyusun_3; ?></td>
+                  <td><?php echo $item->lembaga_penerbit; ?></td>
                </tr>
                <?php endforeach; ?>
             </tbody>

@@ -5,7 +5,13 @@ class Page extends CI_Controller {
 
     public function home()
     {
-        $this->load->view('home'); // Memuat view modul.php
+        $this->load->model('modul_model');
+        $this->load->model('jurnal_model');
+        $this->load->model('warta_model');
+        $data['modul'] = $this->modul_model->get_latest_modul(3) ?: [];
+        $data['jurnal'] = $this->jurnal_model->get_latest_jurnal(3) ?: [];
+        $data['warta'] = $this->warta_model->get_latest_warta(3) ?: [];
+        $this->load->view('home', $data); // Memuat view modul.php
     }
 
     public function pageModul()

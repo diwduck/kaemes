@@ -107,15 +107,26 @@
     }
 
     .btn-read-more {
-        background-color: black;
-        color: white;
-        padding: 5px 5px;
-        border-radius: 5px;
-        text-decoration: none;
-        font-size: 5px;
-        transition: background-color 0.3s;
-        
+        background-color: black !important;
+        color: white !important;
+        padding: 5px 7px !important;
+        border-radius: 15px !important;
+        text-decoration: none !important;
+        font-size: 9px !important;
+        transition: background-color 0.3s !important;
     }
+    .see-all-btn {
+        background-color: black !important;
+        color: white !important;
+        font-size: 13px !important;
+        padding: 5px 6px !important;
+            border-radius: 10px !important;
+            display: block !important;
+            margin: 30px auto 100px auto !important; /* Center the button and add more space below */
+            width: 75px !important;
+        }
+
+
 
     .btn-read-more:hover {
         background-color: #333;
@@ -325,57 +336,27 @@
     </span>
    </div>
    <div class="row justify-content-center">
+   <?php foreach ($modul as $item): ?>
     <div class="col-md-3">
+    <a href="<?= site_url('modul/detailModul/' . $item->id) ?>" class="text-decoration-none text-dark">
         <div class="card">
             <br />
             <img 
                 alt="Modul cover" 
-                src="uploads/image/ayam1.png" 
+                src="<?= base_url('uploads/' . $item->thumbnail) ?>" 
                 class="mx-auto d-block" 
                 height="200" 
                 width="150"
             />
-            <div class="card-body">
-                <p class="card-text">
-                    Modul 1: Pengelolaan Pengetahuan
+            <div class="card-body text-center">
+                <p class="card-text" >
+                    <?= $item->nama_modul ?>
                 </p>
             </div>
         </div>
+    </a>
     </div>
-    <div class="col-md-3">
-        <div class="card">
-        <br />
-            <img 
-                alt="Modul cover" 
-                src="uploads/image/ayam1.png"  
-                class="mx-auto d-block" 
-                height="200" 
-                width="150"
-            />
-            <div class="card-body">
-                <p class="card-text">
-                    Modul 2: Manajemen Inovasi
-                </p>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-3">
-        <div class="card">
-        <br />
-            <img 
-                alt="Modul cover" 
-                src="uploads/image/ayam1.png"  
-                class="mx-auto d-block" 
-                height="200" 
-                width="150"
-            />
-            <div class="card-body">
-                <p class="card-text">
-                    Modul 3: Strategi Pelayanan Publik
-                </p>
-            </div>
-        </div>
-    </div>
+    <?php endforeach; ?>
 </div>
 
    <a class="btn btn-read-more see-all-btn" href="<?php echo site_url('pageModul'); ?>">
@@ -391,54 +372,27 @@
     </span>
    </div>
    <div class="row justify-content-center">
+   <?php foreach ($jurnal as $item): ?>
     <div class="col-md-3">
+    <a href="<?= site_url('jurnal/detailJurnal/' . $item->id) ?>" class="text-decoration-none text-dark">
         <div class="card">
+            <br />
             <img 
                 alt="Journal cover" 
-                src="https://storage.googleapis.com/a1aa/image/WPCdP8h3YoZzEdsfMDxhPUOcqKbilIV09yZNiuJrmpjrOpBKA.jpg" 
+                src="<?= base_url('uploads/' . $item->file_thumbnail) ?>"
                 class="mx-auto d-block" 
-                height="150" 
-                width="100"
+                height="200" 
+                width="150"
             />
-            <div class="card-body">
+            <div class="card-body text-center">
                 <p class="card-text">
-                    Model Pemberdayaan Masyarakat Peduli Lingkungan Untuk Meningkatkan Kualitas Lingkungan Hidup di Kabupaten Semarang
+                <?= $item->judul?>
                 </p>
             </div>
         </div>
+        </a>
     </div>
-    <div class="col-md-3">
-        <div class="card">
-            <img 
-                alt="Journal cover" 
-                src="https://storage.googleapis.com/a1aa/image/WPCdP8h3YoZzEdsfMDxhPUOcqKbilIV09yZNiuJrmpjrOpBKA.jpg" 
-                class="mx-auto d-block" 
-                height="150" 
-                width="100"
-            />
-            <div class="card-body">
-                <p class="card-text">
-                    Model Collaborative Governance untuk Perencanaan Program dan Anggaran di Lembaga Kebijakan Pengadaan Barang/Jasa Pemerintah
-                </p>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-3">
-        <div class="card">
-            <img 
-                alt="Journal cover" 
-                src="https://storage.googleapis.com/a1aa/image/WPCdP8h3YoZzEdsfMDxhPUOcqKbilIV09yZNiuJrmpjrOpBKA.jpg" 
-                class="mx-auto d-block" 
-                height="150" 
-                width="100"
-            />
-            <div class="card-body">
-                <p class="card-text">
-                    Program Intensifikasi dan Ekstensifikasi Pajak Parkir dan Pajak Restoran Dalam Meningkatkan Pendapatan Asli Daerah di Kota Pekalongan
-                </p>
-            </div>
-        </div>
-    </div>
+    <?php endforeach; ?>
 </div>
 
    <a class="btn btn-read-more see-all-btn" href="<?php echo site_url('pageJournal'); ?>">
@@ -454,14 +408,21 @@
     </span>
    </div>
    <div class="row justify-content-center">
-    <div class="col-md-5">
-     <img alt="Group of people in a meeting" class="img-fluid" height="300" src="https://storage.googleapis.com/a1aa/image/IdbdF8Cjf91vWab06296BK1VcVKZfC5QQhBH7zc7woNhdSDUA.jpg" width="500"/>
+    <?php foreach ($warta as $index => $item): ?>
+        <div class="col-md-3">
+        <a href="<?= site_url('warta/detail/' . $item->id) ?>">
+            <img alt="Warta Picture" 
+                class="img-fluid img-thumbnail"
+                height="200"  
+                width="200"
+                style="object-fit: cover; width: 320px; height: 300px;"
+                src="<?= base_url('uploads/' . $item->file_thumbnail) ?>"
+            />
+        </a>
+        </div>
+    <?php endforeach; ?>
     </div>
-    <div class="col-md-5">
-     <img alt="Person giving a presentation" class="img-fluid" height="300" src="https://storage.googleapis.com/a1aa/image/B6hNLeUVJiVVYKbppfDWmItKMHeJo27WyCbf2Knvrjom1JNQB.jpg" width="500"/>
-    </div>
-   </div>
-   <a class="btn btn-read-more see-all-btn" href="<?php echo site_url('pageWarta'); ?>">
+    <a class="btn btn-read-more see-all-btn" href="<?php echo site_url('pageWarta'); ?>">
     see all
    </a>
   </section>
@@ -490,4 +451,5 @@
     });
 </script>
 </body>
+</html>
 </html>
