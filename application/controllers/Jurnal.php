@@ -11,6 +11,7 @@ class Jurnal extends CI_Controller {
 
     public function index() {
         $data['jurnal'] = $this->jurnal_model->get_all_jurnal();
+        $data['top3'] = $this->jurnal_model->get_top3_by_views();
         $this->load->view('pageJournal', $data);
     }
 
@@ -133,8 +134,6 @@ class Jurnal extends CI_Controller {
 }
 
 
-
-
     public function delete($id) {
         $jurnal = $this->jurnal_model->get_jurnal_by_id($id);
         if ($jurnal) {
@@ -144,11 +143,55 @@ class Jurnal extends CI_Controller {
         redirect('jurnal');
     }
 
-    public function download($id) {
+  public function download()
+    {
+        $email = $this->input->post('email');
+        $jurnal_id = $this->input->post('jurnal_id');
+
+        // Validasi email
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            show_error('Email tidak valid');
+            return;
+        }
+
+        // Cek jurnal
+        $jurnal = $this->jurnal_model->get_jurnal_by_id($jurnal_id);
+        if (!$jurnal) {
+            show_404();
+            return;
+        }
+
+        // Tambah view
+        $this->db->set('views', 'views + 1', FALSE);
+        $this->db->where('id', $jurnal_id);
+        $this->db->update('jurnal');
+
+        // Simpan log download
+        $this->db->insert('jurnal_download_log', [
+            'jurnal_id' => $jurnal_id,
+            'email' => $email,
+            'timestamp' => date('Y-m-d H:i:s')
+        ]);
+
+        // Kirim sukses balik ke JS
+        echo "success";
+    }
+
+    // Fungsi khusus untuk download langsung (GET)
+    public function download_file($id)
+    {
         $jurnal = $this->jurnal_model->get_jurnal_by_id($id);
-        if ($jurnal) {
-            $this->load->helper('download');
-            force_download('./uploads/' . $jurnal->file_name, NULL);
+        if (!$jurnal) {
+            show_404();
+            return;
+        }
+
+        $this->load->helper('download');
+        $file_path = './uploads/' . $jurnal->file_name;
+        if (file_exists($file_path)) {
+            force_download($file_path, NULL);
+        } else {
+            show_error('File tidak ditemukan');
         }
     }
 
@@ -160,4 +203,5 @@ class Jurnal extends CI_Controller {
             $this->load->view('detailPageJournal', $data);
         }
     }
+
 }

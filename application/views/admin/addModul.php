@@ -40,34 +40,41 @@
             <!-- /.card-header -->
             <div class="card-body">
                 <!-- Button to toggle form visibility with + icon, aligned right -->
-                <button class="btn btn-primary float-end mb-3" id="showFormBtn">
+                <button class="btn btn-success float-end mb-3" id="showFormBtn">
                         <i class="fas fa-plus"></i> Tambah
                 </button>
                 <table class="table table-bordered">
                     <thead>
                         <tr>
                             <th style="width: 10px; text-align: center;" align-middle>No</th>
-                            <th style="width: 150px; text-align: center;" align-middle>Thumbnail Video</th>
-                            <th style="width: 250px; text-align: center;" align-middle>Nama Modul</th>
-                            <th style="width: 100px; text-align: center;" align-middle>Jenis Kompetensi</th>
-                            <th style="width: 100px; text-align: center;" align-middle>Penyusun</th>
-                            <th style="width: 100px; text-align: center;" align-middle>Action</th>
+                            <th style="width: 60px; text-align: center;" align-middle>Thumbnail Video</th>
+                            <th style="width: 150px; text-align: center;" align-middle>Nama Modul</th>
+                            <th style="width: 90px; text-align: center;" align-middle>Penyusun</th>
+                            <th style="width: 130px; text-align: center;" align-middle>Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php if (!is_null($modul) && count($modul) > 0): ?>
                             <?php foreach ($modul as $key => $item): ?>
                                 <tr>
-                                    <td><?= $key + 1 ?></td>
-                                    <td><?= $item->thumbnail ?></td>
+                                    <td style="text-align: center; vertical-align: middle;"><?= $key + 1 ?></td>
+                                    <td style="text-align: center; vertical-align: middle;">
+                                        <img src="<?= base_url('uploads/' . $item->thumbnail) ?>" 
+                                            alt="Thumbnail" 
+                                            style="width: 70px; height: 70px; object-fit: cover; border-radius: 5px; cursor: pointer;"
+                                            data-bs-toggle="modal" 
+                                            data-bs-target="#imageModal" 
+                                            onclick="showImage('<?= base_url('uploads/' . $item->thumbnail) ?>')">
+                                    </td>
                                     <td><?= $item->nama_modul ?></td>
-                                    <td><?= $item->jenis_kompetensi?></td>
                                     <td><?= $item->penyusun_1?>
                                     <br><?= $item->penyusun_2?>
                                     <br><?= $item->penyusun_3?>
                                     </td>
-                                    <td>
-                                        <a href="<?= site_url('modul/download/' . $item->id) ?>" class="btn btn-primary btn-sm">Download</a>
+                                    <td style="text-align: center; vertical-align: middle;">
+                                        <a href="<?= site_url('modul/download/' . $item->id) ?>" class="btn btn-primary btn-sm">
+                                          <i class="fas fa-download"></i>Download
+                                        </a>
                                         <button class="btn btn-warning btn-sm edit-btn" 
                                             data-id="<?= $item->id ?>"
                                             data-thumbnail="<?= $item->thumbnail ?>" 
@@ -75,8 +82,9 @@
                                             data-file="<?= $item->file_name ?>">
                                             <i class="fas fa-edit"></i> Edit
                                         </button>
-                                        <br />
-                                        <a href="<?= site_url('modul/delete/' . $item->id) ?>" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">Delete</a>
+                                        <a href="<?= site_url('modul/delete/' . $item->id) ?>" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">
+                                          <i class="fas fa-trash"></i>Delete
+                                        </a>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>
@@ -118,10 +126,6 @@
             <label for="nama_modul">Nama Modul</label>
             <textarea class="form-control mb-4" name="nama_modul" id="nama_modul" required></textarea>
         </div>
-        <div class="form-group">
-              <label for="jenis_kompetensi">Jenis Kompetensi</label>
-              <input type="text" class="form-control mb-4" name="jenis_kompetensi" id="jenis_kompetensi" required>
-            </div>
             <div class="form-group">
               <label for="penyusun_1">Penyusun 1</label>
               <input type="text" class="form-control mb-4" name="penyusun_1" id="penyusun_1" required>
@@ -155,6 +159,21 @@
       </div>
     </div>
   </div>
+</div>
+
+<!-- Modal Picture-->
+<div class="modal fade" id="imageModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Preview Gambar</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body text-center">
+                <img id="modalImage" src="" class="img-fluid rounded">
+            </div>
+        </div>
+    </div>
 </div>
 <script
       src="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.10.1/browser/overlayscrollbars.browser.es6.min.js"
@@ -275,174 +294,6 @@
       crossorigin="anonymous"
     ></script>
     <!-- ChartJS -->
-    <script>
-      // NOTICE!! DO NOT USE ANY OF THIS JAVASCRIPT
-      // IT'S ALL JUST JUNK FOR DEMO
-      // ++++++++++++++++++++++++++++++++++++++++++
-      const sales_chart_options = {
-        series: [
-          {
-            name: 'Digital Goods',
-            data: [28, 48, 40, 19, 86, 27, 90],
-          },
-          {
-            name: 'Electronics',
-            data: [65, 59, 80, 81, 56, 55, 40],
-          },
-        ],
-        chart: {
-          height: 300,
-          type: 'area',
-          toolbar: {
-            show: false,
-          },
-        },
-        legend: {
-          show: false,
-        },
-        colors: ['#0d6efd', '#20c997'],
-        dataLabels: {
-          enabled: false,
-        },
-        stroke: {
-          curve: 'smooth',
-        },
-        xaxis: {
-          type: 'datetime',
-          categories: [
-            '2023-01-01',
-            '2023-02-01',
-            '2023-03-01',
-            '2023-04-01',
-            '2023-05-01',
-            '2023-06-01',
-            '2023-07-01',
-          ],
-        },
-        tooltip: {
-          x: {
-            format: 'MMMM yyyy',
-          },
-        },
-      };
-      const sales_chart = new ApexCharts(
-        document.querySelector('#revenue-chart'),
-        sales_chart_options,
-      );
-      sales_chart.render();
-    </script>
-    <!-- jsvectormap -->
-    <script
-      src="https://cdn.jsdelivr.net/npm/jsvectormap@1.5.3/dist/js/jsvectormap.min.js"
-      integrity="sha256-/t1nN2956BT869E6H4V1dnt0X5pAQHPytli+1nTZm2Y="
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/jsvectormap@1.5.3/dist/maps/world.js"
-      integrity="sha256-XPpPaZlU8S/HWf7FZLAncLg2SAkP8ScUTII89x9D3lY="
-      crossorigin="anonymous"
-    ></script>
-    <!-- jsvectormap -->
-    <script>
-      const visitorsData = {
-        US: 398, // USA
-        SA: 400, // Saudi Arabia
-        CA: 1000, // Canada
-        DE: 500, // Germany
-        FR: 760, // France
-        CN: 300, // China
-        AU: 700, // Australia
-        BR: 600, // Brazil
-        IN: 800, // India
-        GB: 320, // Great Britain
-        RU: 3000, // Russia
-      };
-      // World map by jsVectorMap
-      const map = new jsVectorMap({
-        selector: '#world-map',
-        map: 'world',
-      });
-      // Sparkline charts
-      const option_sparkline1 = {
-        series: [
-          {
-            data: [1000, 1200, 920, 927, 931, 1027, 819, 930, 1021],
-          },
-        ],
-        chart: {
-          type: 'area',
-          height: 50,
-          sparkline: {
-            enabled: true,
-          },
-        },
-        stroke: {
-          curve: 'straight',
-        },
-        fill: {
-          opacity: 0.3,
-        },
-        yaxis: {
-          min: 0,
-        },
-        colors: ['#DCE6EC'],
-      };
-      const sparkline1 = new ApexCharts(document.querySelector('#sparkline-1'), option_sparkline1);
-      sparkline1.render();
-      const option_sparkline2 = {
-        series: [
-          {
-            data: [515, 519, 520, 522, 652, 810, 370, 627, 319, 630, 921],
-          },
-        ],
-        chart: {
-          type: 'area',
-          height: 50,
-          sparkline: {
-            enabled: true,
-          },
-        },
-        stroke: {
-          curve: 'straight',
-        },
-        fill: {
-          opacity: 0.3,
-        },
-        yaxis: {
-          min: 0,
-        },
-        colors: ['#DCE6EC'],
-      };
-      const sparkline2 = new ApexCharts(document.querySelector('#sparkline-2'), option_sparkline2);
-      sparkline2.render();
-      const option_sparkline3 = {
-        series: [
-          {
-            data: [15, 19, 20, 22, 33, 27, 31, 27, 19, 30, 21],
-          },
-        ],
-        chart: {
-          type: 'area',
-          height: 50,
-          sparkline: {
-            enabled: true,
-          },
-        },
-        stroke: {
-          curve: 'straight',
-        },
-        fill: {
-          opacity: 0.3,
-        },
-        yaxis: {
-          min: 0,
-        },
-        colors: ['#DCE6EC'],
-      };
-      const sparkline3 = new ApexCharts(document.querySelector('#sparkline-3'), option_sparkline3);
-      sparkline3.render();
-
-    </script>
     <!--end::Script-->
   </body>
   <!--end::Body-->
@@ -460,4 +311,11 @@
     showFormBtn.addEventListener('click', function() {
         modal.show(); // Show the modal
     });
+</script>
+
+<script>
+  //ini script buat gambar
+function showImage(imageUrl) {
+    document.getElementById("modalImage").src = imageUrl;
+}
 </script>

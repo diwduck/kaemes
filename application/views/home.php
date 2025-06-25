@@ -24,7 +24,7 @@
     .header {
         color: white;
         text-align: center;
-        height: 70vh;
+        height: 75vh;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -181,8 +181,9 @@
         box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
         text-align: center;
         width: 1000px;
-        height: 220px;
+        height: 120px;
         margin: 0 auto;
+        font-size: 14px;
     }
     .content-box-d {
         background-color: white;
@@ -191,8 +192,9 @@
         box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
         text-align: center;
         width: 1000px;
-        height: 160px;
+        height: 140px;
         margin: 0 auto;
+        font-size: 14px;
     }
 
     .section-spacing {
@@ -257,7 +259,7 @@
                     <div class="card-body">
                         <h5 class="card-title fs-5">Modul</h5>
                         <p class="card-text">
-                            Akses mudah ke berbagai modul pengajaran yang lengkap dan terorganisir, memudahkan pengajar dan siswa dalam mempersiapkan dan mengelola materi pembelajaran.
+                            Akses mudah ke berbagai modul pelatihan dan panduan teknis yang tersusun secara sistematis, mendukung peningkatan kompetensi aparatur melalui materi yang relevan.
                         </p>
                         <a class="btn btn-read-more" href="#modul" style="font-size: 10px; ">
                             Read More
@@ -272,7 +274,7 @@
                     <div class="card-body">
                         <h5 class="card-title fs-5">e-Journal</h5>
                         <p class="card-text">
-                            Platform digital untuk publikasi artikel ilmiah, penelitian, dan jurnal akademik yang memungkinkan akses cepat dan kolaborasi antar penulis dan pembaca.
+                            Platform digital BPSDMD untuk publikasi karya ilmiah, hasil penelitian, dan jurnal dalam rangka mendukung pengembangan kompetensi ASN
                         </p>
                         <a class="btn btn-read-more" href="#e-journal" style="font-size: 10px; padding: 5px 8px;">
                             Read More
@@ -287,7 +289,7 @@
                     <div class="card-body">
                         <h5 class="card-title fs-5">e-Warta</h5>
                         <p class="card-text">
-                            Media informasi digital yang menyajikan berita terkini, pengumuman, dan perkembangan terbaru di dunia pendidikan untuk memperluas wawasan komunitas akademik.
+                            Media informasi digital BPSDMD yang menyajikan berita, pengumuman, dan perkembangan terkini dalam bidang pengembangan SDM aparatur.
                         </p>
                         <a class="btn btn-read-more" href="#e-warta" style="font-size: 10px; padding: 5px 8px;">
                             Read More
@@ -302,7 +304,7 @@
                     <div class="card-body">
                         <h5 class="card-title fs-5">COE</h5>
                         <p class="card-text">
-                            Fasilitas untuk mengelola dan melacak inovasi terbaru serta rencana tindak lanjut untuk pengembangan pendidikan yang lebih baik dan berkelanjutan.
+                            Fasilitas untuk  melacak inovasi terbaru serta rencana tindak lanjut untuk pengembangan pendidikan yang lebih baik dan berkelanjutan.
                         </p>
                         <a class="btn btn-read-more" href="#coe" style="font-size: 10px; padding: 5px 8px;">
                             Read More
@@ -323,8 +325,7 @@
    </div>
    <div class="content-box text-center">
     <p>
-     Knowledge Management System BPSDM Jawa Tengah hadir sebagai solusi strategis untuk mendukung pengelolaan pengetahuan secara terstruktur dan sistematis, sehingga dapat meningkatkan kolaborasi yang lebih erat antar pegawai di berbagai unit kerja. Dengan adanya KMS, akses terhadap informasi strategis menjadi lebih cepat, akurat, dan terpusat, yang secara langsung dapat mendorong pengembangan kompetensi individu maupun organisasi. Sistem ini juga berperan penting dalam meningkatkan efektivitas dan inovasi pelayanan publik, guna menciptakan pemerintahan yang responsif, adaptif, dan berorientasi pada kepuasan masyarakat. Melalui pemanfaatan KMS, diharapkan BPSDM Jawa Tengah mampu mewujudkan tata kelola pemerintahan yang lebih baik sekaligus mendukung peningkatan kinerja organisasi secara menyeluruh.
-    </p>
+     Knowledge Management System (KMS) BPSDM Jawa Tengah merupakan solusi strategis untuk mengelola pengetahuan secara terstruktur dan mendorong kolaborasi antar unit kerja. Sistem ini memudahkan akses informasi strategis, mempercepat pengembangan kompetensi, serta mendukung pelayanan publik yang lebih inovatif dan responsif. Dengan KMS, BPSDM diharapkan mampu meningkatkan tata kelola dan kinerja organisasi secara menyeluruh.    </p>
    </div>
   </section>
   <section class="container section-spacing" id="modul">
@@ -394,11 +395,11 @@
     </div>
     <?php endforeach; ?>
 </div>
-
    <a class="btn btn-read-more see-all-btn" href="<?php echo site_url('pageJournal'); ?>">
     see all
    </a>
   </section>
+  
   <section class="container" id="e-warta">
    <div class="section-title text-center">
     <span>
@@ -426,6 +427,7 @@
     see all
    </a>
   </section>
+  
   <section class="container" id="coe">
    <div class="section-title text-center">
     <span>

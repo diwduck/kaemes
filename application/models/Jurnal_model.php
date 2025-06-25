@@ -102,4 +102,10 @@ class Jurnal_model extends CI_Model {
         return $query->result();
     }
 
+    public function get_top3_by_views() {
+    $this->db->order_by('views', 'DESC');
+    $this->db->limit(3);
+    return $this->db->get('jurnal')->result();
+    }
+
 }

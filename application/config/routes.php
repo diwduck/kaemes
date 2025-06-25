@@ -59,7 +59,7 @@ $route['pageModul'] = 'page/pageModul';
 $route['pageCoe'] = 'page/pageCoe';
 $route['pageJournal'] = 'page/pageJournal';
 $route['pageWarta'] = 'page/pageWarta';
-
+$route['jurnal/download'] = 'jurnal/download';
 
 //THIS ROUTE FOR PAGE ADMIN CONTROLLER (YIPPIEEEE)
 $route['dashboard'] = 'pageAdmin/dashboard';

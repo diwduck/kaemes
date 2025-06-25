@@ -59,7 +59,6 @@ class Modul extends CI_Controller {
         $data = [
             'thumbnail' => $file_thumbnail,
             'nama_modul' => $this->input->post('nama_modul'),
-            'jenis_kompetensi' => $this->input->post('jenis_kompetensi'),
             'penyusun_1' => $this->input->post('penyusun_1'),
             'penyusun_2' => $this->input->post('penyusun_2'),
             'penyusun_3' => $this->input->post('penyusun_3'),
@@ -138,13 +137,56 @@ public function edit_modul($id)
         redirect('modul');
     }
 
-    public function download($id) {
+        public function download()
+    {
+        $email = $this->input->post('email');
+        $modul_id = $this->input->post('modul_id');
+
+        // Validasi email
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            show_error('Email tidak valid');
+            return;
+        }
+
+        // Cek modul
+        $modul = $this->modul_model->get_modul_by_id($modul_id);
+        if (!$modul) {
+            show_404();
+            return;
+        }
+
+        // Tambah view
+        $this->db->set('views', 'views + 1', FALSE);
+        $this->db->where('id', $modul_id);
+        $this->db->update('modul');
+
+        // Simpan log download
+        $this->db->insert('modul_download_log', [
+            'modul_id' => $modul_id,
+            'email' => $email,
+            'timestamp' => date('Y-m-d H:i:s')
+        ]);
+
+        echo "success";
+    }
+
+    public function download_file($id)
+    {
         $modul = $this->modul_model->get_modul_by_id($id);
-        if ($modul) {
-            $this->load->helper('download');
-            force_download('./uploads/' . $modul->file_name, NULL);
+        if (!$modul) {
+            show_404();
+            return;
+        }
+
+        $this->load->helper('download');
+        $file_path = './uploads/' . $modul->file_name;
+        if (file_exists($file_path)) {
+            force_download($file_path, NULL);
+        } else {
+            show_error('File tidak ditemukan');
         }
     }
+
 
     public function detailModul($id){
         $modul = $this->modul_model->get_modul_by_id($id);

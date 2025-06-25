@@ -160,10 +160,10 @@
             <img alt="Event Image" class="card-img-top" src="<?= base_url('uploads/' . $item->file_thumbnail) ?>"/>
             <div class="card-body">
                <h6 class="card-title"><?= $item->judul ?></h6>
-               <p class="card-text small-text"><?= date('d M Y', strtotime($item->timestamp)) ?> | 1 Komentar nanti diganti views </p>
-               <p class="card-text extra-small">
+               <p class="card-text small-text">
                     <?= $item->penyusun ?>
                </p>
+               <p class="card-text extra-small"><?= date('d M Y', strtotime($item->timestamp)) ?> | 1 Komentar nanti diganti views </p>
                <a class="btn btn-sm btn-primary" href="<?= site_url('warta/detail/' . $item->id) ?>">
                <i class="fas fa-download"></i> Detail
                </a>

@@ -41,27 +41,38 @@
             <!-- /.card-header -->
             <div class="card-body">
                 <!-- Button to toggle form visibility with + icon, aligned right -->
-                <button class="btn btn-primary float-end mb-3" id="showFormBtn">
+                <button class="btn btn-success float-end mb-3" id="showFormBtn">
                         <i class="fas fa-plus"></i> Tambah
                 </button>
-                <table class="table table-bordered">
+                <table class="table table-bordered" style="table-layout: fixed; width: 100%;">
                     <thead>
                         <tr>
-                            <th style="width: 10px; text-align: center;" align-middle>No</th>
-                            <th style="width: 150px; text-align: center;" align-middle>Judul Warta</th>
-                            <th style="width: 250px; text-align: center;" align-middle>Penyusun</th>
-                            <th style="width: 100px; text-align: center;" align-middle>Action</th>
+                            <th style="width: 20px; text-align: center;" align-middle>No</th>
+                            <th style="width: 70px; text-align: center;" align-middle>Thumbnail</th>
+                            <th style="width: 200px; text-align: center;" align-middle>Judul Warta</th>
+                            <th style="width: 80px; text-align: center;" align-middle>Penyusun</th>
+                            <th style="width: 120px; text-align: center;" align-middle>Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php if (!is_null($warta) && count($warta) > 0): ?>
                             <?php foreach ($warta as $key => $item): ?>
                                 <tr>
-                                    <td><?= $key + 1 ?></td>
+                                    <td style="text-align: center; vertical-align: middle;"><?= $key + 1 ?></td>
+                                    <td style="text-align: center; vertical-align: middle;">
+                                        <img src="<?= base_url('uploads/' . $item->file_thumbnail) ?>" 
+                                            alt="Thumbnail" 
+                                            style="width: 70px; height: 70px; object-fit: cover; border-radius: 5px; cursor: pointer;"
+                                            data-bs-toggle="modal" 
+                                            data-bs-target="#imageModal" 
+                                            onclick="showImage('<?= base_url('uploads/' . $item->file_thumbnail) ?>')">
+                                    </td>
                                     <td><?= $item->judul ?></td>
                                     <td><?= $item->penyusun ?></td>
-                                    <td>
-                                        <a href="<?= site_url('warta/download/' . $item->id) ?>" class="btn btn-primary btn-sm">Download</a>
+                                    <td style="text-align: center; vertical-align: middle;">
+                                        <a href="<?= site_url('warta/download/' . $item->id) ?>" class="btn btn-primary btn-sm" >
+                                        <i class="fas fa-download"></i> Download
+                                        </a>
                                         <button class="btn btn-warning btn-sm edit-btn" 
                                                 data-id="<?= $item->id ?>" 
                                                 data-title="<?= $item->judul ?>" 
@@ -70,7 +81,9 @@
                                             <i class="fas fa-edit"></i> Edit
                                         </button>
 
-                                        <a href="<?= site_url('warta/delete/' . $item->id) ?>" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">Delete</a>
+                                        <a href="<?= site_url('warta/delete/' . $item->id) ?>" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">
+                                          <i class="fas fa-trash"></i> Delete
+                                        </a>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>
