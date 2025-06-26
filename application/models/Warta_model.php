@@ -103,4 +103,9 @@ class Warta_model extends CI_Model {
         $query = $this->db->get('warta');
         return $query->result();
     }
+    public function get_top4_by_views() {
+    $this->db->order_by('views', 'DESC');
+    $this->db->limit(5);
+    return $this->db->get('warta')->result();
+    }
 }

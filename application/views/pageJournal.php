@@ -50,15 +50,15 @@
         }
         .header h1 {
             font-size: 4rem;
-            font-weight: bold;
         }
         .header p {
             font-size: 3rem;
         }
         /* Container Card */
+
         .custom-card {
             width: 400px !important;             /* Atur lebar sesuai kebutuhan */
-            height: 200px !important;            /* Atur tinggi sesuai kebutuhan */
+            height: 20000px !important;            /* Atur tinggi sesuai kebutuhan */
             max-width: 100%; 
             border-radius: 8px;
             overflow: hidden;
@@ -131,6 +131,15 @@
             .modal-footer .btn-primary {
                 width: 100px;
             }
+            .page-link {
+            color:rgb(47, 140, 222) !important; /* merah Bootstrap (danger) */
+            }
+
+            .page-item.active .page-link {
+            background-color:rgb(47, 140, 222) !important; /* background merah */
+            border-color:rgb(0, 79, 251) !important;
+            color: #fff !important; /* teks putih */
+            }
         </style>
  </head>
 <?php include_once 'templates/navbar.php'; ?>
@@ -168,20 +177,20 @@
   <!-- Baris utama berisi dua kolom -->
 <div class="row" style="margin-left: 1cm; margin-right: 1cm;">
   <!-- Kolom Semua Jurnal -->
-  <div class="col-md-9">
+  <div class="col-md-8">
     <p class="fw-semibold mb-2">Semua Jurnal Ditampilkan:</p>
     <div id="jurnalContainer" class="row" id="cardContainer">
       <?php foreach ($jurnal as $item): ?>
-        <div class="col-lg-3 col-md-4 col-sm-6 col-6 mb-4 jurnal-item" data-timestamp="<?= strtotime($item->timestamp) ?>">
+        <div class="col-lg-3 col-md-4 col-sm-6 col-6 mb-4 jurnal-item" style="width: 270px !important; height: 250px !important;"data-timestamp="<?= strtotime($item->timestamp) ?>">
           <a href="<?= site_url('jurnal/detailJurnal/' . $item->id) ?>" class="text-decoration-none text-dark">
             <div class="card custom-card h-100">
-              <img alt="Event Image" class="card-img-top" style="height: 120px; object-fit: cover;" src="<?= base_url('uploads/' . $item->file_thumbnail) ?>"/>
+              <img alt="Event Image" class="card-img-top" style="height: 140px; object-fit: contain; margin-top: 5px;" src="<?= base_url('uploads/' . $item->file_thumbnail) ?>"/>
               <div class="card-body p-2">
-                <h6 class="card-title mb-1 search-item"><?= $item->judul ?></h6>
-                <p class="card-text small-text mb-1 search-item-nama" style="font-size: 0.75rem;">
+                <h6 class="card-title mb-0 search-item"><?= $item->judul ?></h6>
+                <p class="card-text small-text mb-0 search-item-nama" style="font-size: 0.75rem;">
                   <?= $item->penyusun ?>
                 </p>
-                <p class="card-text extra-small mb-2" style="font-size: 0.7rem;">
+                <p class="card-text extra-small mb-0" style="font-size: 0.7rem;">
                   <?= date('d M Y', strtotime($item->timestamp)) ?> | <?= $item->views ?> views
                 </p>
               </div>
@@ -202,21 +211,35 @@
 
 <!-- Kolom Jurnal Paling Banyak Diunduh -->
     <div class="col-md-3">
-    <div class="card shadow-sm p-3" style="background-color:rgb(194, 190, 190); margin-top: 30px" >
-        <h5 class="text-center fw-semibold mb-3 " style="font-size: 1rem;">Jurnal Populer</h5>
-        <?php foreach ($top3 as $populer): ?>
-        <a href="<?= site_url('jurnal/detailJurnal/' . $populer->id) ?>" class="text-decoration-none text-dark">
-            <div class="card custom-card h-100 mb-3">
-            <img alt="Thumbnail" class="card-img-top" style="height: 120px; object-fit: cover;" src="<?= base_url('uploads/' . $populer->file_thumbnail) ?>"/>
-            <div class="card-body p-2">
-                <h6 class="card-title mb-1"><?= $populer->judul ?></h6>
-                <p class="card-text small-text mb-1 search-item-nama" style="font-size: 0.75rem;"><?= $populer->penyusun ?></p>
-                <p class="card-text extra-small mb-2" style="font-size: 0.75rem;"><?= date('d M Y', strtotime($populer->timestamp)) ?> | <?= $populer->views ?> views</p>
+    <p class="fw-semibold mb-2">Jurnal Populer:</p>
+            <?php foreach ($top4 as $populer): ?>
+            <a href="<?= site_url('jurnal/detailJurnal/' . $populer->id) ?>" class="text-decoration-none text-dark">
+            <div class="card mb-2" style="flex-direction: row; background-color: #fff;  width: 400px !important; height: 165px !important;">
+                <div class="row g-0">
+                <!-- Thumbnail -->
+                <div class="col-4">
+                    <img src="<?= base_url('uploads/' . $populer->file_thumbnail) ?>"
+                        alt="Thumbnail"
+                        class="img-fluid rounded-start"
+                        style="height: 90%; width: 90%; object-fit: contain; background-color:rgb(255, 255, 255); margin-top: 3px; margin-bottom: 3px;" />
+                </div>
+                
+                <!-- Informasi -->
+                <div class="col-8">
+                    <div class="card-body p-2">
+                    <h6 class="card-title mb-0" style="font-size: 0.8rem; margin-top: 3px; "><?= $populer->judul ?></h6>
+                    <p class="card-text small-text mb-0" style="font-size: 0.75rem;"><?= $populer->penyusun ?></p>
+                    <p class="card-text extra-small mb-0" style="font-size: 0.6rem;">
+                        <?= date('d M Y', strtotime($populer->timestamp)) ?> | <?= $populer->views ?> views
+                    </p>
+                    </div>
+                </div>
+
+                </div>
             </div>
-            </div>
-        </a>
+            </a>
         <?php endforeach; ?>
-    </div>
+        </div>
     </div>
 </div>
 </div>
@@ -266,7 +289,7 @@
 </script>
 
 <script>
-  const itemsPerPage = 12;
+  const itemsPerPage = 9;
   let currentPage = 1;
 
   const items = Array.from(document.querySelectorAll('.jurnal-item'));

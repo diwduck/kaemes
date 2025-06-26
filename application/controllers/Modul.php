@@ -137,22 +137,20 @@ public function edit_modul($id)
         redirect('modul');
     }
 
-        public function download()
+     public function download()
     {
         $email = $this->input->post('email');
         $modul_id = $this->input->post('modul_id');
 
         // Validasi email
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            show_error('Email tidak valid');
-            return;
+            echo "invalid_email"; return;
         }
 
         // Cek modul
         $modul = $this->modul_model->get_modul_by_id($modul_id);
         if (!$modul) {
-            show_404();
-            return;
+            echo "modul_not_found"; return;
         }
 
         // Tambah view
@@ -164,11 +162,11 @@ public function edit_modul($id)
         $this->db->insert('modul_download_log', [
             'modul_id' => $modul_id,
             'email' => $email,
-            'timestamp' => date('Y-m-d H:i:s')
         ]);
 
         echo "success";
     }
+
 
     public function download_file($id)
     {
@@ -186,7 +184,20 @@ public function edit_modul($id)
             show_error('File tidak ditemukan');
         }
     }
+    public function get_data()
+    {
+        $page = $this->input->get('page');
+        $search = $this->input->get('search');
+        $sort = $this->input->get('sort');
 
+        $limit = 5;
+        $offset = ($page - 1) * $limit;
+
+        $this->load->model('Modul_model');
+        $result = $this->Modul_model->get_filtered_data($limit, $offset, $search, $sort);
+
+        echo json_encode($result);
+    }
 
     public function detailModul($id){
         $modul = $this->modul_model->get_modul_by_id($id);

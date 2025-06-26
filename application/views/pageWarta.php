@@ -8,6 +8,8 @@
   </title>
   <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" rel="stylesheet"/>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
   <style>
    body {
             font-family: 'Poppins', sans-serif;
@@ -48,14 +50,16 @@
         }
         .header h1 {
             font-size: 4rem;
-            font-weight: bold;
         }
         .header p {
             font-size: 3rem;
         }
         /* Container Card */
+
         .custom-card {
-            max-width: 120%;
+            width: 400px !important;             /* Atur lebar sesuai kebutuhan */
+            height: 20000px !important;            /* Atur tinggi sesuai kebutuhan */
+            max-width: 100%; 
             border-radius: 8px;
             overflow: hidden;
             transition: transform 0.2s;
@@ -75,14 +79,13 @@
 
         /* Judul Berita */
         .custom-card .card-title {
-            font-size: 14px;
-            font-weight: bold;
+            font-size: 12px;
             margin-bottom: 5px;
         }
 
         /* Teks kecil di bawah judul */
         .small-text {
-            font-size: 12px;
+            font-size: 9px;
             color: gray;
             margin-bottom: 3px;
         }
@@ -128,89 +131,225 @@
             .modal-footer .btn-primary {
                 width: 100px;
             }
+            .page-link {
+            color:rgb(47, 140, 222) !important; /* merah Bootstrap (danger) */
+            }
+
+            .page-item.active .page-link {
+            background-color:rgb(47, 140, 222) !important; /* background merah */
+            border-color:rgb(0, 79, 251) !important;
+            color: #fff !important; /* teks putih */
+            }
         </style>
  </head>
 <?php include_once 'templates/navbar.php'; ?>
 <div class="header">
    <h1>
     <br />
-    E-Warta
+    Warta
    </h1>
-   <p>
-    
-   </p>
   </div>
   <div class="container my-4">
-   <div class="row">
-    <div class="row justify-content-center">
-      <div class="col-md-8 mb-3">
-         <div class="search-container">
-            <!-- Search Bar -->
-            <input class="form-control custom-search" placeholder="Search berita..." type="text" class="fas fa-filter" />
-            <!-- Tombol Filter di dalam Search Bar -->
-            
-         </div>
+  <!-- Search bar dan dropdown filter -->
+  <div class="row mb-3">
+    <div class="col-12 d-flex gap-2">
+      <div class="input-group" style="max-width: 300px; font-size: 0.8rem;">
+        <input
+            type="text"
+            id="searchInput"
+            class="form-control border-end-0"
+            placeholder="Cari..."
+            style="font-size: 0.8rem;"
+        />
+        <span class="input-group-text bg-white border-start-0">
+            <i class="bi bi-search"></i>
+        </span>
       </div>
-   </div>
 
-      <!-- Kartu Berita Dinamis -->
-   <?php foreach ($warta as $item): ?>
-      <div class="col-lg-3 col-md-4 col-sm-6 col-12 mb-4">
-         <div class="card custom-card">
-            <img alt="Event Image" class="card-img-top" src="<?= base_url('uploads/' . $item->file_thumbnail) ?>"/>
-            <div class="card-body">
-               <h6 class="card-title"><?= $item->judul ?></h6>
-               <p class="card-text small-text">
-                    <?= $item->penyusun ?>
-               </p>
-               <p class="card-text extra-small"><?= date('d M Y', strtotime($item->timestamp)) ?> | 1 Komentar nanti diganti views </p>
-               <a class="btn btn-sm btn-primary" href="<?= site_url('warta/detail/' . $item->id) ?>">
-               <i class="fas fa-download"></i> Detail
-               </a>
+      <select id="sortSelect" class="form-select w-auto" style="font-size: 0.8rem;">
+        <option selected>Urutkan</option>
+        <option value="terbaru">Terbaru</option>
+        <option value="terlama">Terlama</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Baris utama berisi dua kolom -->
+<div class="row" style="margin-left: 1cm; margin-right: 1cm;">
+  <!-- Kolom Semua Warta -->
+  <div class="col-md-8">
+    <p class="fw-semibold mb-2">Semua Warta Ditampilkan:</p>
+    <div id="wartaContainer" class="row" id="cardContainer">
+      <?php foreach ($warta as $item): ?>
+        <div class="col-lg-3 col-md-4 col-sm-6 col-6 mb-4 warta-item" style="width: 270px !important; height: 250px !important;"data-timestamp="<?= strtotime($item->timestamp) ?>">
+          <a href="<?= site_url('warta/detail/' . $item->id) ?>" class="text-decoration-none text-dark">
+            <div class="card custom-card h-100">
+              <img alt="Event Image" class="card-img-top" style="height: 140px; object-fit: contain; margin-top: 5px; margin-bottom: 5px;" src="<?= base_url('uploads/' . $item->file_thumbnail) ?>"/>
+              <div class="card-body p-2">
+                <h6 class="card-title mb-1 search-item"><?= $item->judul ?></h6>
+                <p class="card-text small-text mb-1 search-item-nama" style="font-size: 0.75rem;">
+                  <?= $item->penyusun ?>
+                </p>
+                <p class="card-text extra-small mb-2" style="font-size: 0.7rem;">
+                  <?= date('d M Y', strtotime($item->timestamp)) ?> | <?= $item->views ?> views
+                </p>
+              </div>
             </div>
-         </div>
-      </div>
-   <?php endforeach; ?>
-   <!-- Akhir Kartu Berita Dinamis -->
+          </a>
+        </div>
+      <?php endforeach; ?>
+    </div>
 
+    <!-- Informasi jumlah data dan navigasi -->
+    <div class="d-flex justify-content-between align-items-center mt-3 px-2">
+    <div id="entriesInfo" class="small text-muted"></div>
+    <nav>
+        <ul class="pagination pagination-sm mb-0" id="paginationContainer"></ul>
+    </nav>
+    </div>
+  </div>
+ <!-- Kolom Warta Paling Banyak Diunduh -->
+    <div class="col-md-3">
+    <p class="fw-semibold mb-2">Warta Populer:</p>
+            <?php foreach ($top4 as $populer): ?>
+            <a href="<?= site_url('warta/detail/' . $populer->id) ?>" class="text-decoration-none text-dark">
+            <div class="card mb-2" style="flex-direction: row; background-color: #fff;  width: 400px !important; height: 165px !important;">
+                <div class="row g-0">
+                <!-- Thumbnail -->
+                <div class="col-4">
+                    <img src="<?= base_url('uploads/' . $populer->file_thumbnail) ?>"
+                        alt="Thumbnail"
+                        class="img-fluid rounded-start"
+                        style="height: 90%; width: 90%; object-fit: contain; background-color:rgb(255, 255, 255); margin-top: 3px; margin-bottom: 3px;" />
+                </div>
+                
+                <!-- Informasi -->
+                <div class="col-8">
+                    <div class="card-body p-2">
+                    <h6 class="card-title mb-0" style="font-size: 0.8rem; margin-top: 3px; "><?= $populer->judul ?></h6>
+                    <p class="card-text small-text mb-0" style="font-size: 0.75rem;"><?= $populer->penyusun ?></p>
+                    <p class="card-text extra-small mb-0" style="font-size: 0.6rem;">
+                        <?= date('d M Y', strtotime($populer->timestamp)) ?> | <?= $populer->views ?> views
+                    </p>
+                    </div>
+                </div>
 
-   </div>
+                </div>
+            </div>
+            </a>
+        <?php endforeach; ?>
+        </div>
+    </div>
 </div>
+</div>
+
   <?php include 'templates/footer.php'; ?>
- </html>
- <script>
-    function applyFilter() {
-        let selectedFilters = [];
-        let checkboxes = document.querySelectorAll(".filter-option");
 
-        // Ambil semua filter yang dipilih
-        checkboxes.forEach(checkbox => {
-            if (checkbox.checked) {
-                selectedFilters.push(checkbox.value);
-            }
-        });
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const searchInput = document.getElementById("searchInput");
+    const sortSelect = document.getElementById("sortSelect");
+    const container = document.getElementById("wartaContainer");
 
-        let beritaItems = document.querySelectorAll('.berita');
+    function filterAndSort() {
+      const keyword = searchInput.value.toLowerCase();
+      const sortBy = sortSelect.value;
+      const items = Array.from(container.querySelectorAll(".warta-item"));
 
-        // Jika tidak ada filter yang dipilih, tampilkan semua berita
-        if (selectedFilters.length === 0) {
-            beritaItems.forEach(item => item.style.display = "block");
-            return;
-        }
+      // Filter dulu
+      const filteredItems = items.filter(item => {
+        const title = item.querySelector(".card-title").textContent.toLowerCase();
+        const penyusun = item.querySelector(".card-text").textContent.toLowerCase();
+        return title.includes(keyword) || penyusun.includes(keyword);
+      });
 
-        // Filter berita berdasarkan pilihan user
-        beritaItems.forEach(item => {
-            let itemFilter = item.getAttribute("data-filter");
-            if (selectedFilters.includes(itemFilter)) {
-                item.style.display = "block";
-            } else {
-                item.style.display = "none";
-            }
-        });
+      // Sort yang lolos filter
+      filteredItems.sort((a, b) => {
+        const timeA = parseInt(a.getAttribute("data-timestamp"));
+        const timeB = parseInt(b.getAttribute("data-timestamp"));
+        if (sortBy === "terbaru") return timeB - timeA;
+        if (sortBy === "terlama") return timeA - timeB;
+        return 0;
+      });
 
-        // Tutup modal setelah filter diterapkan
-        let modal = document.getElementById('filterModal');
-        let modalInstance = bootstrap.Modal.getInstance(modal);
-        modalInstance.hide();
+      // Reset: sembunyikan semua dulu
+      items.forEach(item => item.style.display = "none");
+
+      // Tampilkan dan append ulang hanya yang lolos filter
+      filteredItems.forEach(item => {
+        item.style.display = "block";
+        container.appendChild(item);
+      });
     }
- </script>
+
+    searchInput.addEventListener("input", filterAndSort);
+    sortSelect.addEventListener("change", filterAndSort);
+  });
+</script>
+
+<script>
+  const itemsPerPage = 9;
+  let currentPage = 1;
+
+  const items = Array.from(document.querySelectorAll('.warta-item'));
+  const totalItems = items.length;
+  const totalPages = Math.ceil(totalItems / itemsPerPage);
+  const entriesInfo = document.getElementById('entriesInfo');
+  const paginationContainer = document.getElementById('paginationContainer');
+
+  function updatePagination() {
+    // Sembunyikan semua item
+    items.forEach((item, index) => {
+      item.style.display = (index >= (currentPage - 1) * itemsPerPage && index < currentPage * itemsPerPage) ? 'block' : 'none';
+    });
+
+    // Update text info
+    const start = (currentPage - 1) * itemsPerPage + 1;
+    const end = Math.min(currentPage * itemsPerPage, totalItems);
+    entriesInfo.textContent = `Showing ${start} to ${end} of ${totalItems} entries`;
+
+    // Buat pagination
+    paginationContainer.innerHTML = '';
+
+    // Tombol Previous
+    const prevLi = document.createElement('li');
+    prevLi.className = `page-item ${currentPage === 1 ? 'disabled' : ''}`;
+    prevLi.innerHTML = `<a class="page-link" href="#">Previous</a>`;
+    prevLi.onclick = () => {
+      if (currentPage > 1) {
+        currentPage--;
+        updatePagination();
+      }
+    };
+    paginationContainer.appendChild(prevLi);
+
+    // Nomor halaman
+    for (let i = 1; i <= totalPages; i++) {
+      const li = document.createElement('li');
+      li.className = `page-item ${i === currentPage ? 'active' : ''}`;
+      li.innerHTML = `<a class="page-link" href="#">${i}</a>`;
+      li.onclick = () => {
+        currentPage = i;
+        updatePagination();
+      };
+      paginationContainer.appendChild(li);
+    }
+
+    // Tombol Next
+    const nextLi = document.createElement('li');
+    nextLi.className = `page-item ${currentPage === totalPages ? 'disabled' : ''}`;
+    nextLi.innerHTML = `<a class="page-link" href="#">Next</a>`;
+    nextLi.onclick = () => {
+      if (currentPage < totalPages) {
+        currentPage++;
+        updatePagination();
+      }
+    };
+    paginationContainer.appendChild(nextLi);
+  }
+
+  // Inisialisasi saat pertama kali load
+  updatePagination();
+</script>
+
+ </html>

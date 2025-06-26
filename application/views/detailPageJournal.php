@@ -197,6 +197,18 @@
         <div class="abstract-box" style="margin-left: 35px; font-size: 14px; margin-top: 10px;">
             <p><?= $jurnal->deskripsi ?></p>
         </div>
+        
+
+        <!-- PDF Viewer -->
+         <h2 class="header-subtitle">Pratinjau Jurnal</h2>
+        <div style="margin: 0px 35px; margin-bottom: 35px;">
+            <iframe 
+                src="<?= base_url('uploads/' . $jurnal->file_name) ?>" 
+                width="100%" 
+                height="600px" 
+                style="border: 1px solid #ccc; border-radius: 8px;">
+            </iframe>
+        </div>
         </div>
 
         <!-- Gambar 1/3 -->
@@ -255,6 +267,9 @@ document.getElementById('btnKirim').addEventListener('click', function() {
     console.log(res);
     document.getElementById('modalDownload').style.display = 'none';
     window.location.href = "<?= base_url('index.php/jurnal/download_file/') ?>" + jurnalId;
+    setTimeout(() => {
+    location.reload();
+    }, 300);
   });
 });
 

@@ -30,7 +30,7 @@ class Page extends CI_Controller {
     {
         $this->load->model('jurnal_model');
         $data['jurnal'] = $this->jurnal_model->get_all_jurnal() ?: [];
-        $data['top3'] = $this->jurnal_model->get_top3_by_views();
+        $data['top4'] = $this->jurnal_model->get_top4_by_views();
         $this->load->view('pageJournal', $data); // Memuat view jurnal.php
     }
 
@@ -38,6 +38,7 @@ class Page extends CI_Controller {
     {   
         $this->load->model('warta_model');
         $data['warta'] = $this->warta_model->get_all_warta() ?: [];
+        $data['top4'] = $this->warta_model->get_top4_by_views();
         $this->load->view('pageWarta', $data);
     }
 }

@@ -11,7 +11,7 @@ class Jurnal extends CI_Controller {
 
     public function index() {
         $data['jurnal'] = $this->jurnal_model->get_all_jurnal();
-        $data['top3'] = $this->jurnal_model->get_top3_by_views();
+        $data['top4'] = $this->jurnal_model->get_top4_by_views();
         $this->load->view('pageJournal', $data);
     }
 
@@ -170,7 +170,6 @@ class Jurnal extends CI_Controller {
         $this->db->insert('jurnal_download_log', [
             'jurnal_id' => $jurnal_id,
             'email' => $email,
-            'timestamp' => date('Y-m-d H:i:s')
         ]);
 
         // Kirim sukses balik ke JS
@@ -195,7 +194,16 @@ class Jurnal extends CI_Controller {
         }
     }
 
-
+public function test_download()
+{
+    $this->load->helper('download');
+    $file_path = './uploads/jadwal_fix32524.pdf';
+    if (file_exists($file_path)) {
+        force_download($file_path, NULL);
+    } else {
+        show_error('Gagal, file test.txt tidak ditemukan');
+    }
+}
     public function detailJurnal($id){
         $jurnal = $this->jurnal_model->get_jurnal_by_id($id);
         if ($jurnal) {

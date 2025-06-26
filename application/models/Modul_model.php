@@ -89,5 +89,30 @@ class Modul_model extends CI_Model {
     $query = $this->db->get('modul');
     return $query->result();
 }
+public function get_filtered_data($limit, $offset, $search, $sort)
+{
+    $this->db->like('judul', $search);
+
+    if ($sort === 'terbaru') {
+        $this->db->order_by('created_at', 'DESC');
+    } elseif ($sort === 'terlama') {
+        $this->db->order_by('created_at', 'ASC');
+    }
+
+    $query = $this->db->get('modul', $limit, $offset);
+    $data = $query->result();
+
+    $this->db->like('judul', $search);
+    $total = $this->db->count_all_results('modul');
+
+    return [
+        'items' => $data,
+        'total' => $total,
+        'from' => $offset + 1,
+        'to' => $offset + count($data),
+        'totalPages' => ceil($total / $limit)
+    ];
+}
+
 
 }
