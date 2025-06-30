@@ -70,7 +70,7 @@ class Jurnal extends CI_Controller {
         ];
     
         // Simpan ke database
-        $result = $this->Jurnal_model->add_jurnal($data);
+        $result = $this->jurnal_model->add_jurnal($data);
         if ($result) {
             $response = ['success' => true];
         } else {
@@ -120,7 +120,7 @@ class Jurnal extends CI_Controller {
         }
 
         // Update data di database
-        $this->jurnal_model->update_warta($id, $update_data);
+        $this->jurnal_model->update_jurnal($id, $update_data);
         $this->session->set_flashdata('success', 'Jurnal updated successfully.');
 
         // Kembalikan respons JSON

@@ -91,7 +91,7 @@ class Modul_model extends CI_Model {
 }
 public function get_filtered_data($limit, $offset, $search, $sort)
 {
-    $this->db->like('judul', $search);
+    $this->db->like('nama_modul', $search);
 
     if ($sort === 'terbaru') {
         $this->db->order_by('created_at', 'DESC');
@@ -102,7 +102,7 @@ public function get_filtered_data($limit, $offset, $search, $sort)
     $query = $this->db->get('modul', $limit, $offset);
     $data = $query->result();
 
-    $this->db->like('judul', $search);
+    $this->db->like('nama_modul', $search);
     $total = $this->db->count_all_results('modul');
 
     return [

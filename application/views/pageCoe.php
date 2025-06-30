@@ -151,6 +151,25 @@
             text-decoration: underline;
             background-color: transparent;
         }
+        .nav-link {
+            font-size: 16px;     /* Ukuran teks */
+            padding: 10px 15px;  /* Atur padding atas-bawah & kiri-kanan */
+        }
+
+        .nav-link i {
+            font-size: 18px;     /* Ukuran ikon */
+            margin-right: 5px;   /* Jarak antara ikon dan teks */
+        }
+
+        .badge {
+            font-size: 12px;     /* Ukuran teks badge */
+            padding: 4px 6px;    /* Ukuran padding badge */
+        }
+        .btn-tampilkan {
+        border-radius: 10px;
+        padding: 14px 24px;
+        font-size: 18px;
+    }
   </style>
  </head>
  <?php include_once 'templates/navbar.php'; ?>  
@@ -282,7 +301,7 @@
 
                                     <div class="col-md-2">
                                         <button onclick="show_filter_data_latsar()" style="border-radius: 5px;" type="submit" class="btn btn-primary btn-block btn-flat">
-                                            <b><i class="fas fa-search"></i> Tampilkan</b>
+                                            <b><i class="fas fa-search" style="font-size: 1px !important;"></i> Tampilkan</b>
                                         </button>
                                     </div>
                                 </div>

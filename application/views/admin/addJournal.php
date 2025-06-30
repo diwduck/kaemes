@@ -133,13 +133,15 @@
             <label for="abstrak">Deskripsi</label>
             <textarea class="form-control mb-4" name="deskripsi" id="deskripsi" required></textarea>
         </div>
-        <div class="form-group">
+        <div class="form-group mb-4">
             <label for="file_foto">Upload Thumbnail</label>
-            <input type="file" class="form-control mb-4" name="file_thumbnail" id="file_thumbnail" accept="image/*" required>
+            <input type="file" class="form-control" name="file_thumbnail" id="file_thumbnail" accept="image/*" required>
+            <small class="form-text text-muted">Hanya gambar: JPG, PNG</small>
         </div>
-        <div class="form-group">
+        <div class="form-group mb-4">
             <label for="file">Upload File</label>
-            <input type="file" class="form-control mb-4" name="file" id="file" accept="image/*,video/*,application/pdf" required>
+            <input type="file" class="form-control" name="file" id="file" accept="image/*,video/*,application/pdf" required>
+            <small class="form-text text-muted">File yang diupload: PDF</small>
         </div>
         <button type="submit" class="btn btn-success">Simpan</button>
       </form>
@@ -158,10 +160,10 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form method="post" id="editWartaForm" enctype="multipart/form-data">
+        <form method="post" id="editJurnalForm" enctype="multipart/form-data">
           <input type="hidden" name="id" id="editId">
           <div class="form-group">
-            <label for="editJudul">Judul Warta</label>
+            <label for="editJudul">Judul Jurnal</label>
             <input type="text" class="form-control mb-4" name="judul" id="editJudul" required>
           </div>
           <div class="form-group">
@@ -172,9 +174,10 @@
             <label for="editDeskripsi">Deskripsi</label>
             <textarea class="form-control mb-4" name="deskripsi" id="editDeskripsi" required></textarea>
           </div>
-          <div class="form-group">
+          <div class="form-group mb-4">
             <label for="editFileThumbnail">Upload Thumbnail</label>
             <input type="file" class="form-control mb-4" name="file_thumbnail" id="editFileThumbnail" accept="image/*">
+            <small class="form-text text-muted">Hanya gambar: JPG, PNG</small>
           </div>
           <button type="submit" class="btn btn-success">Simpan</button>
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
@@ -285,7 +288,7 @@
             });
         });
 
-        $("#editWartaForm").on('submit', function(e) {
+        $("#editJurnalForm").on('submit', function(e) {
             e.preventDefault();
             let formData = new FormData(this);
             $.ajax({

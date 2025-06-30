@@ -67,13 +67,13 @@ class Modul extends CI_Controller {
             'file_name' => $file_name
         ];
 
-        // Memanggil add_jurnal dari model untuk menyimpan data dan log
+        // Memanggil add_modul dari model untuk menyimpan data dan log
         $result = $this->modul_model->add_modul($data);
     
         if ($result) {
             $response = ['success' => true];
         } else {
-            $response = ['success' => false, 'error' => 'Failed to add jurnal'];
+            $response = ['success' => false, 'error' => 'Failed to add Modul'];
         }
 
         echo json_encode($response);
@@ -83,49 +83,61 @@ class Modul extends CI_Controller {
     
 
 
-public function edit_modul($id)
-{
-    // Load the model
-    $this->load->model('modul_model');
-
-    // Get the current record data
-    $data['record'] = $this->modul_model->get_modul_by_id($id);
-
-    if ($this->input->server('REQUEST_METHOD') == 'POST') {
-        $update_data = [
-            'nama_modul' => $this->input->post('nama_modul'),
-            'tanggal_rilis' => $this->input->post('release_date')
-        ];
-
-        if (!empty($_FILES['thumbnail'])) {
-            $config['upload_path'] = './uploads/';
-            $config['allowed_types'] = 'pdf|mp4|jpg|png';
-            $this->load->library('upload', $config);
-
-            if ($this->upload->do_upload('thumbnail')) {
-                $uploadData = $this->upload->data();
-                $update_data['thumbnail'] = $uploadData['thumbnail'];
+    public function edit_modul($id)
+    {
+        $this->load->model('modul_model');
+    
+        // Ambil data modul berdasarkan ID
+        $data['record'] = $this->modul_model->get_modul_by_id($id);
+    
+        // Jika request adalah POST (update data)
+        if ($this->input->server('REQUEST_METHOD') == 'POST') {
+            $update_data = [
+                'nama_modul'        => $this->input->post('nama_modul'),
+                'penyusun_1'        => $this->input->post('penyusun_1'),
+                'penyusun_2'        => $this->input->post('penyusun_2'),
+                'penyusun_3'        => $this->input->post('penyusun_3'),
+                'deskripsi'         => $this->input->post('deskripsi'),
+                'lembaga_penerbit'  => $this->input->post('lembaga_penerbit'),
+            ];
+    
+            // Upload thumbnail jika ada
+            if (!empty($_FILES['thumbnail']['name'])) {
+                $config['upload_path']   = './uploads/';
+                $config['allowed_types'] = 'jpg|png|jpeg|webp';
+                $this->load->library('upload', $config);
+    
+                if ($this->upload->do_upload('thumbnail')) {
+                    $uploadData = $this->upload->data();
+                    $update_data['thumbnail'] = $uploadData['file_name'];
+                }
             }
-        }
-
-        if (!empty($_FILES['file']['name'])) {
-            $config['upload_path'] = './uploads/';
-            $config['allowed_types'] = 'pdf|mp4|jpg|png';
-            $this->load->library('upload', $config);
-
-            if ($this->upload->do_upload('file')) {
-                $uploadData = $this->upload->data();
-                $update_data['file_name'] = $uploadData['file_name'];
+    
+            // Upload file utama jika ada
+            if (!empty($_FILES['file']['name'])) {
+                $config['upload_path']   = './uploads/';
+                $config['allowed_types'] = 'pdf|mp4|jpg|png';
+                $this->load->library('upload', $config);
+    
+                if ($this->upload->do_upload('file')) {
+                    $uploadData = $this->upload->data();
+                    $update_data['file_name'] = $uploadData['file_name'];
+                }
             }
+    
+            // Update ke database
+            $this->modul_model->update_modul($id, $update_data);
+            $this->session->set_flashdata('success', 'Modul berhasil diperbarui.');
+    
+            // Respon JSON untuk AJAX
+            echo json_encode(['success' => true]);
+            return;
         }
-
-        $this->modul_model->update_modul($id, $update_data);
-        $this->session->set_flashdata('success', 'modul updated successfully.');
-        redirect('modul');
+    
+        // Jika bukan POST, kirimkan data modul ke AJAX (misal untuk isi form edit)
+        echo json_encode($data['record']);
     }
-
-    $this->load->view('admin/edit_modul', $data);
-}
+        
 
 
     public function delete($id) {

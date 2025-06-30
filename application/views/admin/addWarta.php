@@ -134,13 +134,15 @@
             <label for="deskripsi">Deskripsi</label>
             <textarea class="form-control mb-4" name="deskripsi" id="deskripsi" required></textarea>
         </div>
-        <div class="form-group">
+        <div class="form-group mb-4">
             <label for="file_thumbnail">Upload Thumbnail</label>
-            <input type="file" class="form-control mb-4" name="file_thumbnail" id="file_thumbnail" accept="image/*" required>
+            <input type="file" class="form-control" name="file_thumbnail" id="file_thumbnail" accept="image/*" required>
+            <small class="form-text text-muted">Hanya gambar: JPG, PNG</small>
         </div>
-        <div class="form-group">
+        <div class="form-group mb-4">
             <label for="file">Upload File</label>
-            <input type="file" class="form-control mb-4" name="file" id="file" accept="image/*,video/*,application/pdf" required>
+            <input type="file" class="form-control" name="file" id="file" accept="image/*,video/*,application/pdf" required>
+            <small class="form-text text-muted">File yang diupload: PDF</small>
         </div>
         <button type="submit" class="btn btn-success">Simpan</button>
       </form>
@@ -173,9 +175,10 @@
             <label for="editDeskripsi">Deskripsi</label>
             <textarea class="form-control mb-4" name="deskripsi" id="editDeskripsi" required></textarea>
           </div>
-          <div class="form-group">
+          <div class="form-group mb-4">
             <label for="editFileThumbnail">Upload Thumbnail</label>
-            <input type="file" class="form-control mb-4" name="file_thumbnail" id="editFileThumbnail" accept="image/*">
+            <input type="file" class="form-control" name="file_thumbnail" id="editFileThumbnail" accept="image/*">
+            <small class="form-text text-muted">Hanya gambar: JPG, PNG</small>
           </div>
           <button type="submit" class="btn btn-success">Simpan</button>
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>

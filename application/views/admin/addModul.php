@@ -1,3 +1,4 @@
+
 <head> 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
@@ -43,6 +44,7 @@
                 <button class="btn btn-success float-end mb-3" id="showFormBtn">
                         <i class="fas fa-plus"></i> Tambah
                 </button>
+
                 <table class="table table-bordered">
                     <thead>
                         <tr>
@@ -77,8 +79,12 @@
                                         </a>
                                         <button class="btn btn-warning btn-sm edit-btn" 
                                             data-id="<?= $item->id ?>"
-                                            data-thumbnail="<?= $item->thumbnail ?>" 
-                                            data-title="<?= $item->nama_modul ?>"  
+                                            data-title="<?= $item->nama_modul ?>"
+                                            data-penyusun1="<?= $item->penyusun_1 ?>"
+                                            data-penyusun2="<?= $item->penyusun_2 ?>"    
+                                            data-penyusun3="<?= $item->penyusun_3 ?>"
+                                            data-deskripsi="<?= $item->deskripsi ?>"
+                                            data-lembaga_penerbit="<?= $item->lembaga_penerbit ?>"
                                             data-file="<?= $item->file_name ?>">
                                             <i class="fas fa-edit"></i> Edit
                                         </button>
@@ -113,6 +119,7 @@
 
 <!-- Modal -->
 <div class="modal fade" id="formModal" tabindex="-1" aria-labelledby="formModalLabel" aria-hidden="true">
+
   <div class="modal-dialog">
     <div class="card card-primary card-outline mb-4"> 
     <div class="modal-content">
@@ -146,13 +153,15 @@
               <label for="lembaga_penerbit">Lembaga Penerbit</label>
               <input type="text" class="form-control mb-4" name="lembaga_penerbit" id="lembaga_penerbit" required>
             </div>
-            <div class="form-group">
-            <label for="thumbnail">Upload Thumbnail Video</label>
-            <input type="file" class="form-control mb-4" name="file_thumbnail" id="file_thumbnail" accept="image/*,video/*,application/pdf" required>
+            <div class="form-group mb-4">
+            <label for="file_thumbnail">Upload Thumbnail Video</label>
+            <input type="file" class="form-control" name="file_thumbnail" id="file_thumbnail" accept="image/*" required>
+            <small class="form-text text-muted">Hanya gambar: JPG, PNG</small>
         </div>
-        <div class="form-group">
+        <div class="form-group mb-4">
             <label for="file">Upload File</label>
-            <input type="file" class="form-control mb-4" name="file" id="file" accept="image/*,video/*,application/pdf" required>
+            <input type="file" class="form-control" name="file" id="file" accept="image/*,video/*,application/pdf" required>
+            <small class="form-text text-muted">File yang diupload: PDF</small>
         </div>
         <button type="submit" class="btn btn-success">Simpan</button>
       </form>
@@ -161,20 +170,60 @@
   </div>
 </div>
 
-<!-- Modal Picture-->
-<div class="modal fade" id="imageModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Preview Gambar</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-            </div>
-            <div class="modal-body text-center">
-                <img id="modalImage" src="" class="img-fluid rounded">
-            </div>
-        </div>
+<!-- Modal Edit -->
+<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editModalLabel">Edit Modul</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form method="post" id="editModulForm" enctype="multipart/form-data">
+          <input type="hidden" name="id" id="editId">
+          <div class="form-group">
+            <label for="editNamaModul">Judul Modul</label>
+            <input type="text" class="form-control mb-4" name="nama_modul" id="editNamaModul" required>
+          </div>
+          <div class="form-group">
+            <label for="editPenyusun1">Penyusun 1</label>
+            <textarea class="form-control mb-4" name="penyusun_1" id="editPenyusun1" required></textarea>
+          </div>
+          <div class="form-group">
+            <label for="editPenyusun2">Penyusun 2</label>
+            <textarea class="form-control mb-4" name="penyusun_2" id="editPenyusun2" required></textarea>
+          </div>
+          <div class="form-group">
+            <label for="editPenyusun3">Penyusun 3</label>
+            <textarea class="form-control mb-4" name="penyusun_3" id="editPenyusun3" required></textarea>
+          </div>
+          <div class="form-group">
+            <label for="editDeskripsi">Deskripsi</label>
+            <textarea class="form-control mb-4" name="deskripsi" id="editDeskripsi" required></textarea>
+          </div>
+          <div class="form-group">
+            <label for="editPenerbit">Lembaga Penerbit</label>
+            <textarea class="form-control mb-4" name="lembaga_penerbit" id="editPenerbit" required></textarea>
+          </div>
+          <div class="form-group mb-4">
+            <label for="editFileThumbnail">Upload Thumbnail</label>
+            <input type="file" class="form-control" name="file_thumbnail" id="editFileThumbnail" accept="image/*">
+            <small class="form-text text-muted">Hanya gambar: JPG, PNG</small>
+          </div>
+          <button type="submit" class="btn btn-success">Simpan</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+        </form>
+      </div>
     </div>
+  </div>
 </div>
+
+
+
+<script 
+      src="https://code.jquery.com/jquery-3.6.4.min.js"
+    ></script>
+
 <script
       src="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.10.1/browser/overlayscrollbars.browser.es6.min.js"
       integrity="sha256-dghWARbRe2eLlIJ56wNB+b760ywulqK3DzZYEpsg2fQ="
@@ -192,9 +241,7 @@
       integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
       crossorigin="anonymous"
     ></script>
-    <script 
-      src="https://code.jquery.com/jquery-3.6.4.min.js"
-    ></script>
+    
     <!--end::Required Plugin(Bootstrap 5)--><!--begin::Required Plugin(AdminLTE)-->
     <script src="<?php echo base_url('assets/dist/js/adminlte.js')?>"></script>
     <!--end::Required Plugin(AdminLTE)--><!--begin::OverlayScrollbars Configure-->
@@ -256,21 +303,56 @@
 
     </script>
     <!-- Script for handle edit -->
-    <!-- Script for handle edit -->
     <script>
     $(document).ready(function () {
-        $(".edit-btn").click(function () {
-            // Get data attributes from the button
-            var id = $(this).data("id");
-            var thumbnail = $(this).data("thumbnail");
-            var nama_modul = $(this).data("nama_modul");
-            var date = $(this).data("date");
-            var file = $(this).data("file");
+          $(".edit-btn").click(function () {
+              var id = $(this).data("id");
 
-            // Redirect to the edit page with the ID
-            window.location.href = "<?= site_url('modul/edit_modul/') ?>" + id;
-        });
-    });
+              // Ambil data untuk diisi ke modal
+              $.ajax({
+                  url: '<?= site_url('modul/edit_modul/') ?>' + id,
+                  type: 'GET',
+                  success: function(response) {
+                      var data = JSON.parse(response);
+
+                      $("#editId").val(data.id);
+                      $("#editNamaModul").val(data.nama_modul);
+                      $("#editPenyusun1").val(data.penyusun_1);
+                      $("#editPenyusun2").val(data.penyusun_2);
+                      $("#editPenyusun3").val(data.penyusun_3);
+                      $("#editDeskripsi").val(data.deskripsi);
+                      $("#editPenerbit").val(data.lembaga_penerbit);
+                      $("#editModal").modal("show");
+                }
+              });
+            
+          $("#editModal").appendTo("body"); // Ensure modal is appended to body
+          });
+
+          $("#editModulForm").on('submit', function(e) {
+              e.preventDefault();
+              let formData = new FormData(this);
+              $.ajax({
+                  url: '<?= site_url('modul/edit_modul/') ?>' + $("#editId").val(),
+                  type: 'POST',
+                  data: formData,
+                  processData: false,
+                  contentType: false,
+                  success: function(response) {
+                      let res = JSON.parse(response);
+                      if (res.success) {
+                          alert('Data berhasil diperbarui!');
+                          location.reload(); // Reload halaman untuk melihat perubahan
+                      } else {
+                          alert('Error: ' + res.error);
+                      }
+                  },
+                  error: function(xhr, status, error) {
+                      console.error('AJAX error:', xhr.responseText);
+                  }
+              });
+          });
+      });
 </script>
 
     <!-- sortablejs -->
@@ -294,6 +376,17 @@
       crossorigin="anonymous"
     ></script>
     <!-- ChartJS -->
+      <!-- jsvectormap -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/jsvectormap@1.5.3/dist/js/jsvectormap.min.js"
+      integrity="sha256-/t1nN2956BT869E6H4V1dnt0X5pAQHPytli+1nTZm2Y="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/jsvectormap@1.5.3/dist/maps/world.js"
+      integrity="sha256-XPpPaZlU8S/HWf7FZLAncLg2SAkP8ScUTII89x9D3lY="
+      crossorigin="anonymous"
+    ></script>
     <!--end::Script-->
   </body>
   <!--end::Body-->
@@ -313,9 +406,4 @@
     });
 </script>
 
-<script>
-  //ini script buat gambar
-function showImage(imageUrl) {
-    document.getElementById("modalImage").src = imageUrl;
-}
-</script>
+
