@@ -82,7 +82,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white" style="margin-right: 20px;" href="<?php echo site_url('pageCoe'); ?>">
+          <a class="nav-link text-white" style="margin-right: 20px;" href="<?php echo site_url('coe/Publish'); ?>">
             <i class="fas fa-bookmark" style="font-size: 15px;"></i> COE
           </a>
         </li>

@@ -13,7 +13,7 @@ class Auth extends CI_Controller {
     public function index() {
         // If already logged in, redirect to PDF Controller
         if($this->session->userdata('logged_in')) {
-            redirect('pdf');
+            redirect('Dashboard');
         }
         // Otherwise show login page
         $this->load->view('auth/login');
@@ -21,7 +21,7 @@ class Auth extends CI_Controller {
     
     public function login() {
         if($this->session->userdata('logged_in')) {
-            redirect('pdf');
+            redirect('Dashboard');
         }
         
         $this->form_validation->set_rules('username', 'Username', 'required');
@@ -61,7 +61,7 @@ class Auth extends CI_Controller {
                 );
                 
                 $this->session->set_userdata($session_data);
-                redirect('pdf');
+                redirect('Dashboard');
             } else {
                 echo "Login failed!<br>";
                 if (!$user) {

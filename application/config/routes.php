@@ -49,7 +49,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
 */
-$route['default_controller'] = 'pdf';
+$route['default_controller'] = 'Dashboard';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
@@ -61,6 +61,8 @@ $route['pageJournal'] = 'page/pageJournal';
 $route['pageWarta'] = 'page/pageWarta';
 $route['jurnal/download'] = 'jurnal/download';
 $route['modul/download'] = 'modul/download';
+$route['coe/publish'] = 'coe/Publish/index';
+$route['coe/direktori/(:any)'] = 'coe/Direktori/index/$1';
 
 //THIS ROUTE FOR PAGE ADMIN CONTROLLER (YIPPIEEEE)
 $route['dashboard'] = 'pageAdmin/dashboard';

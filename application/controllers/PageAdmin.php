@@ -3,10 +3,28 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class PageAdmin extends CI_Controller {
 
+    public function __construct() {
+        parent::__construct();
+        $this->load->model('Count_model');
+        $this->load->model('Jurnal_model');
+        $this->load->model('Modul_model');
+        $this->load->model('Warta_model');
+        $this->load->model('Log_model'); // Tambahkan Log_model
+    }
+
     
     public function dashboard()
     {
-        $this->load->view('admin/dashboard'); // Memuat view modul.php
+        $data['count_jurnal'] = $this->Count_model->count_jurnal();
+        $data['count_modul'] = $this->Count_model->count_modul();
+        $data['count_warta'] = $this->Count_model->count_warta();
+
+        // Ambil data log
+        $this->load->model('Log_model');
+        $data['logs'] = $this->Log_model->get_all_logs();
+
+        // Kirim data ke view
+        $this->load->view('admin/dashboard', $data); // Memuat view modul.php
     }
 
     public function addModul()
@@ -31,7 +49,7 @@ class PageAdmin extends CI_Controller {
 
     public function addCoe()
     {
-        redirect('http://coe.bpsdmd.jatengprov.go.id/'); // redirect ke halaman COE (sementara)
+        redirect('coe/Auth'); // redirect ke halaman COE (sementara)
         //$this->load->view('admin/addCoe'); // Memuat view Coe.php
     }
 

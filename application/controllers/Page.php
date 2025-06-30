@@ -23,7 +23,10 @@ class Page extends CI_Controller {
 
     public function pageCoe()
     {
-        $this->load->view('pageCoe'); // Memuat view about.php
+
+        
+
+        redirect('coe/publish');
     }
 
     public function pageJournal()

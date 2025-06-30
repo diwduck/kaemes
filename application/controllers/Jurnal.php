@@ -143,7 +143,9 @@ class Jurnal extends CI_Controller {
         redirect('jurnal');
     }
 
-  public function download()
+  
+    // Fungsi untuk menangani validasi download jurnal
+    public function download()
     {
         $email = $this->input->post('email');
         $jurnal_id = $this->input->post('jurnal_id');
